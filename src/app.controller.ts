@@ -3,9 +3,16 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  @Get()
-  @Render('index')
-  root() {
-    return { message: 'Hello world!' };
+  
+  @Get('')
+  @Render('login')
+  login() {
+    return '';
+  }
+
+  @Get('/dashboard')
+  @Render('dashboard')
+  dashboard() {
+    return '';
   }
 }
