@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 export class AppController {
   
   @Get('')
-  @Render('login')
+  @Render('auth/login')
   login() {
     return '';
   }
