@@ -1,18 +1,26 @@
-import { Controller, Get, Render } from '@nestjs/common';
-import { AppService } from './app.service';
+// src/app.controller.ts
+import { Controller, Get, Render, UseGuards, Req } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller()
 export class AppController {
-  
+  @Get('home')
+  @UseGuards(AuthGuard('jwt'))
+  @Render('pages/home')
+  async getHome(@Req() req) {
+    // console.log(req.user);
+    return { user: req.user };
+  }
+
   @Get('')
-  @Render('auth/login')
-  login() {
+  @Render('pages/login')
+  getLogin() {
     return '';
   }
 
-  @Get('/dashboard')
-  @Render('dashboard')
-  dashboard() {
-    return '';
-  }
+  // @Get('/about')
+  // @Render('About')
+  // getAbout() {
+  //   return '';
+  // }
 }

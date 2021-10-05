@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+
+//Admin Users
 import { AdminUsersModule } from './admin-users/admin-users.module';
-import {AdminUser} from './admin-users/entities/admin-user.entity';
-import { AuthModule } from './auth/auth.module';
+import { AdminUser } from './admin-users/admin-user';
+
 const ENV = process.env.NODE_ENV;
-const entities = [AdminUser];
-
-
 @Module({
   imports: [
     ConfigModule.forRoot({
