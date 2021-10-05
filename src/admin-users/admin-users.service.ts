@@ -1,46 +1,82 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAdminUserDto } from './dto/create-admin-user.dto';
-import { UpdateAdminUserDto } from './dto/update-admin-user.dto';
-import { AdminUser } from './entities/admin-user.entity';
-
+import { InjectRepository } from '@nestjs/typeorm';
+import { MoreThanOrEqual, Repository } from 'typeorm';
+import { AdminUser } from './admin-user';
+import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { CurrentAdminUser } from '../models/current.adminuser';
+import * as randomToken from 'rand-token';
+import * as moment from 'moment';
 
 @Injectable()
 export class AdminUsersService {
- 
+  constructor(
+    @InjectRepository(AdminUser) private adminUser: Repository<AdminUser>,
+    private jwtService: JwtService,
+  ) {}
 
-  async create(createAdminUserDto: CreateAdminUserDto) {
-    const adminUser = AdminUser.create(createAdminUserDto);
-    await adminUser.save();
+  public async validateUserCredentials(
+    email: string,
+    password: string,
+  ): Promise<CurrentAdminUser> {
+    const adminUser = await this.adminUser.findOne({ email: email });
 
-    delete adminUser.password;
-    return adminUser;
+    if (adminUser == null) {
+      return null;
+    }
+
+    const isValidPassword = await bcrypt.compare(password, adminUser.password);
+    if (!isValidPassword) {
+      return null;
+    }
+
+    const currentAdminUser = new CurrentAdminUser();
+    currentAdminUser.id = adminUser.id;
+    currentAdminUser.name = adminUser.name;
+    currentAdminUser.email = adminUser.email;
+
+    return currentAdminUser;
   }
 
-  async findOne(id: number) {
-    const adminUser = await AdminUser.findOne(id);
-    delete adminUser.password;
-    return adminUser;
+  public async getJwtToken(adminUser: CurrentAdminUser): Promise<string> {
+    const payload = {
+      ...adminUser,
+    };
+    return this.jwtService.signAsync(payload);
   }
 
+  public async getRefreshToken(id: number): Promise<string> {
+    const userDataToUpdate = {
+      refreshToken: randomToken.generate(16),
+      refreshTokenExp: moment().day(1).format('YYYY/MM/DD'),
+    };
 
+    await this.adminUser.update(id, userDataToUpdate);
+    return userDataToUpdate.refreshToken;
+  }
 
-  async findByEmail(email: string) {
-    return await AdminUser.findOne({
+  public async validRefreshToken(
+    email: string,
+    refreshToken: string,
+  ): Promise<CurrentAdminUser> {
+    const currentDate = moment().day(1).format('YYYY/MM/DD');
+    const adminUser = await this.adminUser.findOne({
       where: {
         email: email,
+        refreshToken: refreshToken,
+        refreshTokenExp: MoreThanOrEqual(currentDate),
       },
     });
-  }
 
-  findAll() {
-    return `This action returns all adminUsers`;
-  }
+    if (!adminUser) {
+      return null;
+    }
 
-  update(id: number, updateAdminUserDto: UpdateAdminUserDto) {
-    return `This action updates a #${id} adminUser`;
-  }
+    const currentAdminUser = new CurrentAdminUser();
+    currentAdminUser.id = adminUser.id;
+    currentAdminUser.name = adminUser.name;
+    currentAdminUser.email = adminUser.email;
 
-  remove(id: number) {
-    return `This action removes a #${id} adminUser`;
+    return currentAdminUser;
   }
 }

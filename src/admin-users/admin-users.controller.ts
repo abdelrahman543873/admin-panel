@@ -1,34 +1,66 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
+import { CurrentAdminUser } from '../models/current.adminuser';
 import { AdminUsersService } from './admin-users.service';
-import { CreateAdminUserDto } from './dto/create-admin-user.dto';
-import { UpdateAdminUserDto } from './dto/update-admin-user.dto';
 
 @Controller('admin-users')
 export class AdminUsersController {
-  constructor(private readonly adminUsersService: AdminUsersService) {}
+  constructor(private adminUserService: AdminUsersService) {}
 
-  @Post()
-  create(@Body() createAdminUserDto: CreateAdminUserDto) {
-    return this.adminUsersService.create(createAdminUserDto);
+  @Post('login')
+  @UseGuards(AuthGuard('local'))
+  async login(@Req() req, @Res({ passthrough: true }) res: Response) {
+    const token = await this.adminUserService.getJwtToken(
+      req.user as CurrentAdminUser,
+    );
+    const refreshToken = await this.adminUserService.getRefreshToken(
+      req.user.id,
+    );
+    const secretData = {
+      token,
+      refreshToken,
+    };
+
+    res.cookie('auth-cookie', secretData, { httpOnly: true });
+    return { msg: 'success' };
   }
 
-  @Get()
-  findAll() {
-    return this.adminUsersService.findAll();
+  @Get('fav-movies')
+  @UseGuards(AuthGuard('jwt'))
+  async movies(@Req() req) {
+    // return ['Avatar', 'Avengers'];
+    return req.user.id;
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.adminUsersService.findOne(+id);
-  }
+  @Get('refresh-tokens')
+  @UseGuards(AuthGuard('refresh'))
+  async regenerateTokens(
+    @Req() req,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const token = await this.adminUserService.getJwtToken(
+      req.user as CurrentAdminUser,
+    );
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAdminUserDto: UpdateAdminUserDto) {
-    return this.adminUsersService.update(+id, updateAdminUserDto);
-  }
+    const refreshToken = await this.adminUserService.getRefreshToken(
+      req.user.id,
+    );
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.adminUsersService.remove(+id);
+    const secretData = {
+      token,
+      refreshToken,
+    };
+
+    res.cookie('auth-cookie', secretData, { httpOnly: true });
+    return { msg: 'success' };
   }
 }
