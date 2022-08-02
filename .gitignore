@@ -37,6 +37,6 @@ lerna-debug.log*
 public/dist/img/users/*
 
 
-/env
+/env/.env.*
 
 .history
