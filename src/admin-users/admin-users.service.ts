@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoreThanOrEqual, Repository } from 'typeorm';
-import { AdminUser } from './admin-user';
-import * as bcrypt from 'bcrypt';
+import { AdminUser } from './admin-user.entity';
+import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { CurrentAdminUser } from '../models/current.adminuser';
 import * as randomToken from 'rand-token';

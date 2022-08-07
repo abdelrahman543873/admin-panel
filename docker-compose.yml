@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  db:
+    image: 'mysql'
+    restart: always
+    ports:
+      - 3307:3306
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_USER: Admin
+      MYSQL_ROOT_PASSWORD: adminPass
+      MYSQL_PASSWORD: adminPass
+      MYSQL_DATABASE: admindb
+      MYSQL_ALLOW_EMPTY_ROOT_PASSWORD: 'true'
