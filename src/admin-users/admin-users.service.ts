@@ -19,7 +19,7 @@ export class AdminUsersService {
     email: string,
     password: string,
   ): Promise<CurrentAdminUser> {
-    const adminUser = await this.adminUser.findOne({ email: email });
+    const adminUser = await this.adminUser.findOne({ where: { email } });
 
     if (adminUser == null) {
       return null;

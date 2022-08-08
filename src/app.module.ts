@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 
 //Admin Users
 import { AdminUsersModule } from './admin-users/admin-users.module';
+import { MerchantModule } from './merchant/merchant.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -25,11 +26,12 @@ const ENV = process.env.NODE_ENV;
       synchronize: true,
       entities: ['dist/**/*.entity.js'],
       migrations: ['database/migrations/*.ts'],
-      cli: {
-        migrationsDir: 'database/migrations',
-      },
+      // cli: {
+      //   migrationsDir: 'database/migrations',
+      // },
     }),
     AdminUsersModule,
+    MerchantModule,
   ],
   controllers: [AppController],
   providers: [AppService],
