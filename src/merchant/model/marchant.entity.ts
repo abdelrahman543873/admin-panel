@@ -1,10 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { POS_TYPE, MERCHANT_CATEGORY } from '../merchant.enum';
+import { Column, Entity, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
 
 @Entity()
-export class Merchant {
+export class Merchant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

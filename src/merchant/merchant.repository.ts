@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, BaseEntity } from 'typeorm';
 import { AddMerchantInput } from './inputs/add-merchant.dto';
 import { Merchant } from './model/marchant.entity';
 
