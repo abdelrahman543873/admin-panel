@@ -1,4 +1,4 @@
-import request from 'supertest';
+import * as request from 'supertest';
 import { HTTP_METHODS_ENUM } from './request.methods.enum';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
@@ -17,7 +17,7 @@ interface testRequestInput {
 export const testRequest = async (
   input: testRequestInput,
 ): Promise<request.Test> => {
-  const app: NestExpressApplication = global.appContext;
+  const app: NestExpressApplication = global.app;
   const server = request(app.getHttpServer());
   let req: request.Test;
   input.method === HTTP_METHODS_ENUM.POST && (req = server.post(input.url));

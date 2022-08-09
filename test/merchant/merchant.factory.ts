@@ -2,7 +2,6 @@ import { internet, name, random } from 'faker';
 import { getValuesFromEnum } from '../../src/shared/utils/columnEnum';
 import { POS_TYPE, MERCHANT_CATEGORY } from '../../src/merchant/merchant.enum';
 import { Merchant } from '../../src/merchant/model/marchant.entity';
-import { MerchantTestRepo } from './merchant.test-repo';
 interface MerchantType {
   arName?: string;
   enName?: string;

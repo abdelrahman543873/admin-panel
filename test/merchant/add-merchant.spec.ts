@@ -10,6 +10,7 @@ describe('merchant suite case', () => {
       url: MERCHANT,
       variables: merchantParams,
     });
-    console.log(response.body);
+    expect(response.body.arName).toBe(merchantParams.arName);
+    expect(response.body.enName).toBe(merchantParams.enName);
   });
 });

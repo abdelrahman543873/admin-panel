@@ -24,11 +24,8 @@ const ENV = process.env.NODE_ENV;
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: true,
-      entities: ['dist/**/*.entity.js'],
       migrations: ['database/migrations/*.ts'],
-      // cli: {
-      //   migrationsDir: 'database/migrations',
-      // },
+      autoLoadEntities: true,
     }),
     AdminUsersModule,
     MerchantModule,
