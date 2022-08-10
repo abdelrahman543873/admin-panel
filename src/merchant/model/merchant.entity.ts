@@ -44,6 +44,7 @@ export class Merchant extends BaseEntity {
   category: string;
 
   @Column({
+    select: false,
     transformer: {
       to: (value: string) => {
         return bcrypt.hashSync(value, 8);

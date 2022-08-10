@@ -2,7 +2,7 @@ import { MerchantRepository } from './merchant.repository';
 import { Module } from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { MerchantController } from './merchant.controller';
-import { Merchant } from './model/marchant.entity';
+import { Merchant } from './model/merchant.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

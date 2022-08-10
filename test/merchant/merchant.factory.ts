@@ -1,7 +1,8 @@
 import { internet, name, random } from 'faker';
 import { getValuesFromEnum } from '../../src/shared/utils/columnEnum';
 import { POS_TYPE, MERCHANT_CATEGORY } from '../../src/merchant/merchant.enum';
-import { Merchant } from '../../src/merchant/model/marchant.entity';
+import { Merchant } from '../../src/merchant/model/merchant.entity';
+import { merchantTestRepo } from './merchant.test-repo';
 interface MerchantType {
   arName?: string;
   enName?: string;
@@ -33,5 +34,5 @@ export const buildMerchantParams = (obj: MerchantType = {}): MerchantType => {
 
 export const merchantFactory = async (obj: MerchantType = {}) => {
   const params: MerchantType = buildMerchantParams(obj);
-  return await Merchant.create({ ...params });
+  return await merchantTestRepo().save({ ...params });
 };

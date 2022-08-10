@@ -13,7 +13,7 @@ export class MerchantController {
     return await this.merchantService.addMerchant(input);
   }
 
-  @Get()
+  @Get(':id')
   async getMerchant(@Param() input: GetMerchantInput) {
     return await this.merchantService.getMerchant(input);
   }
