@@ -4,7 +4,6 @@ import { MoreThanOrEqual, Repository } from 'typeorm';
 import { AdminUser } from './admin-user.entity';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { CurrentAdminUser } from '../models/current.adminuser';
 import * as randomToken from 'rand-token';
 import * as moment from 'moment';
 
@@ -15,10 +14,7 @@ export class AdminUsersService {
     private jwtService: JwtService,
   ) {}
 
-  public async validateUserCredentials(
-    email: string,
-    password: string,
-  ): Promise<CurrentAdminUser> {
+  public async validateUserCredentials(email: string, password: string) {
     const adminUser = await this.adminUser.findOne({ where: { email } });
 
     if (adminUser == null) {
@@ -30,15 +26,14 @@ export class AdminUsersService {
       return null;
     }
 
-    const currentAdminUser = new CurrentAdminUser();
-    currentAdminUser.id = adminUser.id;
-    currentAdminUser.name = adminUser.name;
-    currentAdminUser.email = adminUser.email;
-
-    return currentAdminUser;
+    return {
+      id: adminUser.id,
+      name: adminUser.name,
+      email: adminUser.email,
+    };
   }
 
-  public async getJwtToken(adminUser: CurrentAdminUser): Promise<string> {
+  public async getJwtToken(adminUser): Promise<string> {
     const payload = {
       ...adminUser,
     };
@@ -55,10 +50,7 @@ export class AdminUsersService {
     return userDataToUpdate.refreshToken;
   }
 
-  public async validRefreshToken(
-    email: string,
-    refreshToken: string,
-  ): Promise<CurrentAdminUser> {
+  public async validRefreshToken(email: string, refreshToken: string) {
     const currentDate = moment().day(1).format('YYYY/MM/DD');
     const adminUser = await this.adminUser.findOne({
       where: {
@@ -72,11 +64,10 @@ export class AdminUsersService {
       return null;
     }
 
-    const currentAdminUser = new CurrentAdminUser();
-    currentAdminUser.id = adminUser.id;
-    currentAdminUser.name = adminUser.name;
-    currentAdminUser.email = adminUser.email;
-
-    return currentAdminUser;
+    return {
+      id: adminUser.id,
+      name: adminUser.name,
+      email: adminUser.email,
+    };
   }
 }

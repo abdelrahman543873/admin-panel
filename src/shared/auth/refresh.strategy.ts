@@ -3,12 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { AdminUsersService } from './admin-users.service';
+import { AdminUsersService } from '../../admin-users/admin-users.service';
 
 @Injectable()
 export class RefreshStrategy extends PassportStrategy(Strategy, 'refresh') {
   constructor(
-    private configService: ConfigService,
+    configService: ConfigService,
     private adminUserService: AdminUsersService,
   ) {
     super({

@@ -6,17 +6,17 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor(private configService: ConfigService) {
+  constructor(configService: ConfigService) {
     super({
       ignoreExpiration: false,
       secretOrKey: configService.get('JWT_SECRET'),
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
-          const data = request?.cookies['auth-cookie'];
+          const data = request?.headers.authorization;
           if (!data) {
             return null;
           }
-          return data.token;
+          return data;
         },
       ]),
     });

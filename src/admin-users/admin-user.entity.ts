@@ -1,6 +1,4 @@
 import {
-  BaseEntity,
-  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -10,7 +8,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 
 @Entity()
-export class AdminUser extends BaseEntity {
+export class AdminUser {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,7 +18,15 @@ export class AdminUser extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    select: false,
+    transformer: {
+      to: (value: string) => {
+        return bcrypt.hashSync(value, 8);
+      },
+      from: (value: string) => value,
+    },
+  })
   password: string;
 
   @Column()
@@ -36,13 +42,4 @@ export class AdminUser extends BaseEntity {
 
   @Column({ type: 'date', nullable: true, name: 'refreshtokenexp' })
   refreshTokenExp: string;
-
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 8);
-  }
-
-  async validatePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
-  }
 }

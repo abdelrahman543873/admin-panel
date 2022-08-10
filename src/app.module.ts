@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 //Admin Users
 import { AdminUsersModule } from './admin-users/admin-users.module';
 import { MerchantModule } from './merchant/merchant.module';
+import { AuthModule } from './shared/auth/auth.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -27,6 +28,7 @@ const ENV = process.env.NODE_ENV;
       migrations: ['database/migrations/*.ts'],
       autoLoadEntities: true,
     }),
+    AuthModule,
     AdminUsersModule,
     MerchantModule,
   ],
