@@ -8,4 +8,8 @@ export class PosRepository extends BaseRepository<Pos> {
   constructor(@InjectRepository(Pos) private readonly pos: Repository<Pos>) {
     super(pos);
   }
+
+  findPosById(id: number) {
+    return this.pos.findOne({ where: { id } });
+  }
 }

@@ -16,4 +16,16 @@ describe('merchant suite case', () => {
     expect(response.body.arName).toBe(merchantParams.arName);
     expect(response.body.enName).toBe(merchantParams.enName);
   });
+
+  it('should throw error when non existing pos', async () => {
+    const admin = await adminFactory();
+    const merchantParams = await buildMerchantParams();
+    const response = await testRequest({
+      method: HTTP_METHODS_ENUM.POST,
+      url: MERCHANT,
+      variables: { ...merchantParams, pos: 1234556 },
+      token: admin.token,
+    });
+    expect(response.body.statusCode).toBe(400);
+  });
 });

@@ -10,4 +10,8 @@ export class CategoryRepository extends BaseRepository<Category> {
   ) {
     super(category);
   }
+
+  findCategoryById(id: number) {
+    return this.category.findOne({ where: { id } });
+  }
 }
