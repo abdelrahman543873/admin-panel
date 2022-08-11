@@ -1,27 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
-import { LocalAuthGuard } from '../shared/auth/guards/local.guard';
 import { AdminService } from './admin.service';
-import { LoginInput } from './inputs/login.dto';
 
 @Controller('admin')
 export class AdminController {
   constructor(private adminUserService: AdminService) {}
-
-  @Post('login')
-  @UseGuards(LocalAuthGuard)
-  async login(@Body() input: LoginInput, @Req() req) {
-    return req.user;
-  }
 
   @Get('refresh-tokens')
   @UseGuards(AuthGuard('refresh'))
