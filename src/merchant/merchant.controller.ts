@@ -1,13 +1,14 @@
 import { MerchantService } from './merchant.service';
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AddMerchantInput } from './inputs/add-merchant.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 
 @ApiTags('Merchant')
 @Controller('merchant')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 

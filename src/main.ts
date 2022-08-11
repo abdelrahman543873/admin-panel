@@ -22,6 +22,7 @@ async function bootstrap() {
     .setTitle('🚀admin panel🚀')
     .setDescription('admin panel API description')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
