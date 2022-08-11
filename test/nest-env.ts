@@ -1,6 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 import NodeEnvironment from 'jest-environment-node';
 import { MerchantRepository } from '../src/merchant/merchant.repository';
+import { AdminRepository } from '../src/admin/admin.repository';
 
 class NestEnvironment extends NodeEnvironment {
   constructor(config, _context) {
@@ -11,6 +12,7 @@ class NestEnvironment extends NodeEnvironment {
     const app: TestingModule = <TestingModule>this.global.app;
     this.global.merchantRepository =
       app.get<MerchantRepository>(MerchantRepository);
+    this.global.adminRepository = app.get<AdminRepository>(AdminRepository);
   }
 
   async teardown() {

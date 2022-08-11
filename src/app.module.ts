@@ -6,9 +6,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 //Admin Users
-import { AdminUsersModule } from './admin-users/admin-users.module';
 import { MerchantModule } from './merchant/merchant.module';
 import { AuthModule } from './shared/auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -29,7 +29,7 @@ const ENV = process.env.NODE_ENV;
       autoLoadEntities: true,
     }),
     AuthModule,
-    AdminUsersModule,
+    AdminModule,
     MerchantModule,
   ],
   controllers: [AppController],

@@ -8,7 +8,7 @@ import {
 import * as bcrypt from 'bcryptjs';
 
 @Entity()
-export class AdminUser {
+export class Admin {
   @PrimaryGeneratedColumn()
   id: number;
 
