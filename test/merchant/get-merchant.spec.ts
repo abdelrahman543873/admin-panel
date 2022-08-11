@@ -12,6 +12,8 @@ describe('get merchant suite case', () => {
       url: `${MERCHANT}/${merchant.id}`,
       token: admin.token,
     });
+    expect(response.body.pos.id).toBe(merchant.pos);
+    expect(response.body.category.id).toBe(merchant.category);
     expect(response.body).not.toHaveProperty('password');
     expect(response.body.id).toBe(merchant.id);
   });

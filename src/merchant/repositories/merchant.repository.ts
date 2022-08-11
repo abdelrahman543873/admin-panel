@@ -19,10 +19,13 @@ export class MerchantRepository extends BaseRepository<Merchant> {
   }
 
   getMerchant(input: GetMerchantInput) {
-    return this.merchant.findOne({ where: { id: input.id } });
+    return this.merchant.findOne({
+      where: { id: input.id },
+      relations: ['pos', 'category'],
+    });
   }
 
   getMerchants() {
-    return this.merchant.find();
+    return this.merchant.find({ relations: ['pos', 'category'] });
   }
 }
