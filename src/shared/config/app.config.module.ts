@@ -1,14 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env?.NODE_ENV
-        ? 'env/.env.development'
-        : `env/.env.${process.env.NODE_ENV}`,
     }),
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as any,

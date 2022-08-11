@@ -7,15 +7,19 @@ import { AdminModule } from '../../admin/admin.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { RefreshStrategy } from './strategies/refresh.strategy';
 import { AuthController } from './auth.controller';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     AdminModule,
     PassportModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: process.env.AUTH_COOKIE_EXPIRES_IN },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: { expiresIn: configService.get('AUTH_COOKIE_EXPIRES_IN') },
+      }),
     }),
   ],
   providers: [JwtStrategy, LocalStrategy, RefreshStrategy, AuthService],

@@ -6,9 +6,11 @@ import * as cookieParser from 'cookie-parser';
 import { join } from 'path';
 import * as hbs from 'hbs';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const config = app.get(ConfigService);
   app.use(cookieParser());
 
   app.useStaticAssets(join(__dirname, '..', 'public'));
@@ -32,7 +34,7 @@ async function bootstrap() {
     }),
   );
   // app.set('view options', { layout: 'index' });
-  await app.listen(3000);
+  await app.listen(config.get<string>('APP_PORT'));
   Logger.log(`server listening: ${await app.getUrl()}`);
 }
 bootstrap();

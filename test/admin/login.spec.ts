@@ -1,7 +1,7 @@
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { adminFactory } from './admin.factory';
-import { LOGIN } from '../endpoints/admin.endpoints';
+import { LOGIN } from '../endpoints/auth.endpoints';
 describe('login suite case', () => {
   it('should login', async () => {
     const admin = await adminFactory();
@@ -12,6 +12,7 @@ describe('login suite case', () => {
     });
     expect(response.body.id).toBe(admin.id);
     expect(response.body.name).toBe(admin.name);
+    expect(response.body).toHaveProperty('token');
   });
 
   it("shouldn't login when password is incorrect", async () => {
