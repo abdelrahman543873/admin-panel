@@ -1,6 +1,6 @@
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
-import { adminFactory } from './admin.factory';
+import { adminFactory } from '../admin/admin.factory';
 import { LOGIN } from '../endpoints/auth.endpoints';
 describe('login suite case', () => {
   it('should login', async () => {

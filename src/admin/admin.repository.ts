@@ -17,6 +17,10 @@ export class AdminRepository extends BaseRepository<Admin> {
     return this.adminUser.findOne({ where: { email }, select: ['password'] });
   }
 
+  findUserById(id: number) {
+    return this.adminUser.findOne({ where: { id } });
+  }
+
   validateRefreshToken(input: { email: string; refreshToken: string }) {
     const currentDate = moment().day(1).format('YYYY/MM/DD');
     return this.adminUser.findOne({

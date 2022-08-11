@@ -1,8 +1,9 @@
+import { categoryFactory } from './category.factory';
 import { internet, name, random } from 'faker';
 import { getValuesFromEnum } from '../../src/shared/utils/columnEnum';
-import { POS_TYPE, MERCHANT_CATEGORY } from '../../src/merchant/merchant.enum';
-import { Merchant } from '../../src/merchant/model/merchant.entity';
+import { POS_TYPE } from '../../src/merchant/merchant.enum';
 import { merchantTestRepo } from './merchant.test-repo';
+import { posFactory } from './pos.factory';
 interface MerchantType {
   arName?: string;
   enName?: string;
@@ -12,11 +13,14 @@ interface MerchantType {
   brandKey?: string;
   logo?: string;
   posType?: string;
-  category?: string;
+  category?: number;
   password?: string;
+  pos?: number;
 }
 
-export const buildMerchantParams = (obj: MerchantType = {}): MerchantType => {
+export const buildMerchantParams = async (
+  obj: MerchantType = {},
+): Promise<MerchantType> => {
   return {
     arName: obj.arName || name.title(),
     enName: obj.enName || name.title(),
@@ -26,13 +30,12 @@ export const buildMerchantParams = (obj: MerchantType = {}): MerchantType => {
     accountEmail: obj.accountEmail || internet.email(),
     brandKey: obj.brandKey || random.word(),
     logo: obj.logo || internet.url(),
-    posType: obj.posType || random.arrayElement(getValuesFromEnum(POS_TYPE)),
-    category:
-      obj.category || random.arrayElement(getValuesFromEnum(MERCHANT_CATEGORY)),
+    category: obj.category || (await categoryFactory()).id,
+    pos: obj.pos || (await posFactory()).id,
   };
 };
 
 export const merchantFactory = async (obj: MerchantType = {}) => {
-  const params: MerchantType = buildMerchantParams(obj);
+  const params: MerchantType = await buildMerchantParams(obj);
   return await merchantTestRepo().save({ ...params });
 };

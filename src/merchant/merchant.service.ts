@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AddMerchantInput } from './inputs/add-merchant.dto';
-import { MerchantRepository } from './merchant.repository';
+import { MerchantRepository } from './repositories/merchant.repository';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 
 @Injectable()

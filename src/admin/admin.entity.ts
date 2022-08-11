@@ -42,4 +42,6 @@ export class Admin {
 
   @Column({ type: 'date', nullable: true, name: 'refreshtokenexp' })
   refreshTokenExp: string;
+
+  token?: string;
 }

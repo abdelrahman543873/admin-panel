@@ -1,9 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
+import { Pos } from './pos.entity';
+import { Category } from './category.entity';
 
 @Entity()
-export class Merchant extends BaseEntity {
+export class Merchant {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -37,12 +45,6 @@ export class Merchant extends BaseEntity {
   @Column()
   logo: string;
 
-  @Column()
-  posType: string;
-
-  @Column()
-  category: string;
-
   @Column({
     select: false,
     transformer: {
@@ -53,4 +55,12 @@ export class Merchant extends BaseEntity {
     },
   })
   password: string;
+
+  @OneToOne(() => Pos)
+  @JoinColumn()
+  pos: number;
+
+  @OneToOne(() => Category)
+  @JoinColumn()
+  category: number;
 }

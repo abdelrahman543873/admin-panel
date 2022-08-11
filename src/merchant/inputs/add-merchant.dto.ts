@@ -1,4 +1,5 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsString } from 'class-validator';
 import { getValuesFromEnum } from '../../shared/utils/columnEnum';
 import { POS_TYPE, MERCHANT_CATEGORY } from '../merchant.enum';
 
@@ -30,11 +31,13 @@ export class AddMerchantInput {
   @IsNotEmpty()
   logo: string;
 
-  @IsEnum(getValuesFromEnum(POS_TYPE))
-  posType: string;
+  @IsInt()
+  @Type(() => Number)
+  pos: number;
 
-  @IsEnum(getValuesFromEnum(MERCHANT_CATEGORY))
-  category: string;
+  @IsInt()
+  @Type(() => Number)
+  category: number;
 
   @IsString()
   @IsNotEmpty()

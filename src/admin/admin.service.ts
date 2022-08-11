@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { JwtService } from '@nestjs/jwt';
 import * as randomToken from 'rand-token';
 import * as moment from 'moment';
 import { AdminRepository } from './admin.repository';
@@ -18,12 +17,9 @@ export class AdminService {
     return admin;
   }
 
-  // public async getJwtToken(adminUser): Promise<string> {
-  //   const payload = {
-  //     ...adminUser,
-  //   };
-  //   return this.jwtService.signAsync(payload);
-  // }
+  findUserById(id: number) {
+    return this.adminUserRepository.findUserById(id);
+  }
 
   public async getRefreshToken(id: number): Promise<string> {
     const userDataToUpdate = {
