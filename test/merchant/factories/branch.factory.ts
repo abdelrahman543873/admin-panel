@@ -1,6 +1,7 @@
 import { branchTestRepo } from './../test-repos/branch.test-repo';
 import { address, date, name } from 'faker';
 import { merchantFactory } from './merchant.factory';
+import * as moment from 'moment';
 interface BranchType {
   arName?: string;
   enName?: string;
@@ -16,7 +17,7 @@ export const buildBranchParams = async (
   return {
     arName: obj.arName || name.title(),
     enName: obj.enName || name.title(),
-    activationDate: obj.activationDate || date.future().toISOString(),
+    activationDate: obj.activationDate || moment().day(1).format('YYYY/MM/DD'),
     long: obj.long || +address.longitude(),
     lat: obj.lat || +address.latitude(),
     merchant: obj.merchant || (await merchantFactory()).id,

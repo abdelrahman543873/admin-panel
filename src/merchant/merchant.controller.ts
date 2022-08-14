@@ -5,6 +5,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { AddBranchInput } from './inputs/add-branch.dto';
+import { GetBranchInput } from './inputs/get-branch.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -21,6 +22,11 @@ export class MerchantController {
   @Post('branch')
   async addBranch(@Body() input: AddBranchInput) {
     return await this.merchantService.addBranch(input);
+  }
+
+  @Get('branch/:id')
+  async getBranch(@Param() input: GetBranchInput) {
+    return await this.merchantService.getBranch(input);
   }
 
   @Get(':id')

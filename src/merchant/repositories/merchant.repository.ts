@@ -5,7 +5,6 @@ import { AddMerchantInput } from '../inputs/add-merchant.dto';
 import { Merchant } from '../model/merchant.entity';
 import { GetMerchantInput } from '../inputs/get-merchant.dto';
 import { BaseRepository } from '../../shared/abstract/repository.abstract';
-import { AddBranchInput } from '../inputs/add-branch.dto';
 
 @Injectable()
 export class MerchantRepository extends BaseRepository<Merchant> {

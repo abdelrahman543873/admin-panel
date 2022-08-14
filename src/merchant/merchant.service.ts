@@ -4,6 +4,7 @@ import { MerchantRepository } from './repositories/merchant.repository';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { AddBranchInput } from './inputs/add-branch.dto';
 import { BranchRepository } from './repositories/branch.repository';
+import { GetBranchInput } from './inputs/get-branch.dto';
 
 @Injectable()
 export class MerchantService {
@@ -17,6 +18,10 @@ export class MerchantService {
 
   addBranch(input: AddBranchInput) {
     return this.branchRepository.addBranch(input);
+  }
+
+  getBranch(input: GetBranchInput) {
+    return this.branchRepository.getBranch(input);
   }
 
   getMerchant(input: GetMerchantInput) {
