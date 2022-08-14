@@ -1,8 +1,6 @@
 import { categoryFactory } from './category.factory';
 import { internet, name, random } from 'faker';
-import { getValuesFromEnum } from '../../src/shared/utils/columnEnum';
-import { POS_TYPE } from '../../src/merchant/merchant.enum';
-import { merchantTestRepo } from './merchant.test-repo';
+import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from './pos.factory';
 interface MerchantType {
   arName?: string;

@@ -1,5 +1,5 @@
 import { name } from 'faker';
-import { categoryTestRepo } from './category.test-repo';
+import { categoryTestRepo } from '../test-repos/category.test-repo';
 interface CategoryType {
   name?: string;
 }

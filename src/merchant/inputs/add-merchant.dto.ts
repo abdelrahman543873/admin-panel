@@ -1,7 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsEmail, IsEnum, IsInt, IsNotEmpty, IsString } from 'class-validator';
-import { getValuesFromEnum } from '../../shared/utils/columnEnum';
-import { POS_TYPE, MERCHANT_CATEGORY } from '../merchant.enum';
+import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
 import { IsExistingCategory } from '../validators/is-existing-category';
 import { IsExistingPos } from '../validators/is-existing-pos.validator';
 

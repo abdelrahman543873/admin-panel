@@ -10,9 +10,12 @@ import { Pos } from './model/pos.entity';
 import { PosRepository } from './repositories/pos.repository';
 import { ExistingPosConstraint } from './validators/is-existing-pos.validator';
 import { ExistingCategoryConstraint } from './validators/is-existing-category';
+import { Branch } from './model/branch.entity';
+import { BranchRepository } from './repositories/branch.repository';
+import { ExistingMerchantConstraint } from './validators/is-existing-merchant';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Merchant, Category, Pos])],
+  imports: [TypeOrmModule.forFeature([Merchant, Category, Pos, Branch])],
   providers: [
     MerchantService,
     MerchantRepository,
@@ -20,6 +23,8 @@ import { ExistingCategoryConstraint } from './validators/is-existing-category';
     CategoryRepository,
     ExistingPosConstraint,
     ExistingCategoryConstraint,
+    ExistingMerchantConstraint,
+    BranchRepository,
   ],
   controllers: [MerchantController],
 })

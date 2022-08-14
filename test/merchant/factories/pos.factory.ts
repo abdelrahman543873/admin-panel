@@ -1,5 +1,5 @@
 import { name } from 'faker';
-import { posTestRepo } from './pos.test-repo';
+import { posTestRepo } from '../test-repos/pos.test-repo';
 interface PosType {
   type?: string;
 }

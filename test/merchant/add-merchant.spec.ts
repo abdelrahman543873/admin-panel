@@ -1,6 +1,6 @@
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
-import { buildMerchantParams } from './merchant.factory';
+import { buildMerchantParams } from './factories/merchant.factory';
 import { MERCHANT } from '../endpoints/merchant.endpoints';
 import { adminFactory } from '../admin/admin.factory';
 describe('merchant suite case', () => {
