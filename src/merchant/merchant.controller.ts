@@ -29,6 +29,11 @@ export class MerchantController {
     return await this.merchantService.getBranch(input);
   }
 
+  @Get('branch')
+  async getBranches() {
+    return await this.merchantService.getBranches();
+  }
+
   @Get(':id')
   async getMerchant(@Param() input: GetMerchantInput) {
     return await this.merchantService.getMerchant(input);

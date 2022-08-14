@@ -20,4 +20,8 @@ export class BranchRepository extends BaseRepository<Branch> {
   getBranch(input: GetBranchInput) {
     return this.branch.findOne({ where: { id: input.id } });
   }
+
+  getBranches() {
+    return this.branch.find();
+  }
 }

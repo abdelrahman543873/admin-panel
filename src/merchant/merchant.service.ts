@@ -24,6 +24,10 @@ export class MerchantService {
     return this.branchRepository.getBranch(input);
   }
 
+  getBranches() {
+    return this.branchRepository.getBranches();
+  }
+
   getMerchant(input: GetMerchantInput) {
     return this.merchantRepository.getMerchant(input);
   }
