@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import {
-  IsDateString,
+  IsDate,
   IsInt,
   IsLatitude,
   IsLongitude,
@@ -23,8 +23,9 @@ export class AddBranchInput {
   @IsNotEmpty()
   enName: string;
 
-  @IsDateString()
-  activationDate: string;
+  @IsDate()
+  @Type(() => Date)
+  activationDate: Date;
 
   @IsLongitude()
   @Type(() => Number)

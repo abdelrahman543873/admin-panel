@@ -1,5 +1,11 @@
 import { Merchant } from './merchant.entity';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Branch {
@@ -12,8 +18,17 @@ export class Branch {
   @Column()
   enName: string;
 
-  @Column({ type: 'date' })
-  activationDate: string;
+  @Column({
+    type: 'datetime',
+    transformer: {
+      to: (value: Date) => {
+        return value.toISOString();
+      },
+      from: (value: Date) => value,
+    },
+    nullable: true,
+  })
+  activationDate: Date;
 
   @Column()
   long: number;
