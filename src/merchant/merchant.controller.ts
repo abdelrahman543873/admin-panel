@@ -6,6 +6,7 @@ import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { AddBranchInput } from './inputs/add-branch.dto';
 import { GetBranchInput } from './inputs/get-branch.dto';
+import { AddDeviceInput } from './inputs/add-device.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -17,6 +18,11 @@ export class MerchantController {
   @Post()
   async addMerchant(@Body() input: AddMerchantInput) {
     return await this.merchantService.addMerchant(input);
+  }
+
+  @Post('device')
+  async addDevice(@Body() input: AddDeviceInput) {
+    return this.merchantService.addDevice(input);
   }
 
   @Post('branch')

@@ -5,12 +5,15 @@ import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { AddBranchInput } from './inputs/add-branch.dto';
 import { BranchRepository } from './repositories/branch.repository';
 import { GetBranchInput } from './inputs/get-branch.dto';
+import { DeviceRepository } from './repositories/device.repository';
+import { AddDeviceInput } from './inputs/add-device.dto';
 
 @Injectable()
 export class MerchantService {
   constructor(
     private readonly merchantRepository: MerchantRepository,
     private readonly branchRepository: BranchRepository,
+    private readonly deviceRepository: DeviceRepository,
   ) {}
   addMerchant(input: AddMerchantInput) {
     return this.merchantRepository.addMerchant(input);
@@ -18,6 +21,10 @@ export class MerchantService {
 
   addBranch(input: AddBranchInput) {
     return this.branchRepository.addBranch(input);
+  }
+
+  addDevice(input: AddDeviceInput) {
+    return this.deviceRepository.addDevice(input);
   }
 
   getBranch(input: GetBranchInput) {

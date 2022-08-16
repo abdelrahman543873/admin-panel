@@ -6,6 +6,7 @@ import { AdminRepository } from '../src/admin/admin.repository';
 import { JwtService } from '@nestjs/jwt';
 import { PosRepository } from '../src/merchant/repositories/pos.repository';
 import { BranchRepository } from '../src/merchant/repositories/branch.repository';
+import { DeviceRepository } from '../src/merchant/repositories/device.repository';
 
 class NestEnvironment extends NodeEnvironment {
   constructor(config, _context) {
@@ -22,6 +23,7 @@ class NestEnvironment extends NodeEnvironment {
       app.get<CategoryRepository>(CategoryRepository);
     this.global.posRepository = app.get<PosRepository>(PosRepository);
     this.global.branchRepository = app.get<BranchRepository>(BranchRepository);
+    this.global.deviceRepository = app.get<DeviceRepository>(DeviceRepository);
   }
 
   async teardown() {

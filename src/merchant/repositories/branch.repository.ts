@@ -13,6 +13,10 @@ export class BranchRepository extends BaseRepository<Branch> {
     super(branch);
   }
 
+  findBranchById(id: number) {
+    return this.branch.findOne({ where: { id } });
+  }
+
   addBranch(input: AddBranchInput) {
     return this.branch.create(input);
   }

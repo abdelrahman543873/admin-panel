@@ -13,9 +13,14 @@ import { ExistingCategoryConstraint } from './validators/is-existing-category';
 import { Branch } from './model/branch.entity';
 import { BranchRepository } from './repositories/branch.repository';
 import { ExistingMerchantConstraint } from './validators/is-existing-merchant';
+import { Device } from './model/device.entity';
+import { DeviceRepository } from './repositories/device.repository';
+import { ExistingBranchConstraint } from './validators/is-existing-branch';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Merchant, Category, Pos, Branch])],
+  imports: [
+    TypeOrmModule.forFeature([Merchant, Category, Pos, Branch, Device]),
+  ],
   providers: [
     MerchantService,
     MerchantRepository,
@@ -25,6 +30,8 @@ import { ExistingMerchantConstraint } from './validators/is-existing-merchant';
     ExistingCategoryConstraint,
     ExistingMerchantConstraint,
     BranchRepository,
+    DeviceRepository,
+    ExistingBranchConstraint
   ],
   controllers: [MerchantController],
 })
