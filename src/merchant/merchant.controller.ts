@@ -7,6 +7,7 @@ import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { AddBranchInput } from './inputs/add-branch.dto';
 import { GetBranchInput } from './inputs/get-branch.dto';
 import { AddDeviceInput } from './inputs/add-device.dto';
+import { GetDeviceInput } from './inputs/get-device.input';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -23,6 +24,16 @@ export class MerchantController {
   @Post('device')
   async addDevice(@Body() input: AddDeviceInput) {
     return this.merchantService.addDevice(input);
+  }
+
+  @Get('device/:id')
+  async getDevice(@Param() input: GetDeviceInput) {
+    return this.merchantService.getDevice(input);
+  }
+
+  @Get('device')
+  async getDevices() {
+    return this.merchantService.getDevices();
   }
 
   @Post('branch')

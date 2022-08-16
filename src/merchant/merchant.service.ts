@@ -7,6 +7,7 @@ import { BranchRepository } from './repositories/branch.repository';
 import { GetBranchInput } from './inputs/get-branch.dto';
 import { DeviceRepository } from './repositories/device.repository';
 import { AddDeviceInput } from './inputs/add-device.dto';
+import { GetDeviceInput } from './inputs/get-device.input';
 
 @Injectable()
 export class MerchantService {
@@ -25,6 +26,14 @@ export class MerchantService {
 
   addDevice(input: AddDeviceInput) {
     return this.deviceRepository.addDevice(input);
+  }
+
+  getDevice(input: GetDeviceInput) {
+    return this.deviceRepository.getDevice(input);
+  }
+
+  getDevices() {
+    return this.deviceRepository.getDevices();
   }
 
   getBranch(input: GetBranchInput) {
