@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PosRepository } from '../src/merchant/repositories/pos.repository';
 import { BranchRepository } from '../src/merchant/repositories/branch.repository';
 import { DeviceRepository } from '../src/merchant/repositories/device.repository';
+import { Connection } from 'typeorm';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -27,6 +28,9 @@ export default async (): Promise<void> => {
   );
   await app.init();
   global.app = app;
+  const connection = app.get<Connection>(Connection);
+  // done this way to allow deletion of all tables 
+  await connection.query('SET FOREIGN_KEY_CHECKS = 0;');
   global.merchantRepository = app.get<MerchantRepository>(MerchantRepository);
   global.adminRepository = app.get<AdminRepository>(AdminRepository);
   global.jwtService = app.get<JwtService>(JwtService);
