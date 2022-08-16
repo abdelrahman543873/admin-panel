@@ -1,7 +1,7 @@
-import { DeepPartial, InsertResult, Repository } from 'typeorm';
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import { DeepPartial, Repository } from 'typeorm';
+import { RepositoryInterface } from '../interfaces/repository.interface';
 
-export abstract class BaseRepository<Entity> {
+export abstract class BaseRepository<Entity> implements RepositoryInterface {
   constructor(protected readonly repository: Repository<Entity>) {}
 
   create(item: DeepPartial<Entity>) {
@@ -12,9 +12,6 @@ export abstract class BaseRepository<Entity> {
     return this.repository.save(item);
   }
 
-  deleteAll() {
-    return this.clear();
-  }
   clear() {
     return this.repository.clear();
   }
