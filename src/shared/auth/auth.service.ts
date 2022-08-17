@@ -13,7 +13,7 @@ export class AuthService {
     return this.adminService.validateUserCredentials(email, password);
   }
 
-  async login(user: any) {
+  login(user: any) {
     const payload = { id: user.id };
     return {
       token: this.jwtService.sign(payload),
