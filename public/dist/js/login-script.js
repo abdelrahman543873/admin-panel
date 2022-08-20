@@ -8,7 +8,7 @@
         let email = $(this).find('#email').val();
         let password = $(this).find('#password').val();
         $.ajax({
-            url: 'http://localhost:3000/login', 
+            url: 'auth/login', 
             type: 'POST',
             data: JSON.stringify({email:email,password:password}),
             contentType: "application/json; charset=utf-8"
