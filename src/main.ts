@@ -14,11 +14,11 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  app.useStaticAssets(join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.useStaticAssets(join(__dirname, '..', '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', '..', 'views'));
   app.setViewEngine('hbs');
-  hbs.registerPartials(join(__dirname, '..', 'views/partials'));
-  hbs.registerPartials(join(__dirname, '..', 'views/layouts'));
+  hbs.registerPartials(join(__dirname, '..', '..', 'views/partials'));
+  hbs.registerPartials(join(__dirname, '..', '..', 'views/layouts'));
   const options = new DocumentBuilder()
     .setTitle('🚀admin panel🚀')
     .setDescription('admin panel API description')
