@@ -7,4 +7,8 @@ export class AppController {
   root() {
     return { message: 'Hello world!' };
   }
+
+  @Get('home/login')
+  @Render('pages/login')
+  renderLogin() {}
 }
