@@ -2,15 +2,13 @@ import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class AppController {
+  @Get('home')
+  @Render('index')
+  renderHome() {}
+
   @Get()
   @Render('pages/login')
   renderLogin() {}
-
-  @Get('home')
-  @Render('pages/home')
-  renderHome() {
-    return { message: 'hello world' };
-  }
 
   @Get('merchant-addition')
   @Render('layouts/merchant/merchant-addition')
