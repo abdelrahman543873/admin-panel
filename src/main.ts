@@ -14,11 +14,11 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  app.useStaticAssets(join(__dirname, '..', '..', 'node_modules/admin-lte'));
-  app.setBaseViewsDir(join(__dirname, '..', '..', 'views'));
+  app.useStaticAssets(join(process.cwd(), 'node_modules/admin-lte'));
+  app.setBaseViewsDir(join(process.cwd(), 'views'));
   app.setViewEngine('hbs');
-  hbs.registerPartials(join(__dirname, '..', '..', 'views/partials'));
-  hbs.registerPartials(join(__dirname, '..', '..', 'views/layouts'));
+  hbs.registerPartials(join(process.cwd(), 'views/partials'));
+  hbs.registerPartials(join(process.cwd(), 'views/layouts'));
   const options = new DocumentBuilder()
     .setTitle('🚀admin panel🚀')
     .setDescription('admin panel API descriptions')
