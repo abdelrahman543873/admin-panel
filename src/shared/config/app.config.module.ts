@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +18,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
       migrations: ['database/migrations/*.ts'],
       autoLoadEntities: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'client'),
+      renderPath: join(process.cwd(), 'client'),
     }),
   ],
 })
