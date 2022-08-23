@@ -14,7 +14,7 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  app.useStaticAssets(join(__dirname, '..', '..', 'public'));
+  app.useStaticAssets(join(__dirname, '..', '..', 'node_modules/admin-lte'));
   app.setBaseViewsDir(join(__dirname, '..', '..', 'views'));
   app.setViewEngine('hbs');
   hbs.registerPartials(join(__dirname, '..', '..', 'views/partials'));
