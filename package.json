@@ -38,6 +38,7 @@
     "@popperjs/core": "2.11.5",
     "@types/bcryptjs": "^2.4.2",
     "@types/faker": "5.5.9",
+    "@types/hbs": "^4.0.1",
     "admin-lte": "^3.2.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
