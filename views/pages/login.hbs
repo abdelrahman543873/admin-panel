@@ -24,7 +24,7 @@
       <!-- /.login-logo -->
       <div class='card card-outline card-primary'>
         <div class='card-header text-center'>
-          <a href='#' class='h1'><b>Bonat</b> Admin</a>
+          <a class='h1'><b>Bonat</b> Admin</a>
         </div>
         <div class='card-body'>
           <p class='login-box-msg'>Sign in to start your session</p>
@@ -33,7 +33,7 @@
             Error in Email or password, please try again ....
           </p>
 
-          <form id='login-form'>
+          <form id='login-form' method='POST' action='/auth/login'>
             <div class='input-group mb-3'>
               <input
                 type='email'
