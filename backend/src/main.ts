@@ -10,7 +10,9 @@ import { ConfigService } from '@nestjs/config';
 import { useContainer } from 'class-validator';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    cors: true,
+  });
   const config = app.get(ConfigService);
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
