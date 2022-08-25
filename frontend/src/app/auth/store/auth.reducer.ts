@@ -2,10 +2,14 @@ import { AuthActions, LOGIN, LOGOUT } from './auth.actions';
 
 export interface AuthState {
   user: {
+    id: number;
     email: string;
-    id: string;
-    _token: string;
-    _tokenExpirationDate: Date;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    refreshToken: string;
+    refreshTokenExp: string;
+    token: string;
   } | null;
   isAuthenticated: boolean;
 }
@@ -18,9 +22,8 @@ export const authReducer = (
 ): AuthState => {
   switch (action.type) {
     case LOGIN:
+      // @ts-ignore: Unreachable code error
       return { ...initialState, user: action.payload, isAuthenticated: true };
-    case LOGOUT:
-      return { ...initialState, user: null, isAuthenticated: false };
     default:
       return state;
   }

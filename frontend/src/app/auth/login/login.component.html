@@ -12,7 +12,11 @@
           Error in Email or password, please try again ....
         </p>
 
-        <form id="login-form" method="POST" action="/auth/login">
+        <form
+          id="login-form"
+          #f="ngForm"
+          (ngSubmit)="login(email.value, password.value)"
+        >
           <div class="input-group mb-3">
             <input
               type="email"
@@ -20,6 +24,8 @@
               placeholder="Email"
               name="email"
               id="email"
+              ngModel
+              #email
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -34,6 +40,8 @@
               placeholder="Password"
               name="password"
               id="password"
+              ngModel
+              #password
             />
             <div class="input-group-append">
               <div class="input-group-text">

@@ -7,10 +7,14 @@ export class Login implements Action {
   readonly type = LOGIN;
   constructor(
     public payload: {
+      id: number;
       email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationDate: Date;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+      refreshToken: string;
+      refreshTokenExp: string;
+      token: string;
     },
   ) {}
 }
@@ -19,4 +23,4 @@ export class Logout implements Action {
   readonly type = LOGOUT;
 }
 
-export type AuthActions = Login | Logout;
+export type AuthActions = Login;
