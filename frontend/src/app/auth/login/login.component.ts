@@ -2,11 +2,7 @@ import { AppState } from './../../shared/store/app.store';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   login(email: string, password: string) {
     this.authService.login(email, password).subscribe(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'],{});
     });
   }
 }
