@@ -7,6 +7,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     // canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'merchant',
+        loadChildren: () =>
+          import('../merchant/merchant.module').then((m) => m.MerchantModule),
+      },
+    ],
   },
 ];
 

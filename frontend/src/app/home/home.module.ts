@@ -6,6 +6,7 @@ import { SidebarComponent } from '../shared/components/sidebar/sidebar.component
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { PreloaderComponent } from '../shared/components/preloader/preloader.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { MerchantModule } from '../merchant/merchant.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { HomeRoutingModule } from './home-routing.module';
     NavbarComponent,
     PreloaderComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule],
+  imports: [CommonModule, HomeRoutingModule, MerchantModule],
 })
 export class HomeModule {}

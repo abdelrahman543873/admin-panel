@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
     HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
