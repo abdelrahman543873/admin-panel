@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddComponent } from './add/add.component';
 import { MerchantRoutingModule } from './merchant-routing.module';
+import { AddMerchantComponent } from './add/add-merchant.component';
 
 @NgModule({
-  declarations: [AddComponent],
+  declarations: [AddMerchantComponent],
   imports: [CommonModule, MerchantRoutingModule],
 })
 export class MerchantModule {}
