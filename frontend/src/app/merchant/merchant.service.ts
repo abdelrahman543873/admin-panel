@@ -7,6 +7,10 @@ export class MerchantService {
   constructor(private readonly http: HttpClient) {}
 
   addMerchant(input: AddMerchantInput) {
-    return this.http.post('http://localhost:3000/merchant', input);
+    return this.http.post('http://localhost:3000/merchant', input, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
   }
 }

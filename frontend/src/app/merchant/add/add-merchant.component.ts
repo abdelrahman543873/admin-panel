@@ -13,6 +13,8 @@ export class AddMerchantComponent implements OnInit {
   ngOnInit(): void {}
 
   submit(form: NgForm) {
-    this.merchantService.addMerchant(form.value);
+    this.merchantService.addMerchant(form.value).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

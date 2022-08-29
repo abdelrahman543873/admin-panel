@@ -22,6 +22,7 @@ export const authReducer = (
 ): AuthState => {
   switch (action.type) {
     case LOGIN:
+      localStorage.setItem('token', action.payload.token);
       // @ts-ignore: Unreachable code error
       return { ...initialState, user: action.payload, isAuthenticated: true };
     default:
