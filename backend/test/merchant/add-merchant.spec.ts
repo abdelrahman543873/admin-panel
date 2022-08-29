@@ -17,6 +17,7 @@ describe('merchant suite case', () => {
       filePath,
       fileParam: 'logo',
     });
+    expect(response.body.logo).toContain('jpeg');
     expect(response.body.arName).toBe(merchantParams.arName);
     expect(response.body.enName).toBe(merchantParams.enName);
   });
