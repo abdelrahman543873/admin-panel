@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 import { AddMerchantComponent } from './add/add-merchant.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AddMerchantComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 
