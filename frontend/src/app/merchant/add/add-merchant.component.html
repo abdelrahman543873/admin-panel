@@ -2,8 +2,7 @@
   <div class="card-header">
     <h3 class="card-title">Add Merchant</h3>
   </div>
-
-  <form>
+  <form #addMerchant="ngForm" (ngSubmit)="submit(addMerchant)">
     <div class="card-body">
       <div class="form-group">
         <label for="arName">Arabic Name</label>
@@ -12,8 +11,8 @@
           class="form-control"
           id="arName"
           name="arName"
-          required
           placeholder="Enter Merchant Arabic Name"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -23,8 +22,8 @@
           class="form-control"
           id="enName"
           name="enName"
-          required
           placeholder="Enter Merchant English Name"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -34,8 +33,8 @@
           class="form-control"
           id="enSlogan"
           name="enSlogan"
-          required
           placeholder="Enter Merchant English Slogan"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -45,8 +44,8 @@
           class="form-control"
           id="arSlogan"
           name="arSlogan"
-          required
           placeholder="Enter Merchant Arabic Slogan"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -57,8 +56,8 @@
           id="accountEmail"
           name="accountEmail"
           email
-          required
           placeholder="Enter Merchant Account Email"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -68,8 +67,8 @@
           class="form-control"
           id="brandKey"
           name="brandKey"
-          required
           placeholder="Enter Merchant Brand Key "
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -96,8 +95,8 @@
           class="form-control"
           id="pos"
           name="pos"
-          required
           placeholder="Enter Merchant pos"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -107,8 +106,8 @@
           class="form-control"
           id="category"
           name="category"
-          required
           placeholder="Enter Merchant category"
+          ngModel
         />
       </div>
       <div class="form-group">
@@ -118,13 +117,19 @@
           class="form-control"
           id="password"
           name="password"
-          required
           placeholder="Enter Merchant password"
+          ngModel
         />
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="merchantCreated">
+      Merchant Added successfully
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+      {{ errorMessage }}
     </div>
   </form>
 </div>

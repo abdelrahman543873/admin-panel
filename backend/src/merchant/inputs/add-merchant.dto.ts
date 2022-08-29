@@ -1,5 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsEmail, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { IsExistingCategory } from '../validators/is-existing-category';
 import { IsExistingPos } from '../validators/is-existing-pos.validator';
 
@@ -27,20 +33,22 @@ export class AddMerchantInput {
   @IsNotEmpty()
   brandKey: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   logo: string;
 
+  @IsExistingPos()
   @IsInt()
   @Type(() => Number)
-  @IsExistingPos()
   pos: number;
 
+  @IsExistingCategory()
   @IsInt()
   @Type(() => Number)
-  @IsExistingCategory()
   category: number;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   password: string;

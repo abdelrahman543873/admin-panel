@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MerchantService } from '../merchant.service';
 
 @Component({
   selector: 'app-add-merchant',
@@ -6,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-merchant.component.scss'],
 })
 export class AddMerchantComponent implements OnInit {
-  constructor() {}
+  merchantCreated = false;
+  error = false;
+  errorMessage: string = '';
+  constructor(private merchantService: MerchantService) {}
 
   ngOnInit(): void {}
+
+  submit(form: NgForm) {
+    this.merchantService.addMerchant(form.value).subscribe(
+      (data) => {
+        this.merchantCreated = true;
+        this.error = false;
+      },
+      (err) => {
+        this.error = true;
+        this.merchantCreated = false;
+        this.errorMessage = err.error.message[0];
+        console.log(err);
+      },
+    );
+  }
 }
