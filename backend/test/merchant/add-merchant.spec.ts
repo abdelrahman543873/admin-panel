@@ -7,11 +7,15 @@ describe('merchant suite case', () => {
   it('should add merchant', async () => {
     const admin = await adminFactory();
     const merchantParams = await buildMerchantParams();
+    const testFiles = process.cwd();
+    const filePath = `${testFiles}/test/test-files/test-duck.jpeg`;
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: MERCHANT,
       variables: merchantParams,
       token: admin.token,
+      filePath,
+      fileParam: 'logo',
     });
     expect(response.body.arName).toBe(merchantParams.arName);
     expect(response.body.enName).toBe(merchantParams.enName);

@@ -14,8 +14,13 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     super(merchant);
   }
 
-  addMerchant(input: AddMerchantInput) {
-    return this.merchant.create(input);
+  addMerchant(input: AddMerchantInput, logo: Express.Multer.File) {
+    return this.merchant.create({
+      ...input,
+      ...(logo && {
+        logo: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
+      }),
+    });
   }
 
   findMerchantById(id: number) {

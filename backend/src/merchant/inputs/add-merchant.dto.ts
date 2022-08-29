@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsEmail,
@@ -36,6 +37,7 @@ export class AddMerchantInput {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
+  @ApiProperty({ type: 'string', format: 'binary' })
   logo: string;
 
   @IsExistingPos()

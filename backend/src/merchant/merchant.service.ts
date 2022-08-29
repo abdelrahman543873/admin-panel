@@ -16,8 +16,8 @@ export class MerchantService {
     private readonly branchRepository: BranchRepository,
     private readonly deviceRepository: DeviceRepository,
   ) {}
-  addMerchant(input: AddMerchantInput) {
-    return this.merchantRepository.addMerchant(input);
+  addMerchant(input: AddMerchantInput, logo: Express.Multer.File) {
+    return this.merchantRepository.addMerchant(input, logo);
   }
 
   addBranch(input: AddBranchInput) {
