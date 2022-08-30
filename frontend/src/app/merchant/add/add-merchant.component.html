@@ -5,56 +5,56 @@
   <form #addMerchant="ngForm" (ngSubmit)="submit(addMerchant)">
     <div class="card-body">
       <div class="form-group">
-        <label for="arName">Arabic Name</label>
+        <label for="name_ar">Arabic Name</label>
         <input
           type="text"
           class="form-control"
-          id="arName"
-          name="arName"
+          id="name_ar"
+          name="name_ar"
           placeholder="Enter Merchant Arabic Name"
           ngModel
         />
       </div>
       <div class="form-group">
-        <label for="enName">English Name</label>
+        <label for="name">English Name</label>
         <input
           type="text"
           class="form-control"
-          id="enName"
-          name="enName"
+          id="name"
+          name="name"
           placeholder="Enter Merchant English Name"
           ngModel
         />
       </div>
       <div class="form-group">
-        <label for="enSlogan">English Slogan</label>
+        <label for="description">English Slogan</label>
         <input
           type="text"
           class="form-control"
-          id="enSlogan"
-          name="enSlogan"
+          id="description"
+          name="description"
           placeholder="Enter Merchant English Slogan"
           ngModel
         />
       </div>
       <div class="form-group">
-        <label for="arSlogan">Arabic Slogan</label>
+        <label for="description_ar">Arabic Slogan</label>
         <input
           type="text"
           class="form-control"
-          id="arSlogan"
-          name="arSlogan"
+          id="description_ar"
+          name="description_ar"
           placeholder="Enter Merchant Arabic Slogan"
           ngModel
         />
       </div>
       <div class="form-group">
-        <label for="accountEmail">Account Email</label>
+        <label for="email">Account Email</label>
         <input
           type="text"
           class="form-control"
-          id="accountEmail"
-          name="accountEmail"
+          id="email"
+          name="email"
           email
           placeholder="Enter Merchant Account Email"
           ngModel
@@ -72,16 +72,16 @@
         />
       </div>
       <div class="form-group">
-        <label for="logo">Logo</label>
+        <label for="imageUrl">Logo</label>
         <div class="input-group">
           <div class="custom-file">
             <input
               type="file"
               class="custom-file-input"
-              id="logo"
-              name="logo"
+              id="imageUrl"
+              name="imageUrl"
             />
-            <label class="custom-file-label" for="logo">Choose file</label>
+            <label class="custom-file-label" for="imageUrl">Choose file</label>
           </div>
           <div class="input-group-append">
             <span class="input-group-text">Upload</span>
@@ -91,7 +91,7 @@
       <div class="form-group">
         <label for="pos">Pos</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="pos"
           name="pos"
@@ -102,7 +102,7 @@
       <div class="form-group">
         <label for="category">Category</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="category"
           name="category"

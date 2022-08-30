@@ -13,7 +13,7 @@ interface AdminType {
 export const buildAdminParams = (obj: AdminType = {}): AdminType => {
   return {
     email: obj.email || internet.email(),
-    name: obj.name || name.title(),
+    name: obj.name || name.firstName(),
     password: obj.password || internet.password(),
     refreshToken: obj.refreshToken || internet.password(),
     refreshTokenExp:
