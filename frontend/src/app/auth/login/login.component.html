@@ -5,13 +5,11 @@
       <div class="card-header text-center">
         <a class="h1"><b>Bonat</b> Admin</a>
       </div>
-      <div class="card-body">
+      <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
-
-        <p class="alert alert-danger d-none" id="error-message">
+        <p class="alert alert-danger" *ngIf="errorLogin">
           Error in Email or password, please try again ....
         </p>
-
         <form
           id="login-form"
           #f="ngForm"

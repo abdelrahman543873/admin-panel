@@ -10,18 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  isAuthenticated = false;
-  constructor(
-    private authService: AuthService,
-    private store: Store<AppState>,
-    private router: Router,
-  ) {}
+  errorLogin = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.store.select('auth').subscribe((authData) => {
-      this.isAuthenticated = authData.isAuthenticated;
-    });
-  }
+  ngOnInit(): void {}
 
   login(email: string, password: string) {
     this.authService.login(email, password).subscribe(
@@ -32,6 +24,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         localStorage.removeItem('token');
+        this.errorLogin = true;
       },
     );
   }
