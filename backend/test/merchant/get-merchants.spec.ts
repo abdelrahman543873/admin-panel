@@ -13,7 +13,7 @@ describe('get merchants suite case', () => {
       token: admin.token,
     });
     expect(response.body.length).toBeGreaterThanOrEqual(1);
-    expect(response.body[0]).toHaveProperty('arName');
+    expect(response.body[0]).toHaveProperty('name_ar');
     expect(response.body[0].pos).toHaveProperty('id');
     expect(response.body[0].category).toHaveProperty('id');
   });

@@ -6,6 +6,7 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
@@ -17,35 +18,38 @@ export class Merchant {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  arName: string;
+  @Column({ type: 'varchar', nullable: false })
+  name: string;
 
   @Column({
     unique: true,
     transformer: lowerCaseTransformer,
+    type: 'varchar',
   })
-  enName: string;
+  name_ar: string;
 
   @Column({
     unique: true,
     transformer: lowerCaseTransformer,
+    type: 'varchar',
   })
-  enSlogan: string;
+  description: string;
 
-  @Column({ unique: true })
-  arSlogan: string;
+  @Column({ type: 'varchar', default: null, nullable: true })
+  description_ar: string;
 
   @Column({
     unique: true,
     transformer: lowerCaseTransformer,
+    type: 'varchar',
   })
-  accountEmail: string;
+  email: string;
 
   @Column()
   brandKey: string;
 
-  @Column()
-  logo: string;
+  @Column({ type: 'varchar', nullable: false })
+  imageUrl: string;
 
   @Column({
     select: false,

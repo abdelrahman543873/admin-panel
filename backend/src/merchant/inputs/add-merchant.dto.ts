@@ -13,22 +13,22 @@ import { IsExistingPos } from '../validators/is-existing-pos.validator';
 export class AddMerchantInput {
   @IsString()
   @IsNotEmpty()
-  arName: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
-  enName: string;
+  name_ar: string;
 
   @IsString()
   @IsNotEmpty()
-  enSlogan: string;
+  description: string;
 
   @IsString()
   @IsNotEmpty()
-  arSlogan: string;
+  description_ar: string;
 
   @IsEmail()
-  accountEmail: string;
+  email: string;
 
   @IsString()
   @IsNotEmpty()
@@ -38,7 +38,7 @@ export class AddMerchantInput {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ type: 'string', format: 'binary' })
-  logo: string;
+  imageUrl: string;
 
   @IsExistingPos()
   @IsInt()

@@ -15,11 +15,11 @@ describe('merchant suite case', () => {
       variables: merchantParams,
       token: admin.token,
       filePath,
-      fileParam: 'logo',
+      fileParam: 'imageUrl',
     });
-    expect(response.body.logo).toContain('jpeg');
-    expect(response.body.arName).toBe(merchantParams.arName);
-    expect(response.body.enName).toBe(merchantParams.enName);
+    expect(response.body.imageUrl).toContain('jpeg');
+    expect(response.body.name_ar).toBe(merchantParams.name_ar);
+    expect(response.body.name).toBe(merchantParams.name);
   });
 
   it('should throw error when non existing pos', async () => {

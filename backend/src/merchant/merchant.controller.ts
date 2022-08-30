@@ -27,7 +27,7 @@ export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 
   @ApiConsumes('multipart/form-data')
-  @UseInterceptors(FileInterceptor('logo'))
+  @UseInterceptors(FileInterceptor('imageUrl'))
   @Post()
   async addMerchant(
     @Body() input: AddMerchantInput,
