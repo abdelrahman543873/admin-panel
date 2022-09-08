@@ -1,14 +1,14 @@
 version: '3.7'
 services:
-  admin-frontend:
-    image: admin-frontend
-    build: frontend
-    restart: always
-    working_dir: /frontend
-    ports:
-      - '4200:4200'
-    depends_on:
-      - admin
+  # admin-frontend:
+  #   image: admin-frontend
+  #   build: frontend
+  #   restart: always
+  #   working_dir: /frontend
+  #   ports:
+  #     - '4200:4200'
+  #   depends_on:
+  #     - admin
   admin:
     image: admin
     build: backend
