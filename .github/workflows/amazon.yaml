@@ -30,7 +30,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    container: node:16.10.0
     services:
       db:
         # Docker Hub image
