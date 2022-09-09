@@ -4,13 +4,12 @@ COPY . .
 
 RUN npm i -g @nestjs/cli
 
-RUN npm i -g yarn
+WORKDIR backend
 
 RUN yarn
 
 ENV DB_PORT_IN_DOCKER=3306
 ENV DB_HOST_IN_DOCKER=db
 
-WORKDIR backend
 
 CMD [ "ls" ]
