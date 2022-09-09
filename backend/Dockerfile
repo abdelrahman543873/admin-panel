@@ -4,7 +4,6 @@ COPY . .
 
 RUN yarn
 
-
 EXPOSE 3000
 
 ENV DB_PORT_IN_DOCKER=3306
