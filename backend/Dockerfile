@@ -1,10 +1,9 @@
 FROM node:16.10.0
 
-COPY package.json .
+COPY . .
 
 RUN yarn
 
-COPY . .
 
 EXPOSE 3000
 
