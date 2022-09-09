@@ -1,5 +1,7 @@
 FROM node:16.10.0
 
+WORKDIR /backend
+
 COPY . .
 
 RUN npm i -g @nestjs/cli
