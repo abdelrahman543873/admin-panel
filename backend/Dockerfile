@@ -1,8 +1,8 @@
 FROM node:16.10.0
 
-COPY . .
+WORKDIR /backend
 
-COPY backend/package.json .
+COPY . .
 
 RUN yarn
 
