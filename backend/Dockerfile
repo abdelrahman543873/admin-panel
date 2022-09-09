@@ -4,6 +4,7 @@ COPY . .
 
 RUN npm i -g @nestjs/cli
 
+
 RUN yarn
 
 ENV DB_PORT_IN_DOCKER=3306
