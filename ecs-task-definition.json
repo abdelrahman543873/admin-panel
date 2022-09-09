@@ -32,9 +32,7 @@
           "containerPort": 8080
         }
       ],
-      "command": [
-        "docker run -p 3000:3000 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-      ],
+      "command": [],
       "linuxParameters": null,
       "cpu": 256,
       "environment": [],
