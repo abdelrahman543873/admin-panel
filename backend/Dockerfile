@@ -2,11 +2,11 @@ FROM node:16.10.0
 
 COPY . .
 
-CMD ["ls"]
+COPY backend/package.json .
 
-# RUN yarn
+RUN yarn
 
-# ENV DB_PORT_IN_DOCKER=3306
-# ENV DB_HOST_IN_DOCKER=db
+ENV DB_PORT_IN_DOCKER=3306
+ENV DB_HOST_IN_DOCKER=db
 
-# CMD [ "nest", "start" ]
+CMD [ "nest", "start" ]
