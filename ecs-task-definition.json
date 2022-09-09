@@ -46,7 +46,7 @@
       "memoryReservation": 512,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "979925633203.dkr.ecr.us-east-1.amazonaws.com/admin:2f9854b593a3a780920b7689364654820909e870",
+      "image": "ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
