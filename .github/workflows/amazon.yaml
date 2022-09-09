@@ -30,10 +30,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    services:
-      db:
-        # Docker Hub image
-        image: mysql
     steps:
       - name: Checkout
         uses: actions/checkout@v3
