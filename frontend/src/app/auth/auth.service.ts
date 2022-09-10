@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Login } from './store/auth.actions';
 import { AppState } from '../shared/store/app.store';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -14,7 +15,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post('http://localhost:3000/auth/login', { email, password })
+      .post(`${environment.host}/auth/login`, { email, password })
       .pipe(tap((resData) => this.handleAuthentication(resData)));
   }
 
