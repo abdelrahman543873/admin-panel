@@ -23,7 +23,7 @@ async function bootstrap() {
   hbs.registerPartials(join(process.cwd(), 'views/layouts'));
   const options = new DocumentBuilder()
     .setTitle('🚀admin panel API🚀')
-    .setDescription('admin panel APIs descriptions')
+    .setDescription('admin panel API')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
