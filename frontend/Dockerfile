@@ -1,11 +1,8 @@
-FROM node:16.10.0
-
-COPY . .
-
+FROM node
+WORKDIR /app
+COPY . /app
 RUN yarn
-
 RUN npm install -g @angular/cli
 
-EXPOSE 4200
-
-CMD [ "ng", "serve" ]
+#ENTRYPOINT ["ng","--version"]
+CMD ng serve --host 0.0.0.0 --port 4200
