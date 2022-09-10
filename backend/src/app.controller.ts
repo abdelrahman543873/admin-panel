@@ -2,7 +2,12 @@ import { Controller, Get } from '@nestjs/common';
 @Controller()
 export class AppController {
   @Get('health')
-  async login() {
+  login() {
+    return 'Ok';
+  }
+
+  @Get('*')
+  health() {
     return 'Ok';
   }
 }
