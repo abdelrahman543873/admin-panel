@@ -33,7 +33,7 @@ jobs:
 
   BACKEND:
     needs: [tests]
-    if: steps.filter.outputs.backend == 'true'
+    if: tests.steps.filter.outputs.backend == 'true'
     name: BACKEND
     runs-on: ubuntu-latest
     steps:
@@ -81,7 +81,7 @@ jobs:
           wait-for-service-stability: true
   Frontend:
     needs: [tests]
-    if: steps.filter.outputs.frontend == 'true'
+    if: tests.steps.filter.outputs.frontend == 'true'
     name: Frontend
     runs-on: ubuntu-latest
     steps:
