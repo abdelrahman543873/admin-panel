@@ -9,7 +9,7 @@
       "entryPoint": null,
       "portMappings": [
         {
-          "hostPort": 4200,
+          "hostPort": 0,
           "protocol": "tcp",
           "containerPort": 4200
         }
@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG",
+      "image": "ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:$IMAGE_TAG",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
