@@ -1,6 +1,6 @@
 FROM node
-WORKDIR /app
-COPY . /app
+WORKDIR frontend/app
+COPY . frontend/app
 RUN yarn
 RUN npm install -g @angular/cli
 
