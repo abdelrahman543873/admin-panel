@@ -32,6 +32,7 @@ jobs:
               - 'frontend/**'
 
   BACKEND:
+    needs: [tests]
     if: steps.filter.outputs.backend == 'true'
     name: BACKEND
     runs-on: ubuntu-latest
@@ -79,6 +80,7 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
   Frontend:
+    needs: [tests]
     if: steps.filter.outputs.frontend == 'true'
     name: Frontend
     runs-on: ubuntu-latest
