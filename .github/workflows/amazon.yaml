@@ -33,6 +33,9 @@ jobs:
               - 'backend/**'
             frontend:
               - 'frontend/**'
+      - name: backend tests
+        if: steps.filter.outputs.backend == 'true'
+        run: 'echo "hello"'
 
   BACKEND:
     needs: changes
