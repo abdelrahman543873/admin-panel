@@ -18,8 +18,11 @@ env:
   FRONTEND_ECR_REPOSITORY: frontend
 
 jobs:
-  tests:
+  changes:
     runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
     steps:
       - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
@@ -27,7 +30,7 @@ jobs:
         with:
           filters: |
             backend:
-              - '../../backend/**'
+              - 'backend/**'
             frontend:
               - 'frontend/**'
         # run only if 'backend' files were changed
@@ -36,8 +39,8 @@ jobs:
         run: 'echo "hello"'
 
   # BACKEND:
-  #   needs: [tests]
-  #   if: tests.steps.filter.outputs.backend == 'true'
+  #   needs: changes
+  #   if: needs.changes.outputs.backend == 'true'
   #   name: BACKEND
   #   runs-on: ubuntu-latest
   #   steps:
@@ -84,8 +87,8 @@ jobs:
   #         cluster: ${{ env.ECS_CLUSTER }}
   #         wait-for-service-stability: true
   # Frontend:
-  #   needs: [tests]
-  #   if: tests.steps.filter.outputs.frontend == 'true'
+  #   needs: changes
+  #   if: needs.changes.outputs.fronted == 'true'
   #   name: Frontend
   #   runs-on: ubuntu-latest
   #   steps:
