@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/auth.interceptor';
+import { HealthComponent } from './health/health.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HealthComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
