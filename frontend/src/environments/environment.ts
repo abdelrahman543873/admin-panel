@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  host: 'admin-backend-1846779460.us-east-1.elb.amazonaws.com',
+  host: 'http://admin-panel-784703093.us-east-1.elb.amazonaws.com/backend',
 };
 
 /*

@@ -21,6 +21,7 @@ async function bootstrap() {
   app.setViewEngine('hbs');
   hbs.registerPartials(join(process.cwd(), 'views/partials'));
   hbs.registerPartials(join(process.cwd(), 'views/layouts'));
+  app.setGlobalPrefix('backend');
   const options = new DocumentBuilder()
     .setTitle('🚀admin panel API🚀')
     .setDescription('admin panel endpoints')
@@ -28,7 +29,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('backend/api', app, document);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -37,7 +38,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  // app.set('view options', { layout: 'index' });
   await app.listen(config.get<string>('APP_PORT'));
   Logger.log(`server listening: ${await app.getUrl()}`);
 }

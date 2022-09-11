@@ -1,10 +1,10 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Login } from './store/auth.actions';
 import { AppState } from '../shared/store/app.store';
-import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

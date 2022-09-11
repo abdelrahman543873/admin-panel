@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   login(email: string, password: string) {
     this.authService.login(email, password).subscribe(
       () => {
-        this.router.navigate(['/home']).then(() => {
+        this.router.navigate(['/frontend/home']).then(() => {
           window.location.reload();
         });
       },
