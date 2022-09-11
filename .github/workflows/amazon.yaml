@@ -84,7 +84,7 @@ jobs:
           wait-for-service-stability: true
   Frontend:
     needs: changes
-    if: needs.changes.outputs.fronted == 'true'
+    if: needs.changes.outputs.frontend == 'true'
     name: Frontend
     runs-on: ubuntu-latest
     steps:
