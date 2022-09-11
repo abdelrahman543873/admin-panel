@@ -24,7 +24,7 @@ async function bootstrap() {
   app.setGlobalPrefix('backend');
   const options = new DocumentBuilder()
     .setTitle('🚀admin panel API🚀')
-    .setDescription('admin panel endpoint')
+    .setDescription('admin panel endpoints')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
