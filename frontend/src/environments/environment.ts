@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: process.env['production'] ? true : false,
+  production: true,
   host: 'http://admin-panel-784703093.us-east-1.elb.amazonaws.com/backend',
 };
 
