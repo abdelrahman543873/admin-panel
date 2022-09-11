@@ -27,7 +27,7 @@ jobs:
         with:
           filters: |
             backend:
-              - 'backend/**'
+              - '/backend/**'
             frontend:
               - 'frontend/**'
         # run only if 'backend' files were changed
