@@ -11,4 +11,4 @@ RUN yarn
 ENV production=true
 
 #ENTRYPOINT ["ng","--version"]
-CMD ng serve --port 4200 --disable-host-check
+CMD ng serve --host 0.0.0.0 --port 4200 --disable-host-check
