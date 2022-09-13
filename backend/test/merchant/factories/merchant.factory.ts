@@ -2,6 +2,7 @@ import { categoryFactory } from './category.factory';
 import { internet, name, random } from 'faker';
 import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from './pos.factory';
+import { Merchant } from '../../../src/merchant/model/merchant.entity';
 interface MerchantType {
   name?: string;
   name_ar?: string;
@@ -32,7 +33,7 @@ export const buildMerchantParams = async (
   };
 };
 
-export const merchantFactory = async (obj: MerchantType = {}) => {
+export const merchantFactory = async (obj: MerchantType = {}): Promise<Merchant> => {
   const params: MerchantType = await buildMerchantParams(obj);
   return await merchantTestRepo().save({ ...params });
 };

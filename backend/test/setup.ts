@@ -11,6 +11,7 @@ import { PosRepository } from '../src/merchant/repositories/pos.repository';
 import { BranchRepository } from '../src/merchant/repositories/branch.repository';
 import { DeviceRepository } from '../src/merchant/repositories/device.repository';
 import { Connection } from 'typeorm';
+import { CampaignRepository } from '../src/campaign/campaign.repository';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -26,10 +27,11 @@ export default async (): Promise<void> => {
       forbidNonWhitelisted: true,
     }),
   );
+  app.setGlobalPrefix('backend');
   await app.init();
   global.app = app;
   const connection = app.get<Connection>(Connection);
-  // done this way to allow deletion of all tables 
+  // done this way to allow deletion of all tables
   await connection.query('SET FOREIGN_KEY_CHECKS = 0;');
   global.merchantRepository = app.get<MerchantRepository>(MerchantRepository);
   global.adminRepository = app.get<AdminRepository>(AdminRepository);
@@ -38,4 +40,5 @@ export default async (): Promise<void> => {
   global.posRepository = app.get<PosRepository>(PosRepository);
   global.branchRepository = app.get<BranchRepository>(BranchRepository);
   global.deviceRepository = app.get<DeviceRepository>(DeviceRepository);
+  global.campaignRepository = app.get<CampaignRepository>(CampaignRepository);
 };

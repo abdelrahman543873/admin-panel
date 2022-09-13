@@ -1,1 +1,1 @@
-export const LOGIN = '/auth/login';
+export const LOGIN = '/backend/auth/login';

@@ -5,6 +5,7 @@ import { BaseRepository } from '../../shared/abstract/repository.abstract';
 import { Device } from '../model/device.entity';
 import { AddDeviceInput } from '../inputs/add-device.dto';
 import { GetDeviceInput } from '../inputs/get-device.input';
+import { GetMerchantDevicesDto } from '../inputs/get-merchant-devices.dto';
 @Injectable()
 export class DeviceRepository extends BaseRepository<Device> {
   constructor(
@@ -27,7 +28,7 @@ export class DeviceRepository extends BaseRepository<Device> {
     });
   }
 
-  getDevices() {
-    return this.device.find();
+  getDevices(input: GetMerchantDevicesDto) {
+    return this.device.find({ where: { branch: input.branch } });
   }
 }
