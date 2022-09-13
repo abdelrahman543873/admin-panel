@@ -4,24 +4,20 @@ import { AppComponent } from './app.component';
 import { HealthComponent } from './health/health.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'frontend/auth', pathMatch: 'full' },
+  { path: 'frontend/health', component: HealthComponent, pathMatch: 'full' },
   {
-    path: 'frontend',
-    children: [
-      { path: 'health', component: HealthComponent },
-      {
-        path: 'auth',
-        loadChildren: () =>
-          import('../app/auth/auth.module').then((m) => m.AuthModule),
-      },
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('../app/home/home.module').then((m) => m.HomeModule),
-      },
-    ],
+    path: 'frontend/auth',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('../app/auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '**', component: HealthComponent },
+  {
+    path: 'frontend/home',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('../app/home/home.module').then((m) => m.HomeModule),
+  },
+  { path: '**', redirectTo: 'frontend/auth' },
 ];
 
 @NgModule({
