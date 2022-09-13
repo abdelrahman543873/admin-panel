@@ -11,4 +11,4 @@ RUN yarn
 ENV production=true
 
 #ENTRYPOINT ["ng","--version"]
-CMD ng serve --host http://admin-panel-784703093.us-east-1.elb.amazonaws.com --port 4200 --disable-host-check 
+CMD ng serve --host 34.202.5.152 --port 4200 --disable-host-check 
