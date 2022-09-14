@@ -1,0 +1,60 @@
+<div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+  <div class="row">
+    <div class="col-sm-12 col-md-6"></div>
+    <div class="col-sm-12 col-md-6"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table
+        id="example2"
+        class="table table-bordered table-hover dataTable dtr-inline"
+        aria-describedby="example2_info"
+      >
+        <thead>
+          <tr>
+            <th
+              class="sorting sorting_asc"
+              tabindex="0"
+              aria-controls="example2"
+              rowspan="1"
+              colspan="1"
+              aria-sort="ascending"
+              aria-label="Rendering engine: activate to sort column descending"
+            >
+              Merchant Name
+            </th>
+            <th
+              class="sorting"
+              tabindex="0"
+              aria-controls="example2"
+              rowspan="1"
+              colspan="1"
+              aria-label="Browser: activate to sort column ascending"
+            >
+              Merchant Category
+            </th>
+            <th
+              class="sorting"
+              tabindex="0"
+              aria-controls="example2"
+              rowspan="1"
+              colspan="1"
+              aria-label="Platform(s): activate to sort column ascending"
+            >
+              Pos Type
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let merchant of merchants">
+            <td class="dtr-control sorting_1" tabindex="0">
+              {{ merchant.name }}
+            </td>
+            <td>{{ merchant.category.name }}</td>
+            <td>{{ merchant.pos.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
