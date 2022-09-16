@@ -5,7 +5,7 @@ COPY . .
 
 RUN npm install -g @angular/cli
 
-# WORKDIR frontend
+WORKDIR frontend
 
 RUN yarn
 
