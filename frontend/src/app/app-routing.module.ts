@@ -9,7 +9,6 @@ const routes: Routes = [
     path: 'frontend',
     children: [
       { path: '', component: HealthComponent },
-      { path: 'health', component: HealthComponent },
       {
         path: 'auth',
         loadChildren: () =>
@@ -22,7 +21,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'frontend/auth' },
+  { path: '**', redirectTo: 'frontend' },
 ];
 
 @NgModule({
