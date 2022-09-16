@@ -19,11 +19,6 @@
         {
           "hostPort": 0,
           "protocol": "tcp",
-          "containerPort": 4200
-        },
-        {
-          "hostPort": 0,
-          "protocol": "tcp",
           "containerPort": 80
         }
       ],
