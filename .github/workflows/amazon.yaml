@@ -105,6 +105,5 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         run: |
           # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
+          # and run the aws command from the docker file
           docker build -f frontend/Dockerfile -t $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:$IMAGE_TAG .
