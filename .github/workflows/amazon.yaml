@@ -106,4 +106,4 @@ jobs:
         run: |
           # Build a docker container and
           # and run the aws command from the docker file
-          docker build -f frontend/Dockerfile -t $ECR_REGISTRY/$FRONTEND_ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -f frontend/Dockerfile .
