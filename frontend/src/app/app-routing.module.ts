@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { HealthComponent } from './health/health.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'frontend', pathMatch: 'full' },
+  { path: '', redirectTo: 'frontend/auth', pathMatch: 'full' },
   {
     path: 'frontend',
     children: [
