@@ -1,6 +1,5 @@
 FROM node
 
-
 COPY . .
 
 RUN npm install -g @angular/cli
