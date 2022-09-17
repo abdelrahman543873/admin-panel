@@ -21,7 +21,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'frontend' },
+  { path: '**', redirectTo: 'frontend/auth' },
 ];
 
 @NgModule({
