@@ -102,8 +102,22 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
 
-      - name: Build, tag, and push image to Amazon ECR
-        run: |
-          # Build a docker container and
-          # and run the aws command from the docker file
-          docker build -f frontend/Dockerfile .
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: install angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Navigate to Frontend directory
+        run: cd frontend
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Deploy a
+        run: npm install
+
+      - name: push to s3 bucket
+        run: npx cross-env NG_DEPLOY_AWS_ACCESS_KEY_ID=AKIA6IKA6RCZYFMFFP5Z NG_DEPLOY_AWS_SECRET_ACCESS_KEY=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 NG_DEPLOY_AWS_BUCKET=admin-frontend123 NG_DEPLOY_AWS_REGION=us-east-1 ng deploy
