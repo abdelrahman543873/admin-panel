@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { AddMerchantComponent } from './add/add-merchant.component';
 import { MerchantsListComponent } from './merchants-list/merchants-list.component';
+import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddMerchantComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: ':id',
+    component: MerchantDetailsComponent,
     canActivate: [AuthGuard],
   },
 ];

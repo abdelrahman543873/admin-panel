@@ -46,7 +46,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let merchant of merchants">
+          <tr
+            *ngFor="let merchant of merchants"
+            routerLink="/frontend/home/merchant/{{ merchant.id }}"
+          >
             <td class="dtr-control sorting_1" tabindex="0">
               {{ merchant.name }}
             </td>
