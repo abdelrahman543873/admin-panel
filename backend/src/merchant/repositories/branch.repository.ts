@@ -5,6 +5,7 @@ import { BaseRepository } from '../../shared/abstract/repository.abstract';
 import { AddBranchInput } from '../inputs/add-branch.dto';
 import { Branch } from '../model/branch.entity';
 import { GetBranchInput } from '../inputs/get-branch.dto';
+import { GetBranchesInput } from '../inputs/get-branches.dto';
 @Injectable()
 export class BranchRepository extends BaseRepository<Branch> {
   constructor(
@@ -25,7 +26,7 @@ export class BranchRepository extends BaseRepository<Branch> {
     return this.branch.findOne({ where: { id: input.id } });
   }
 
-  getBranches() {
-    return this.branch.find();
+  getBranches(input: GetBranchesInput) {
+    return this.branch.find({ where: { merchant: input.id } });
   }
 }

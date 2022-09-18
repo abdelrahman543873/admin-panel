@@ -1,6 +1,7 @@
 import { Merchant } from './merchant.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -39,4 +40,8 @@ export class Branch {
   @ManyToOne(() => Merchant)
   @JoinColumn()
   merchant: number;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 }

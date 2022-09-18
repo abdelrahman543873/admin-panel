@@ -19,6 +19,7 @@ import { AddDeviceInput } from './inputs/add-device.dto';
 import { GetDeviceInput } from './inputs/get-device.input';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { GetMerchantDevicesDto } from './inputs/get-merchant-devices.dto';
+import { GetBranchesInput } from './inputs/get-branches.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -62,9 +63,9 @@ export class MerchantController {
     return await this.merchantService.getBranch(input);
   }
 
-  @Get('branch')
-  async getBranches() {
-    return await this.merchantService.getBranches();
+  @Get('branches/:id')
+  async getBranches(@Param() input: GetBranchesInput) {
+    return await this.merchantService.getBranches(input);
   }
 
   @Get(':id')
