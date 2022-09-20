@@ -6,6 +6,7 @@ import { AddBranchInput } from '../inputs/add-branch.dto';
 import { Branch } from '../model/branch.entity';
 import { GetBranchInput } from '../inputs/get-branch.dto';
 import { GetBranchesInput } from '../inputs/get-branches.dto';
+import { SearchBranchesInput } from '../inputs/search-branches.input';
 @Injectable()
 export class BranchRepository extends BaseRepository<Branch> {
   constructor(
@@ -19,7 +20,7 @@ export class BranchRepository extends BaseRepository<Branch> {
   }
 
   addBranch(input: AddBranchInput) {
-    return this.branch.create(input);
+    return this.branch.create({ ...input, merchant: { id: input.merchant } });
   }
 
   getBranch(input: GetBranchInput) {
@@ -27,6 +28,13 @@ export class BranchRepository extends BaseRepository<Branch> {
   }
 
   getBranches(input: GetBranchesInput) {
-    return this.branch.find({ where: { merchant: input.id } });
+    return this.branch.find({ where: { merchant: { id: input.id } } });
+  }
+
+  searchBranches(input: SearchBranchesInput) {
+    return this.branch.find({
+      where: { merchant: { id: input.id }, enName: input.name },
+      relations: ['merchant'],
+    });
   }
 }

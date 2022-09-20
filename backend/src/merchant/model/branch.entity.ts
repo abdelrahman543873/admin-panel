@@ -39,7 +39,7 @@ export class Branch {
 
   @ManyToOne(() => Merchant)
   @JoinColumn()
-  merchant: number;
+  merchant: Merchant;
 
   @Column()
   @CreateDateColumn()

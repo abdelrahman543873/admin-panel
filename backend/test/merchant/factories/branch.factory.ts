@@ -25,5 +25,8 @@ export const buildBranchParams = async (
 
 export const branchFactory = async (obj: BranchType = {}) => {
   const params: BranchType = await buildBranchParams(obj);
-  return await branchTestRepo().save({ ...params });
+  return await branchTestRepo().save({
+    ...params,
+    merchant: { id: params.merchant },
+  });
 };

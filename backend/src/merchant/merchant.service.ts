@@ -10,6 +10,7 @@ import { AddDeviceInput } from './inputs/add-device.dto';
 import { GetDeviceInput } from './inputs/get-device.input';
 import { GetMerchantDevicesDto } from './inputs/get-merchant-devices.dto';
 import { GetBranchesInput } from './inputs/get-branches.dto';
+import { SearchBranchesInput } from './inputs/search-branches.input';
 
 @Injectable()
 export class MerchantService {
@@ -44,6 +45,10 @@ export class MerchantService {
 
   getBranches(input: GetBranchesInput) {
     return this.branchRepository.getBranches(input);
+  }
+
+  searchBranches(input: SearchBranchesInput) {
+    return this.branchRepository.searchBranches(input);
   }
 
   getMerchant(input: GetMerchantInput) {

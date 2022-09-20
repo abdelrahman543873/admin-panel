@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -20,6 +21,7 @@ import { GetDeviceInput } from './inputs/get-device.input';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { GetMerchantDevicesDto } from './inputs/get-merchant-devices.dto';
 import { GetBranchesInput } from './inputs/get-branches.dto';
+import { SearchBranchesInput } from './inputs/search-branches.input';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -56,6 +58,11 @@ export class MerchantController {
   @Post('branch')
   async addBranch(@Body() input: AddBranchInput) {
     return await this.merchantService.addBranch(input);
+  }
+
+  @Get('branches/search')
+  async searchBranches(@Query() input: SearchBranchesInput) {
+    return await this.merchantService.getBranches(input);
   }
 
   @Get('branch/:id')
