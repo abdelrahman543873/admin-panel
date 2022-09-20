@@ -48,8 +48,23 @@
   </div>
 </div>
 <div class="row">
-  <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-    <div class="row">
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="input-group inlin" data-widget="sidebar-search">
+      <p style="margin-right: 3%">Branches</p>
+      <input type="search" placeholder="Search" aria-label="Search" />
+      <div class="input-group-append">
+        <button class="btn btn-sidebar">
+          <i class="fas fa-search fa-fw"></i>
+        </button>
+      </div>
+      <button style="margin-left: 10%">Create new Branch</button>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card-footer">
+    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
       <div class="col-sm-12">
         <table
           id="example2"
