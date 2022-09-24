@@ -48,17 +48,29 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="input-group inlin" data-widget="sidebar-search">
-      <p style="margin-right: 3%">Branches</p>
-      <input type="search" placeholder="Search" aria-label="Search" />
+  <div class="col-md-8">
+    <form
+      class="input-group"
+      data-widget="sidebar-search"
+      #merchantForm="ngForm"
+    >
+      <p class="col-md-1">Branches</p>
+      <input
+        class="col-md-3"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        name="search"
+        #search
+        ngModel
+      />
       <div class="input-group-append">
-        <button class="btn btn-sidebar">
+        <button class="btn btn-sidebar" (click)="searchMerchants(search.value)">
           <i class="fas fa-search fa-fw"></i>
         </button>
       </div>
-      <button style="margin-left: 10%">Create new Branch</button>
-    </div>
+      <button class="btn btn-info">Create new Branch</button>
+    </form>
   </div>
 </div>
 

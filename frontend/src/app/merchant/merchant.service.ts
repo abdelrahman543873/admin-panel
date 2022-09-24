@@ -25,4 +25,10 @@ export class MerchantService {
       `${environment.host}/merchant/branches/${merchant}`,
     );
   }
+
+  searchMerchantBranches(merchant: number, name: string) {
+    return this.http.get<BranchModel[]>(
+      `${environment.host}/merchant/branches/search?id=${merchant}&name=${name}`,
+    );
+  }
 }

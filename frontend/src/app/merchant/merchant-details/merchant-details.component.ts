@@ -12,19 +12,28 @@ import { BranchModel } from '../interfaces/branch.interface';
 export class MerchantDetailsComponent implements OnInit {
   merchant?: MerchantModel;
   branches?: BranchModel[];
+  merchantId: number;
   constructor(
     private merchantService: MerchantService,
-    private activatedRoute: ActivatedRoute,
-  ) {}
+    activatedRoute: ActivatedRoute,
+  ) {
+    this.merchantId = +activatedRoute.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
+    this.merchantService.getMerchant(this.merchantId).subscribe((data) => {
+      this.merchant = data;
+    });
     this.merchantService
-      .getMerchant(+this.activatedRoute.snapshot.params['id'])
+      .getMerchantBranches(this.merchantId)
       .subscribe((data) => {
-        this.merchant = data;
+        this.branches = data;
       });
+  }
+
+  searchMerchants(branchName: string) {
     this.merchantService
-      .getMerchantBranches(+this.activatedRoute.snapshot.params['id'])
+      .searchMerchantBranches(this.merchantId, branchName)
       .subscribe((data) => {
         this.branches = data;
       });
