@@ -11,7 +11,7 @@ import { useContainer } from 'class-validator';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    cors: true,
+    cors: { origin: '*', allowedHeaders: '*' },
   });
   const config = app.get(ConfigService);
   app.use(cookieParser());
