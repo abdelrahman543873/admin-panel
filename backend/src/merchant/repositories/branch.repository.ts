@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { BaseRepository } from '../../shared/abstract/repository.abstract';
 import { AddBranchInput } from '../inputs/add-branch.dto';
 import { Branch } from '../model/branch.entity';
@@ -28,12 +28,17 @@ export class BranchRepository extends BaseRepository<Branch> {
   }
 
   getBranches(input: GetBranchesInput) {
-    return this.branch.find({ where: { merchant: { id: input.id } } });
+    return this.branch.find({
+      where: { merchant: { id: input.id } },
+    });
   }
 
   searchBranches(input: SearchBranchesInput) {
     return this.branch.find({
-      where: { merchant: { id: input.id }, enName: input.name },
+      where: [
+        { merchant: { id: input.id }, enName: ILike(`%${input.name}%`) },
+        { merchant: { id: input.id }, arName: ILike(`%${input.name}%`) },
+      ],
       relations: ['merchant'],
     });
   }

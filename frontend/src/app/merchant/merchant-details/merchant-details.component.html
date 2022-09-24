@@ -72,6 +72,11 @@
       <button class="btn btn-info">Create new Branch</button>
     </form>
   </div>
+  <div class="col-md-8" *ngIf="nonExistingBranchSearch">
+    <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+      invalid branch name
+    </p>
+  </div>
 </div>
 
 <div class="row">

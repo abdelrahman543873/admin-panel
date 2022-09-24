@@ -13,6 +13,7 @@ export class MerchantDetailsComponent implements OnInit {
   merchant?: MerchantModel;
   branches?: BranchModel[];
   merchantId: number;
+  nonExistingBranchSearch: boolean = false;
   constructor(
     private merchantService: MerchantService,
     activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class MerchantDetailsComponent implements OnInit {
       .getMerchantBranches(this.merchantId)
       .subscribe((data) => {
         this.branches = data;
+        this.nonExistingBranchSearch = false;
       });
   }
 
@@ -35,7 +37,10 @@ export class MerchantDetailsComponent implements OnInit {
     this.merchantService
       .searchMerchantBranches(this.merchantId, branchName)
       .subscribe((data) => {
-        this.branches = data;
+        if (data.length) {
+          this.branches = data;
+          this.nonExistingBranchSearch = false;
+        } else this.nonExistingBranchSearch = true;
       });
   }
 }

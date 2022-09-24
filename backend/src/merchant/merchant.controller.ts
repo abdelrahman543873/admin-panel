@@ -62,7 +62,7 @@ export class MerchantController {
 
   @Get('branches/search')
   async searchBranches(@Query() input: SearchBranchesInput) {
-    return await this.merchantService.getBranches(input);
+    return await this.merchantService.searchBranches(input);
   }
 
   @Get('branch/:id')
