@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MerchantModel } from '../interfaces/merchant.interface';
 import { MerchantService } from '../merchant.service';
 import { BranchModel } from '../interfaces/branch.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddBranchModalComponent } from '../add-branch-modal/add-branch-modal.component';
 
 @Component({
   selector: 'app-merchant-details',
@@ -14,11 +16,17 @@ export class MerchantDetailsComponent implements OnInit {
   branches?: BranchModel[];
   merchantId: number;
   nonExistingBranchSearch: boolean = false;
+  closeResult = '';
   constructor(
     private merchantService: MerchantService,
     activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
   ) {
     this.merchantId = +activatedRoute.snapshot.params['id'];
+  }
+
+  open() {
+    this.modalService.open(AddBranchModalComponent, { animation: true });
   }
 
   ngOnInit(): void {

@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/auth.interceptor';
 import { HealthComponent } from './health/health.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [AppComponent, HealthComponent],
   imports: [
@@ -14,6 +15,7 @@ import { HealthComponent } from './health/health.component';
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
     HttpClientModule,
+    NgbModule,
   ],
   bootstrap: [AppComponent],
   providers: [

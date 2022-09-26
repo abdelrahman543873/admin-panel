@@ -1,183 +1,189 @@
-<div class="row">
-  <div class="col-sm-2">
-    <div class="info-box mb-3">
-      <div class="info-box">
-        <span class="elevation-1">
-          <span class="info-box-text">Merchant Image</span>
-          <img src="{{ merchant?.imageUrl }}" alt="{{ merchant?.name }}" />
-        </span>
+<div id="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="info-box mb-3">
+        <div class="info-box">
+          <span class="elevation-1">
+            <span class="info-box-text">Merchant Image</span>
+            <img src="{{ merchant?.imageUrl }}" alt="{{ merchant?.name }}" />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="info-box mb-3">
+        <div class="info-box-content">
+          <span class="info-box-text">Merchant Name</span>
+          <span class="info-box-text">
+            {{ merchant?.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="info-box mb-3">
+        <div class="info-box-content">
+          <span class="info-box-text">Merchant Category</span>
+          <span class="info-box-text">{{ merchant?.category?.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="info-box mb-3">
+        <div class="info-box-content">
+          <span class="info-box-text">Pos Type</span>
+          <span class="info-box-text">{{ merchant?.pos?.type }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="info-box mb-3">
+        <div class="info-box-content">
+          <span class="info-box-text">Integration Id</span>
+          <span class="info-box-number">112233433</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-2">
-    <div class="info-box mb-3">
-      <div class="info-box-content">
-        <span class="info-box-text">Merchant Name</span>
-        <span class="info-box-text">
-          {{ merchant?.name }}
-        </span>
-      </div>
+  <div class="row">
+    <div class="col-md-8">
+      <form
+        class="input-group"
+        data-widget="sidebar-search"
+        #merchantForm="ngForm"
+      >
+        <p class="col-md-1">Branches</p>
+        <input
+          class="col-md-3"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="search"
+          #search
+          ngModel
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-sidebar"
+            (click)="searchMerchants(search.value)"
+          >
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+        <button class="btn btn-info" (click)="open()">Create new Branch</button>
+      </form>
+    </div>
+    <div class="col-md-8" *ngIf="nonExistingBranchSearch">
+      <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+        invalid branch name
+      </p>
     </div>
   </div>
 
-  <div class="col-sm-2">
-    <div class="info-box mb-3">
-      <div class="info-box-content">
-        <span class="info-box-text">Merchant Category</span>
-        <span class="info-box-text">{{ merchant?.category?.name }}</span>
-      </div>
-    </div>
-  </div>
+  <div class="row">
+    <div class="card-footer">
+      <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <div class="col-sm-12">
+          <table
+            id="example2"
+            class="table table-bordered table-hover dataTable dtr-inline"
+            aria-describedby="example2_info"
+          >
+            <thead>
+              <tr>
+                <th
+                  class="sorting sorting_asc"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-sort="ascending"
+                  aria-label="Rendering engine: activate to sort column descending"
+                >
+                  Branch Id
+                </th>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Browser: activate to sort column ascending"
+                >
+                  Name Ar
+                </th>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Platform(s): activate to sort column ascending"
+                >
+                  Name En
+                </th>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Platform(s): activate to sort column ascending"
+                >
+                  Pos Branch Name
+                </th>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Platform(s): activate to sort column ascending"
+                >
+                  Pos Id Branch
+                </th>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Platform(s): activate to sort column ascending"
+                >
+                  Created At
+                </th>
 
-  <div class="col-sm-2">
-    <div class="info-box mb-3">
-      <div class="info-box-content">
-        <span class="info-box-text">Pos Type</span>
-        <span class="info-box-text">{{ merchant?.pos?.type }}</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-2">
-    <div class="info-box mb-3">
-      <div class="info-box-content">
-        <span class="info-box-text">Integration Id</span>
-        <span class="info-box-number">112233433</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-8">
-    <form
-      class="input-group"
-      data-widget="sidebar-search"
-      #merchantForm="ngForm"
-    >
-      <p class="col-md-1">Branches</p>
-      <input
-        class="col-md-3"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-        name="search"
-        #search
-        ngModel
-      />
-      <div class="input-group-append">
-        <button class="btn btn-sidebar" (click)="searchMerchants(search.value)">
-          <i class="fas fa-search fa-fw"></i>
-        </button>
-      </div>
-      <button class="btn btn-info">Create new Branch</button>
-    </form>
-  </div>
-  <div class="col-md-8" *ngIf="nonExistingBranchSearch">
-    <p class="btn btn-default bg-maroon toastsDefaultMaroon">
-      invalid branch name
-    </p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="card-footer">
-    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-      <div class="col-sm-12">
-        <table
-          id="example2"
-          class="table table-bordered table-hover dataTable dtr-inline"
-          aria-describedby="example2_info"
-        >
-          <thead>
-            <tr>
-              <th
-                class="sorting sorting_asc"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-sort="ascending"
-                aria-label="Rendering engine: activate to sort column descending"
-              >
-                Branch Id
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Browser: activate to sort column ascending"
-              >
-                Name Ar
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Name En
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Pos Branch Name
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Pos Id Branch
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Created At
-              </th>
-
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Show On Map
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let branch of branches">
-              <td class="dtr-control sorting_1" tabindex="0">
-                {{ branch.id }}
-              </td>
-              <td>{{ branch.arName }}</td>
-              <td>{{ branch.enName }}</td>
-              <td>yet to be added</td>
-              <td>yet to be added</td>
-              <td>{{ branch.createdAt }}</td>
-              <td>yet to be added</td>
-            </tr>
-          </tbody>
-        </table>
+                <th
+                  class="sorting"
+                  tabindex="0"
+                  aria-controls="example2"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Platform(s): activate to sort column ascending"
+                >
+                  Show On Map
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let branch of branches">
+                <td class="dtr-control sorting_1" tabindex="0">
+                  {{ branch.id }}
+                </td>
+                <td>{{ branch.arName }}</td>
+                <td>{{ branch.enName }}</td>
+                <td>yet to be added</td>
+                <td>yet to be added</td>
+                <td>{{ branch.createdAt }}</td>
+                <td>yet to be added</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
