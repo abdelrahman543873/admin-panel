@@ -7,9 +7,9 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 
-@Entity()
+@Entity({ name: 'Admin' })
 export class Admin {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'idAdmin' })
   id: number;
 
   @Column({ unique: true })
