@@ -6,47 +6,46 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  PrimaryColumn,
 } from 'typeorm';
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
 import { Pos } from './pos.entity';
-import { Category } from './category.entity';
 
-@Entity()
+@Entity({ name: 'Merchant' })
 export class Merchant {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'idMerchant' })
   id: number;
 
-  @Column({ type: 'varchar', nullable: false })
-  name: string;
+  @Column({ type: 'varchar', nullable: false, name: 'name' })
+  enName: string;
 
   @Column({
     unique: true,
     transformer: lowerCaseTransformer,
-    type: 'varchar',
+    name: 'name_ar',
   })
-  name_ar: string;
+  arName: string;
 
   @Column({
-    unique: true,
     transformer: lowerCaseTransformer,
-    type: 'varchar',
+    name: 'description',
   })
-  description: string;
+  enDescription: string;
 
-  @Column({ type: 'varchar', default: null, nullable: true })
-  description_ar: string;
+  @Column({ default: null, nullable: true, name: 'description_ar' })
+  arDescription: string;
 
   @Column({
     unique: true,
     transformer: lowerCaseTransformer,
-    type: 'varchar',
   })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   brandKey: string;
+
+  @Column({ nullable: true })
+  link: string;
 
   @Column({ type: 'varchar', nullable: false })
   imageUrl: string;
@@ -63,12 +62,8 @@ export class Merchant {
   password: string;
 
   @OneToOne(() => Pos)
-  @JoinColumn()
+  @JoinColumn({ name: 'idPos' })
   pos: number;
-
-  @OneToOne(() => Category)
-  @JoinColumn()
-  category: number;
 
   @Column()
   @CreateDateColumn()

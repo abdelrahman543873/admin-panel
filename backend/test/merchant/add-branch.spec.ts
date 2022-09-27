@@ -11,7 +11,13 @@ describe('branch suite case', () => {
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: BRANCH,
-      variables: branchParams,
+      variables: {
+        merchant: branchParams.merchant.id,
+        arName: branchParams.arName,
+        enName: branchParams.enName,
+        longitude: branchParams.longitude,
+        latitude: branchParams.latitude,
+      },
       token: admin.token,
     });
     expect(response.body.arName).toBe(branchParams.arName);
@@ -23,9 +29,16 @@ describe('branch suite case', () => {
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: BRANCH,
-      variables: { ...branchParams, merchant: datatype.number() },
+      variables: {
+        arName: branchParams.arName,
+        enName: branchParams.enName,
+        longitude: branchParams.longitude,
+        latitude: branchParams.latitude,
+        merchant: datatype.number(),
+      },
       token: admin.token,
     });
     expect(response.body.statusCode).toBe(400);
+    expect(response.body.message[0]).toContain('merchant');
   });
 });

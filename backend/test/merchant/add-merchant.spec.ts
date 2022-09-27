@@ -12,14 +12,14 @@ describe('merchant suite case', () => {
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: MERCHANT,
-      variables: merchantParams,
+      variables: { ...merchantParams },
       token: admin.token,
       filePath,
       fileParam: 'imageUrl',
     });
     expect(response.body.imageUrl).toContain('jpeg');
-    expect(response.body.name_ar).toBe(merchantParams.name_ar);
-    expect(response.body.name).toBe(merchantParams.name);
+    expect(response.body.arName).toBe(merchantParams.arName);
+    expect(response.body.enName).toBe(merchantParams.enName);
   });
 
   it('should throw error when non existing pos', async () => {
@@ -32,5 +32,6 @@ describe('merchant suite case', () => {
       token: admin.token,
     });
     expect(response.body.statusCode).toBe(400);
+    expect(response.body.message[0]).toContain('pos');
   });
 });

@@ -6,42 +6,77 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'Branch' })
 export class Branch {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'idBranch', type: 'int' })
   id: number;
 
-  @Column()
-  arName: string;
+  @Column({ name: 'lat', type: 'decimal' })
+  latitude: number;
 
-  @Column()
-  enName: string;
+  @Column({ name: 'lng', type: 'decimal' })
+  longitude: number;
 
-  @Column({
-    type: 'datetime',
-    transformer: {
-      to: (value: Date) => {
-        return value.toISOString();
-      },
-      from: (value: Date) => value,
-    },
-    nullable: true,
-  })
-  activationDate: Date;
-
-  @Column()
-  long: number;
-
-  @Column()
-  lat: number;
+  @Column({ nullable: true })
+  workingHours: string;
 
   @ManyToOne(() => Merchant)
-  @JoinColumn()
+  @JoinColumn({ name: 'idMerchant' })
   merchant: Merchant;
 
-  @Column()
-  @CreateDateColumn()
+  //TODO change when city entity is created
+  @Column({ nullable: true, name: 'idCity', default: 1 })
+  city: number;
+
+  @Column({ name: 'posIdBranch_branch', nullable: true })
+  brandKey: string;
+
+  @Column({ name: 'district', nullable: true })
+  enDistrict: string;
+
+  @Column({ name: 'district_ar', nullable: true })
+  arDistrict: string;
+
+  @Column({ nullable: true })
+  managerName: string;
+
+  @Column({ nullable: true })
+  managerPhoneNumber: string;
+
+  @CreateDateColumn({ name: 'branch_createdAt', type: 'timestamp' })
   createdAt: Date;
+
+  @Column({ type: 'tinyint', default: 0 })
+  hasPickup: boolean;
+
+  @Column({ type: 'tinyint', default: 0 })
+  isActive: boolean;
+
+  //TODO check soft delete feature of typeorm
+  @Column({ type: 'tinyint', default: 0 })
+  isDeleted: boolean;
+
+  @Column({ nullable: true })
+  address: string;
+
+  @Column({ nullable: true })
+  location: string;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
+
+  @Column({ name: 'nameEn' })
+  enName: string;
+
+  @Column({ name: 'nameAr' })
+  arName: string;
+
+  @Column({ name: 'workingHr', nullable: true })
+  enWorkingHours: string;
+
+  @Column({ name: 'workingHr_ar', nullable: true })
+  arWorkingHours: string;
 }

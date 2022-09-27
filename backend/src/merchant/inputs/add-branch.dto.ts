@@ -10,8 +10,8 @@ import {
 import { IsExistingMerchant } from '../validators/is-existing-merchant';
 
 export class AddBranchInput {
-  @IsInt()
   @IsExistingMerchant()
+  @IsInt()
   @Type(() => Number)
   merchant: number;
 
@@ -23,15 +23,11 @@ export class AddBranchInput {
   @IsNotEmpty()
   enName: string;
 
-  @IsDate()
-  @Type(() => Date)
-  activationDate: Date;
-
   @IsLongitude()
   @Type(() => Number)
-  long: number;
+  longitude: number;
 
   @IsLatitude()
   @Type(() => Number)
-  lat: number;
+  latitude: number;
 }

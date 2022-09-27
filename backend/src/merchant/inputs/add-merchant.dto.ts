@@ -13,19 +13,19 @@ import { IsExistingPos } from '../validators/is-existing-pos.validator';
 export class AddMerchantInput {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  enName: string;
 
   @IsString()
   @IsNotEmpty()
-  name_ar: string;
+  arName: string;
 
   @IsString()
   @IsNotEmpty()
-  description: string;
+  enDescription: string;
 
   @IsString()
   @IsNotEmpty()
-  description_ar: string;
+  arDescription: string;
 
   @IsEmail()
   email: string;
@@ -44,11 +44,6 @@ export class AddMerchantInput {
   @IsInt()
   @Type(() => Number)
   pos: number;
-
-  @IsExistingCategory()
-  @IsInt()
-  @Type(() => Number)
-  category: number;
 
   @IsOptional()
   @IsString()
