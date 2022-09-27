@@ -3,6 +3,8 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
+
+// TODO remove this and fix ngbmodal problem
 .modal-backdrop {
   display: none;
 }

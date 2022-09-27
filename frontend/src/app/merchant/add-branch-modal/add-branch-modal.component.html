@@ -1,44 +1,134 @@
-<div
-  class="modal fade show"
-  id="modal-lg"
-  style="display: block"
-  aria-modal="true"
-  role="dialog"
->
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Large Modal</h4>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="activeModal.dismiss('Cross click')"
-        >
-          <span aria-hidden="true">×</span>
-        </button>
+<div class="modal-header">
+  <h4 class="modal-title">Add Branch</h4>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #addMerchant="ngForm">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">English Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Enter Branch English Name"
+          ngModel
+        />
       </div>
-      <div class="modal-body">
-        <p>One fine body…</p>
+      <div class="form-group">
+        <label for="name_ar">Arabic Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name_ar"
+          name="name_ar"
+          placeholder="Enter Branch Arabic Name"
+          ngModel
+        />
       </div>
-      <div class="modal-footer justify-content-between">
-        <button
-          type="button"
-          class="btn btn-default"
-          data-dismiss="modal"
-          (click)="activeModal.dismiss('Cross click')"
-        >
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="activeModal.close('Save click')"
-        >
-          Save changes
-        </button>
+      <div class="form-group">
+        <label for="managerName">Manager Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="managerName"
+          name="managerName"
+          placeholder="Enter Manager Name"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="managerPhone">Manager Phone</label>
+        <input
+          type="number"
+          class="form-control"
+          id="managerPhone"
+          name="managerPhone"
+          placeholder="Enter Manager Phone"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="district">District</label>
+        <input
+          type="text"
+          class="form-control"
+          id="district"
+          name="district"
+          placeholder="Enter District Name"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="districtArabicName">District Arabic Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="districtArabicName"
+          name="districtArabicName"
+          placeholder="Enter District Arabic Name"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="map">Map</label>
+        <input
+          type="number"
+          class="form-control"
+          id="map"
+          name="map"
+          placeholder="Enter Map"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input
+          type="number"
+          class="form-control"
+          id="latitude"
+          name="latitude"
+          placeholder="Enter Latitude"
+          ngModel
+        />
+      </div>
+      <div class="form-group">
+        <label for="longitude">Longitude</label>
+        <input
+          type="number"
+          class="form-control"
+          id="longitude"
+          name="longitude"
+          placeholder="Enter longitude"
+          ngModel
+        />
       </div>
     </div>
-  </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default"
+    data-dismiss="modal"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="activeModal.close('Save click')"
+  >
+    Save changes
+  </button>
 </div>
