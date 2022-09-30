@@ -1,4 +1,4 @@
-import { internet, name } from 'faker';
+import { internet, name, random } from 'faker';
 import * as moment from 'moment';
 import { adminTestRepo } from './admin.test-repo';
 import { jwtTestService } from '../auth/jwt.test-service';
@@ -8,6 +8,7 @@ interface AdminType {
   password?: string;
   refreshToken?: string;
   refreshTokenExp?: string;
+  token?: string;
 }
 
 export const buildAdminParams = (obj: AdminType = {}): AdminType => {
@@ -18,6 +19,7 @@ export const buildAdminParams = (obj: AdminType = {}): AdminType => {
     refreshToken: obj.refreshToken || internet.password(),
     refreshTokenExp:
       obj.refreshTokenExp || moment().day(1).format('YYYY/MM/DD'),
+    token: obj.token || random.words(),
   };
 };
 

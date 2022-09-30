@@ -10,13 +10,14 @@ import {
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
 import { Pos } from './pos.entity';
+import { randomUUID } from 'crypto';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {
   @PrimaryGeneratedColumn({ name: 'idMerchant' })
   id: number;
 
-  @Column({ type: 'varchar', nullable: false, name: 'name' })
+  @Column({ type: 'varchar', nullable: false, name: 'name', unique: true })
   enName: string;
 
   @Column({
@@ -50,6 +51,9 @@ export class Merchant {
   @Column({ type: 'varchar', nullable: false })
   imageUrl: string;
 
+  @Column({ name: 'token' })
+  token: string;
+
   @Column({
     select: false,
     transformer: {
@@ -60,6 +64,9 @@ export class Merchant {
     },
   })
   password: string;
+
+  @Column({ name: 'phoneNumber', type: 'varchar', length: 14 })
+  phoneNumber: string;
 
   @OneToOne(() => Pos)
   @JoinColumn({ name: 'idPos' })

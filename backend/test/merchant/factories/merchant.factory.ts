@@ -1,4 +1,4 @@
-import { internet, name, random } from 'faker';
+import { internet, name, phone, random, datatype } from 'faker';
 import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from './pos.factory';
 import { Merchant } from '../../../src/merchant/model/merchant.entity';
@@ -12,14 +12,16 @@ interface MerchantType {
   imageUrl?: string;
   password?: string;
   pos?: number;
+  token?: string;
+  phoneNumber?: string;
 }
 
 export const buildMerchantParams = async (
   obj: MerchantType = {},
 ): Promise<MerchantType> => {
   return {
-    enName: obj.enName || name.title(),
-    arName: obj.arName || name.title(),
+    enName: obj.enName || datatype.uuid(),
+    arName: obj.arName || datatype.uuid(),
     password: obj.password || internet.password(),
     enDescription: obj.enDescription || name.title(),
     arDescription: obj.arDescription || name.title(),
@@ -27,6 +29,8 @@ export const buildMerchantParams = async (
     brandKey: obj.brandKey || random.word(),
     imageUrl: obj.imageUrl || internet.url(),
     pos: obj.pos || (await posFactory()).id,
+    token: obj.token || datatype.uuid(),
+    phoneNumber: obj.phoneNumber || datatype.string(14),
   };
 };
 

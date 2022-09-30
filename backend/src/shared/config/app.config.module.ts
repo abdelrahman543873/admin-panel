@@ -1,3 +1,4 @@
+import { migration1664322329124 } from './../../database/initialization-migration';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -16,7 +17,7 @@ import { join } from 'path';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: false,
-      migrations: ['database/**-migration.ts'],
+      migrations: [migration1664322329124],
       autoLoadEntities: true,
       migrationsRun: true,
     }),

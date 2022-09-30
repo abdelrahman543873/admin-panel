@@ -9,6 +9,7 @@ describe('merchant suite case', () => {
     const merchantParams = await buildMerchantParams();
     const testFiles = process.cwd();
     const filePath = `${testFiles}/test/test-files/test-duck.jpeg`;
+    delete merchantParams.token;
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: MERCHANT,
@@ -25,6 +26,7 @@ describe('merchant suite case', () => {
   it('should throw error when non existing pos', async () => {
     const admin = await adminFactory();
     const merchantParams = await buildMerchantParams();
+    delete merchantParams.token;
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: MERCHANT,

@@ -31,7 +31,7 @@ export class Branch {
   @Column({ nullable: true, name: 'idCity', default: 1 })
   city: number;
 
-  @Column({ name: 'posIdBranch_branch', nullable: true })
+  @Column({ name: 'posIdBranch_branch' })
   brandKey: string;
 
   @Column({ name: 'district', nullable: true })
@@ -74,9 +74,9 @@ export class Branch {
   @Column({ name: 'nameAr' })
   arName: string;
 
-  @Column({ name: 'workingHr', nullable: true })
-  enWorkingHours: string;
+  @Column({ name: 'workingHr', nullable: true, type: 'json' })
+  enWorkingHours: Record<any, any>;
 
-  @Column({ name: 'workingHr_ar', nullable: true })
-  arWorkingHours: string;
+  @Column({ name: 'workingHr_ar', nullable: true, type: 'json' })
+  arWorkingHours: Record<any, any>;
 }

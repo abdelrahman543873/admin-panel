@@ -20,8 +20,8 @@ interface BranchType {
   location?: string;
   enName?: string;
   arName?: string;
-  enWorkingHours?: string;
-  arWorkingHours?: string;
+  enWorkingHours?: Record<any, any>;
+  arWorkingHours?: Record<any, any>;
 }
 
 export const buildBranchParams = async (
@@ -45,8 +45,8 @@ export const buildBranchParams = async (
     isDeleted: obj.isDeleted || false,
     address: obj.address || random.word(),
     location: obj.location || random.word(),
-    enWorkingHours: obj.enWorkingHours || random.word(),
-    arWorkingHours: obj.arWorkingHours || random.word(),
+    enWorkingHours: obj.enWorkingHours || { word: random.word() },
+    arWorkingHours: obj.arWorkingHours || { word: random.word() },
   };
 };
 

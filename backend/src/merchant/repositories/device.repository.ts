@@ -15,7 +15,7 @@ export class DeviceRepository extends BaseRepository<Device> {
   }
 
   addDevice(input: AddDeviceInput) {
-    return this.device.create({
+    return this.device.save({
       activationCode: Math.floor(100000 + Math.random() * 900000),
       branch: input.branch,
     });
