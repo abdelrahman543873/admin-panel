@@ -19,7 +19,7 @@ import { join } from 'path';
       synchronize: false,
       migrations: [migration1664322329124],
       autoLoadEntities: true,
-      migrationsRun: true,
+      migrationsRun: false,
     }),
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'client'),
