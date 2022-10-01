@@ -1,4 +1,4 @@
-import { branchFactory } from './branch.factory';
+import { branchFactory } from '../../branch/branch.factory';
 import { datatype } from 'faker';
 import { deviceTestRepo } from '../test-repos/device.test-repo';
 interface DeviceType {

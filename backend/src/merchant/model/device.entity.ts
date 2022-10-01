@@ -1,3 +1,4 @@
+import { Branch } from './../../branch/branch.entity';
 import {
   Column,
   Entity,
@@ -5,7 +6,6 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { Branch } from './branch.entity';
 
 @Entity()
 export class Device {

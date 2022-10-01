@@ -6,9 +6,10 @@ import { AuthModule } from './shared/auth/auth.module';
 import { AppConfigModule } from './shared/config/app.config.module';
 import { AppController } from './app.controller';
 import { CampaignModule } from './campaign/campaign.module';
+import { BranchModule } from './branch/branch.module';
 
 @Module({
-  imports: [AppConfigModule, AuthModule, AdminModule, MerchantModule, CampaignModule],
+  imports: [AppConfigModule, AuthModule, AdminModule, MerchantModule, CampaignModule, BranchModule],
   providers: [AppService],
   controllers: [AppController],
 })

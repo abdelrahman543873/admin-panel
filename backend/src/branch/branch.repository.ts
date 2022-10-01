@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
-import { BaseRepository } from '../../shared/abstract/repository.abstract';
-import { AddBranchInput } from '../inputs/add-branch.dto';
-import { Branch } from '../model/branch.entity';
-import { GetBranchInput } from '../inputs/get-branch.dto';
-import { GetBranchesInput } from '../inputs/get-branches.dto';
-import { SearchBranchesInput } from '../inputs/search-branches.input';
+import { BaseRepository } from '../shared/abstract/repository.abstract';
+import { SearchBranchesInput } from './inputs/search-branches.input';
+import { AddBranchInput } from './inputs/add-branch.dto';
+import { GetBranchInput } from './inputs/get-branch.dto';
+import { Branch } from './branch.entity';
 @Injectable()
 export class BranchRepository extends BaseRepository<Branch> {
   constructor(
@@ -27,18 +26,13 @@ export class BranchRepository extends BaseRepository<Branch> {
     return this.branch.findOne({ where: { id: input.id } });
   }
 
-  getBranches(input: GetBranchesInput) {
-    return this.branch.find({
-      where: { merchant: { id: input.id } },
-    });
-  }
-
   searchBranches(input: SearchBranchesInput) {
     return this.branch.find({
-      where: [
-        { merchant: { id: input.id }, enName: ILike(`%${input.name}%`) },
-        { merchant: { id: input.id }, arName: ILike(`%${input.name}%`) },
-      ],
+      where: {
+        ...(input.merchantId && { merchant: { id: input.merchantId } }),
+        ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
+        ...(input.arName && { arName: ILike(`%${input.arName}%`) }),
+      },
       relations: ['merchant'],
     });
   }

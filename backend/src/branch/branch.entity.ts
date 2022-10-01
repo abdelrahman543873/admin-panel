@@ -1,4 +1,4 @@
-import { Merchant } from './merchant.entity';
+import { Merchant } from '../merchant/model/merchant.entity';
 import {
   Column,
   CreateDateColumn,

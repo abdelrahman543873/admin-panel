@@ -1,6 +1,6 @@
-import { CategoryRepository } from './../repositories/category.repository';
+import { CategoryRepository } from '../../merchant/repositories/category.repository';
 import { Injectable } from '@nestjs/common';
-import { BranchRepository } from '../repositories/branch.repository';
+import { BranchRepository } from '../branch.repository';
 import {
   registerDecorator,
   ValidationOptions,

@@ -1,8 +1,8 @@
+import { BRANCH } from './../endpoints/branch.endopints';
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
-import { BRANCH } from '../endpoints/merchant.endpoints';
 import { adminFactory } from '../admin/admin.factory';
-import { buildBranchParams } from './factories/branch.factory';
+import { buildBranchParams } from './branch.factory';
 import { datatype } from 'faker';
 describe('branch suite case', () => {
   it('should add branch', async () => {

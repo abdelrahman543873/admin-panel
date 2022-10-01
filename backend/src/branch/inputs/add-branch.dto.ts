@@ -1,13 +1,12 @@
 import { Type } from 'class-transformer';
+import { IsExistingMerchant } from '../../merchant/validators/is-existing-merchant';
 import {
-  IsDate,
   IsInt,
   IsLatitude,
   IsLongitude,
   IsNotEmpty,
   IsString,
 } from 'class-validator';
-import { IsExistingMerchant } from '../validators/is-existing-merchant';
 
 export class AddBranchInput {
   @IsExistingMerchant()

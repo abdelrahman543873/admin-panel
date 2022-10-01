@@ -1,7 +1,7 @@
-import { Merchant } from './../../../src/merchant/model/merchant.entity';
-import { branchTestRepo } from './../test-repos/branch.test-repo';
+import { Merchant } from '../../src/merchant/model/merchant.entity';
+import { branchTestRepo } from './branch.test-repo';
 import { address, date, name, random, datatype } from 'faker';
-import { merchantFactory } from './merchant.factory';
+import { merchantFactory } from '../merchant/factories/merchant.factory';
 interface BranchType {
   latitude?: number;
   longitude?: number;

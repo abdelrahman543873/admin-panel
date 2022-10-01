@@ -1,8 +1,8 @@
-import { BRANCH } from './../endpoints/merchant.endpoints';
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { adminFactory } from '../admin/admin.factory';
-import { branchFactory } from './factories/branch.factory';
+import { BRANCH } from '../endpoints/branch.endopints';
+import { branchFactory } from './branch.factory';
 describe('get branch suite case', () => {
   it('should get branch', async () => {
     const admin = await adminFactory();
