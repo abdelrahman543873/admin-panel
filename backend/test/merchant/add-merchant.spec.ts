@@ -13,7 +13,7 @@ describe('merchant suite case', () => {
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: MERCHANT,
-      variables: { ...merchantParams },
+      variables: { ...merchantParams, pos: merchantParams.pos.id },
       token: admin.token,
       filePath,
       fileParam: 'imageUrl',

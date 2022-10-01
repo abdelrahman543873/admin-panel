@@ -17,6 +17,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
   addMerchant(input: AddMerchantInput, logo: Express.Multer.File) {
     return this.merchant.save({
       ...input,
+      pos: { id: input.pos },
       ...(input.imageUrl && {
         imageUrl: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
       }),

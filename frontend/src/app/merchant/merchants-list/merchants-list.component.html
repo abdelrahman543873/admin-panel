@@ -11,23 +11,23 @@
             <th
               class="sorting sorting_asc"
               tabindex="0"
+              rowspan="1"
+              colspan="1"
+              aria-sort="ascending"
+              aria-label="Rendering engine: activate to sort column descending"
+            >
+              Id
+            </th>
+            <th
+              class="sorting sorting_asc"
+              tabindex="0"
               aria-controls="example2"
               rowspan="1"
               colspan="1"
               aria-sort="ascending"
               aria-label="Rendering engine: activate to sort column descending"
             >
-              Merchant Name
-            </th>
-            <th
-              class="sorting"
-              tabindex="0"
-              aria-controls="example2"
-              rowspan="1"
-              colspan="1"
-              aria-label="Browser: activate to sort column ascending"
-            >
-              Merchant Category
+              Name
             </th>
             <th
               class="sorting"
@@ -37,7 +37,17 @@
               colspan="1"
               aria-label="Platform(s): activate to sort column ascending"
             >
-              Pos Type
+              POS
+            </th>
+            <th
+              class="sorting"
+              tabindex="0"
+              aria-controls="example2"
+              rowspan="1"
+              colspan="1"
+              aria-label="Browser: activate to sort column ascending"
+            >
+              Category
             </th>
           </tr>
         </thead>
@@ -47,10 +57,13 @@
             routerLink="/frontend/home/merchant/{{ merchant.id }}"
           >
             <td class="dtr-control sorting_1" tabindex="0">
-              {{ merchant.name }}
+              {{ merchant.id }}
             </td>
-            <td>{{ merchant.category.name }}</td>
-            <td>{{ merchant.pos.type }}</td>
+            <td class="dtr-control sorting_1" tabindex="0">
+              {{ merchant.enName }}
+            </td>
+            <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
+            <td>to be set</td>
           </tr>
         </tbody>
       </table>

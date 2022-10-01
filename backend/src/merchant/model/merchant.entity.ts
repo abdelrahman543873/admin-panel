@@ -70,7 +70,7 @@ export class Merchant {
 
   @OneToOne(() => Pos)
   @JoinColumn({ name: 'idPos' })
-  pos: number;
+  pos: Pos;
 
   @Column()
   @CreateDateColumn()
