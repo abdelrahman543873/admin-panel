@@ -15,6 +15,7 @@ interface MerchantType {
   pos?: Pos;
   token?: string;
   phoneNumber?: string;
+  integrationId?: string;
 }
 
 export const buildMerchantParams = async (
@@ -32,6 +33,7 @@ export const buildMerchantParams = async (
     pos: obj.pos || (await posFactory()),
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
+    integrationId: obj.integrationId || datatype.string(),
   };
 };
 

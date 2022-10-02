@@ -10,7 +10,6 @@ import {
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
 import { Pos } from './pos.entity';
-import { randomUUID } from 'crypto';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {
@@ -71,6 +70,9 @@ export class Merchant {
   @OneToOne(() => Pos)
   @JoinColumn({ name: 'idPos' })
   pos: Pos;
+
+  @Column({ name: 'posBusinessId' })
+  integrationId: string;
 
   @Column()
   @CreateDateColumn()

@@ -5,7 +5,11 @@
         <div class="info-box">
           <span class="elevation-1">
             <span class="info-box-text">Merchant Image</span>
-            <img src="{{ merchant?.imageUrl }}" alt="{{ merchant?.enName }}" />
+            <img
+              src="{{ merchant?.imageUrl }}"
+              alt="{{ merchant?.enName }}"
+              class="img-fluid mb-1"
+            />
           </span>
         </div>
       </div>
@@ -35,7 +39,7 @@
       <div class="info-box mb-3">
         <div class="info-box-content">
           <span class="info-box-text">Pos Type</span>
-          <span class="info-box-text">to be set</span>
+          <span class="info-box-text">{{ merchant?.pos?.title }}</span>
         </div>
       </div>
     </div>
@@ -43,7 +47,7 @@
       <div class="info-box mb-3">
         <div class="info-box-content">
           <span class="info-box-text">Integration Id</span>
-          <span class="info-box-number">112233433</span>
+          <span class="info-box-number">{{ merchant?.integrationId }}</span>
         </div>
       </div>
     </div>
