@@ -9,7 +9,7 @@ import { AdminRepository } from '../src/admin/admin.repository';
 import { JwtService } from '@nestjs/jwt';
 import { PosRepository } from '../src/merchant/repositories/pos.repository';
 import { BranchRepository } from '../src/branch/branch.repository';
-import { DeviceRepository } from '../src/merchant/repositories/device.repository';
+import { DeviceRepository } from '../src/device/device.repository';
 import { Connection } from 'typeorm';
 import { CampaignRepository } from '../src/campaign/campaign.repository';
 

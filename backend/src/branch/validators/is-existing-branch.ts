@@ -1,4 +1,3 @@
-import { CategoryRepository } from '../../merchant/repositories/category.repository';
 import { Injectable } from '@nestjs/common';
 import { BranchRepository } from '../branch.repository';
 import {

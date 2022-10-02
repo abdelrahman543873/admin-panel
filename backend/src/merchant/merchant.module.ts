@@ -11,15 +11,13 @@ import { PosRepository } from './repositories/pos.repository';
 import { ExistingPosConstraint } from './validators/is-existing-pos.validator';
 import { ExistingCategoryConstraint } from './validators/is-existing-category';
 import { ExistingMerchantConstraint } from './validators/is-existing-merchant';
-import { Device } from './model/device.entity';
-import { DeviceRepository } from './repositories/device.repository';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { filename } from '../shared/utils/multer-file-name';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Merchant, Category, Pos, Device]),
+    TypeOrmModule.forFeature([Merchant, Category, Pos]),
     MulterModule.register({
       preservePath: true,
       storage: diskStorage({
@@ -36,7 +34,6 @@ import { filename } from '../shared/utils/multer-file-name';
     ExistingPosConstraint,
     ExistingCategoryConstraint,
     ExistingMerchantConstraint,
-    DeviceRepository,
   ],
   controllers: [MerchantController],
 })

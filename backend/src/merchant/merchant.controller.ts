@@ -13,10 +13,7 @@ import { AddMerchantInput } from './inputs/add-merchant.dto';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
-import { AddDeviceInput } from './inputs/add-device.dto';
-import { GetDeviceInput } from './inputs/get-device.input';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { GetMerchantDevicesDto } from './inputs/get-merchant-devices.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -33,21 +30,6 @@ export class MerchantController {
     @UploadedFile() logo: Express.Multer.File,
   ) {
     return await this.merchantService.addMerchant(input, logo);
-  }
-
-  @Post('device')
-  async addDevice(@Body() input: AddDeviceInput) {
-    return this.merchantService.addDevice(input);
-  }
-
-  @Get('device/:id')
-  async getDevice(@Param() input: GetDeviceInput) {
-    return this.merchantService.getDevice(input);
-  }
-
-  @Get('devices/:branch')
-  async getDevices(@Param() id: GetMerchantDevicesDto) {
-    return this.merchantService.getDevices(id);
   }
 
   @Get(':id')
