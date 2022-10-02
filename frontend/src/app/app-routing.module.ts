@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HealthComponent } from './health/health.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'frontend/auth', pathMatch: 'full' },
   {
     path: 'frontend',
     children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../app/auth/auth.module').then((m) => m.AuthModule),
+      },
       {
         path: 'auth',
         loadChildren: () =>
