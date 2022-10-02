@@ -19,7 +19,7 @@ export class BranchRepository extends BaseRepository<Branch> {
   }
 
   addBranch(input: AddBranchInput) {
-    return this.branch.save({ ...input, merchant: { id: input.merchant } });
+    return this.branch.save({ ...input, merchant: { id: input.merchantId } });
   }
 
   getBranch(input: GetBranchInput) {

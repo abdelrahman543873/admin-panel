@@ -11,28 +11,30 @@
   </button>
 </div>
 <div class="modal-body">
-  <form #addMerchant="ngForm">
+  <form #addBranchDto="ngForm">
     <div class="card-body">
       <div class="form-group">
-        <label for="name">English Name</label>
+        <label for="enName">English Name</label>
         <input
           type="text"
           class="form-control"
-          id="name"
-          name="name"
+          id="enName"
+          name="enName"
           placeholder="Enter Branch English Name"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
-        <label for="name_ar">Arabic Name</label>
+        <label for="arName">Arabic Name</label>
         <input
           type="text"
           class="form-control"
-          id="name_ar"
-          name="name_ar"
+          id="arName"
+          name="arName"
           placeholder="Enter Branch Arabic Name"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
@@ -44,39 +46,43 @@
           name="managerName"
           placeholder="Enter Manager Name"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
-        <label for="managerPhone">Manager Phone</label>
+        <label for="managerPhoneNumber">Manager Phone</label>
         <input
-          type="number"
+          type="string"
           class="form-control"
-          id="managerPhone"
-          name="managerPhone"
+          id="managerPhoneNumber"
+          name="managerPhoneNumber"
           placeholder="Enter Manager Phone"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
-        <label for="district">District</label>
+        <label for="enDistrict">District</label>
         <input
           type="text"
           class="form-control"
-          id="district"
-          name="district"
+          id="enDistrict"
+          name="enDistrict"
           placeholder="Enter District Name"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
-        <label for="districtArabicName">District Arabic Name</label>
+        <label for="arDistrict">District Arabic Name</label>
         <input
           type="text"
           class="form-control"
-          id="districtArabicName"
-          name="districtArabicName"
+          id="arDistrict"
+          name="arDistrict"
           placeholder="Enter District Arabic Name"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
@@ -88,6 +94,7 @@
           name="latitude"
           placeholder="Enter Latitude"
           ngModel
+          required
         />
       </div>
       <div class="form-group">
@@ -99,6 +106,7 @@
           name="longitude"
           placeholder="Enter longitude"
           ngModel
+          required
         />
       </div>
     </div>
@@ -114,9 +122,9 @@
     Close
   </button>
   <button
-    type="button"
+    type="submit"
     class="btn btn-primary"
-    (click)="activeModal.close('Save click')"
+    (click)="addBranch(addBranchDto)"
   >
     Save changes
   </button>

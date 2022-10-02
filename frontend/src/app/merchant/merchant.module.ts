@@ -5,16 +5,14 @@ import { AddMerchantComponent } from './add/add-merchant.component';
 import { FormsModule } from '@angular/forms';
 import { MerchantsListComponent } from './merchants-list/merchants-list.component';
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
-import { AddBranchModalComponent } from './add-branch-modal/add-branch-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BranchModule } from '../branch/branch.module';
 
 @NgModule({
   declarations: [
     AddMerchantComponent,
     MerchantsListComponent,
     MerchantDetailsComponent,
-    AddBranchModalComponent,
   ],
-  imports: [CommonModule, MerchantRoutingModule, FormsModule],
+  imports: [CommonModule, MerchantRoutingModule, FormsModule, BranchModule],
 })
 export class MerchantModule {}

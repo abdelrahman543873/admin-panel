@@ -12,7 +12,7 @@ describe('branch suite case', () => {
       method: HTTP_METHODS_ENUM.POST,
       url: BRANCH,
       variables: {
-        merchant: branchParams.merchant.id,
+        merchantId: branchParams.merchant.id,
         arName: branchParams.arName,
         enName: branchParams.enName,
         longitude: branchParams.longitude,
@@ -34,7 +34,7 @@ describe('branch suite case', () => {
         enName: branchParams.enName,
         longitude: branchParams.longitude,
         latitude: branchParams.latitude,
-        merchant: datatype.number(),
+        merchantId: datatype.number(),
       },
       token: admin.token,
     });

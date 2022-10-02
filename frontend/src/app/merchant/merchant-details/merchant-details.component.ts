@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MerchantModel } from '../interfaces/merchant.interface';
 import { MerchantService } from '../merchant.service';
-import { BranchModel } from '../interfaces/branch.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddBranchModalComponent } from '../add-branch-modal/add-branch-modal.component';
+import { AddBranchComponent } from '../../branch/add-branch/add-branch.component';
+import { BranchInterface } from '../../branch/intefaces/branch.interface';
 
 @Component({
   selector: 'app-merchant-details',
@@ -13,10 +13,9 @@ import { AddBranchModalComponent } from '../add-branch-modal/add-branch-modal.co
 })
 export class MerchantDetailsComponent implements OnInit {
   merchant?: MerchantModel;
-  branches?: BranchModel[];
+  branches?: BranchInterface[];
   merchantId: number;
   nonExistingBranchSearch: boolean = false;
-  closeResult = '';
   constructor(
     private merchantService: MerchantService,
     activatedRoute: ActivatedRoute,
@@ -24,21 +23,30 @@ export class MerchantDetailsComponent implements OnInit {
   ) {
     this.merchantId = +activatedRoute.snapshot.params['id'];
   }
-
-  open() {
-    this.modalService.open(AddBranchModalComponent, { animation: true });
-  }
-
-  ngOnInit(): void {
-    this.merchantService.getMerchant(this.merchantId).subscribe((data) => {
-      this.merchant = data;
-    });
+  getMerchantBranches() {
     this.merchantService
       .getMerchantBranches(this.merchantId)
       .subscribe((data) => {
         this.branches = data;
         this.nonExistingBranchSearch = false;
       });
+  }
+
+  open() {
+    const modalRef = this.modalService.open(AddBranchComponent, {
+      animation: true,
+    });
+    modalRef.componentInstance.merchantId = this.merchantId;
+    modalRef.componentInstance.branchAdded.subscribe(() => {
+      this.getMerchantBranches();
+    });
+  }
+
+  ngOnInit(): void {
+    this.merchantService.getMerchant(this.merchantId).subscribe((data) => {
+      this.merchant = data;
+    });
+    this.getMerchantBranches();
   }
 
   searchMerchants(branchName: string) {

@@ -5,6 +5,7 @@ import {
   IsLatitude,
   IsLongitude,
   IsNotEmpty,
+  IsOptional,
   IsString,
 } from 'class-validator';
 
@@ -12,7 +13,7 @@ export class AddBranchInput {
   @IsExistingMerchant()
   @IsInt()
   @Type(() => Number)
-  merchant: number;
+  merchantId: number;
 
   @IsString()
   @IsNotEmpty()
@@ -29,4 +30,25 @@ export class AddBranchInput {
   @IsLatitude()
   @Type(() => Number)
   latitude: number;
+
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  managerName?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  arDistrict?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  enDistrict?: string;
+
+  //TODO phone validation
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  managerPhoneNumber?: string;
 }

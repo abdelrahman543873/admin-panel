@@ -49,6 +49,16 @@
             >
               Category
             </th>
+            <th
+              class="sorting"
+              tabindex="0"
+              aria-controls="example2"
+              rowspan="1"
+              colspan="1"
+              aria-label="Browser: activate to sort column ascending"
+            >
+              Created At
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -64,6 +74,7 @@
             </td>
             <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
             <td>to be set</td>
+            <td>{{ merchant?.createdAt }}</td>
           </tr>
         </tbody>
       </table>
