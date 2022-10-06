@@ -2,32 +2,38 @@ import { Merchant } from './../../merchant/model/merchant.entity';
 import {
   Column,
   Entity,
-  PrimaryGeneratedColumn,
+  Generated,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'Campaign' })
 export class Campaign {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn({
+    name: 'idCampaign',
+    type: 'uuid',
+    length: 50,
+    generated: 'uuid',
+  })
+  id: string;
 
   @ManyToOne(() => Merchant)
-  @JoinColumn()
-  idMerchant: Merchant;
+  @JoinColumn({ name: 'idMerchant' })
+  merchant: Merchant;
 
-  @Column()
-  title: string;
+  @Column({ name: 'title' })
+  enTitle: string;
 
-  @Column()
-  title_ar: string;
+  @Column({ name: 'title_ar' })
+  arTitle: string;
 
-  @Column()
-  idCampaignType: number;
+  @Column({ name: 'idCampaignType' })
+  type: number;
 
   @Column()
   logo: string;
 
-  @Column()
-  idCampaignStatus: number;
+  @Column({ name: 'idCampaignStatus' })
+  status: boolean;
 }

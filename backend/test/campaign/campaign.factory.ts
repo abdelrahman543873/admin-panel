@@ -4,28 +4,31 @@ import { campaignTestRepo } from './campaign-test-repo';
 import { Merchant } from '../../src/merchant/model/merchant.entity';
 
 interface CampaignType {
-  idMerchant?: Merchant;
-  title?: string;
-  title_ar?: string;
-  idCampaignType?: number;
+  merchant?: Merchant;
+  enTitle?: string;
+  arTitle?: string;
+  type?: number;
   logo?: string;
-  idCampaignStatus?: number;
+  status?: boolean;
 }
 
 export const buildCampaignParams = async (
   obj: CampaignType = {},
 ): Promise<CampaignType> => {
   return {
-    idMerchant: obj.idMerchant || (await merchantFactory()),
-    title: obj.title || name.title(),
-    title_ar: obj.title || name.title(),
-    idCampaignType: obj.idCampaignType || datatype.number(),
+    merchant: obj.merchant || (await merchantFactory()),
+    enTitle: obj.enTitle || name.title(),
+    arTitle: obj.arTitle || name.title(),
+    type: obj.type || datatype.number(),
     logo: obj.logo || internet.url(),
-    idCampaignStatus: obj.idCampaignStatus || datatype.number(),
+    status: obj.status || datatype.boolean(),
   };
 };
 
 export const campaignFactory = async (obj: CampaignType = {}) => {
   const params: CampaignType = await buildCampaignParams(obj);
-  return await campaignTestRepo().save({ ...params });
+  return await campaignTestRepo().save({
+    ...params,
+    merchant: { id: params.merchant.id },
+  });
 };

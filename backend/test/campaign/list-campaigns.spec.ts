@@ -1,17 +1,17 @@
+import { CAMPAIGN_SEARCH } from './../endpoints/campaign.endpoints';
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { adminFactory } from '../admin/admin.factory';
 import { campaignFactory } from './campaign.factory';
-import { CAMPAIGN } from '../endpoints/campaign.endpoints';
-describe('list campaigns suite case', () => {
+describe('search campaigns suite case', () => {
   it('should get campaign list', async () => {
     const admin = await adminFactory();
     const campaign = await campaignFactory();
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.GET,
-      url: `${CAMPAIGN}/${campaign.idMerchant.id}`,
+      url: `${CAMPAIGN_SEARCH}?merchantId=${campaign.merchant.id}`,
       token: admin.token,
     });
-    expect(response.body[0].idMerchant.id).toBe(campaign.idMerchant.id);
+    expect(response.body[0].merchant.id).toBe(campaign.merchant.id);
   });
 });

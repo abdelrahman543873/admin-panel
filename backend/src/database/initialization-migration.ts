@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class migration1664322329124 implements MigrationInterface {
-  name = 'migration1664322329135';
+  name = 'migration1664322329138';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -9,6 +9,9 @@ export class migration1664322329124 implements MigrationInterface {
     );
     await queryRunner.query(
       `ALTER TABLE \`Admin\` ADD \`name\` varchar(255) NOT NULL`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE \`Campaign\` ADD \`logo\` varchar(255) NOT NULL`,
     );
     await queryRunner.query(
       `ALTER TABLE \`Admin\` ADD \`createdAt\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)`,
