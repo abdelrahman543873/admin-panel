@@ -36,4 +36,10 @@ export class Campaign {
 
   @Column({ name: 'idCampaignStatus' })
   status: boolean;
+
+  @Column({ name: 'description' })
+  enDescription: string;
+
+  @Column({ name: 'description_ar' })
+  arDescription: string;
 }

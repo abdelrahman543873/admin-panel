@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Campaign } from './model/campaign.entity';
 import { BaseRepository } from '../shared/abstract/repository.abstract';
 import { SearchCampaignsInput } from './inputs/list-campaigns.dto';
+import { AddCampaignDto } from './inputs/add-campaign.dto';
 
 @Injectable()
 export class CampaignRepository extends BaseRepository<Campaign> {
@@ -19,6 +20,13 @@ export class CampaignRepository extends BaseRepository<Campaign> {
         ...(input.merchantId && { merchant: { id: input.merchantId } }),
       },
       relations: ['merchant'],
+    });
+  }
+
+  addCampaign(input: AddCampaignDto) {
+    return this.campaign.create({
+      ...input,
+      merchant: { id: input.merchantId },
     });
   }
 }
