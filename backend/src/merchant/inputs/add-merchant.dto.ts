@@ -7,7 +7,6 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { IsExistingCategory } from '../validators/is-existing-category';
 import { IsExistingPos } from '../validators/is-existing-pos.validator';
 
 export class AddMerchantInput {

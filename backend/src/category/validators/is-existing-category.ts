@@ -1,5 +1,5 @@
-import { CategoryRepository } from './../repositories/category.repository';
 import { Injectable } from '@nestjs/common';
+import { MerchantCategoryRepository } from '../category.repository';
 import {
   registerDecorator,
   ValidationOptions,
@@ -9,12 +9,12 @@ import {
 
 @ValidatorConstraint({ async: true })
 @Injectable()
-export class ExistingCategoryConstraint
+export class ExistingMerchantCategoryConstraint
   implements ValidatorConstraintInterface
 {
-  constructor(private categoryRepository: CategoryRepository) {}
+  constructor(private merchantCategoryRepository: MerchantCategoryRepository) {}
   async validate(id: number): Promise<boolean> {
-    const category = await this.categoryRepository.findCategoryById(id);
+    const category = await this.merchantCategoryRepository.findCategoryById(id);
     if (!category) return false;
     return true;
   }
@@ -24,14 +24,16 @@ export class ExistingCategoryConstraint
   }
 }
 
-export function IsExistingCategory(validationOptions?: ValidationOptions) {
+export function IsExistingMerchantCategory(
+  validationOptions?: ValidationOptions,
+) {
   return function (object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: ExistingCategoryConstraint,
+      validator: ExistingMerchantCategoryConstraint,
     });
   };
 }
