@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CampaignRepository } from './campaign.repository';
-import { SearchCampaignsInput } from './inputs/list-campaigns.dto';
+import { SearchCampaignsInput } from './inputs/search-campaigns.dto';
 import { AddCampaignDto } from './inputs/add-campaign.dto';
 
 @Injectable()

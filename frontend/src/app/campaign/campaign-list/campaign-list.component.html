@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-md-8">
+    <form
+      class="input-group"
+      data-widget="sidebar-search"
+      #merchantForm="ngForm"
+    >
+      <p class="col-md-1">Campaigns</p>
+      <input
+        class="col-md-3"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        name="search"
+        #search
+        ngModel
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-sidebar"
+          (click)="searchCampaignsWithTitle(search.value)"
+        >
+          <i class="fas fa-search fa-fw"></i>
+        </button>
+      </div>
+      <!-- <button class="btn btn-info" (click)="open()">Create New Campaign</button> -->
+    </form>
+  </div>
+  <div class="col-md-8" *ngIf="!existingCampaigns">
+    <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+      invalid campaign name
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="card-footer">
+    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+      <div class="col-sm-12">
+        <table
+          id="Campaign-list"
+          class="table table-bordered table-hover dataTable dtr-inline"
+          aria-describedby="Campaign list of selected merchant"
+        >
+          <thead>
+            <tr>
+              <th
+                class="sorting sorting_asc"
+                tabindex="0"
+                aria-controls="example2"
+                rowspan="1"
+                colspan="1"
+                aria-sort="ascending"
+                aria-label="Rendering engine: activate to sort column descending"
+              >
+                Id
+              </th>
+              <th
+                class="sorting"
+                tabindex="0"
+                aria-controls="title"
+                rowspan="1"
+                colspan="1"
+                aria-label="Browser: activate to sort column ascending"
+              >
+                Title
+              </th>
+              <th
+                class="sorting"
+                tabindex="0"
+                aria-controls="description"
+                rowspan="1"
+                colspan="1"
+                aria-label="Platform(s): activate to sort column ascending"
+              >
+                Type
+              </th>
+              <th
+                class="sorting"
+                tabindex="0"
+                aria-controls="logo"
+                rowspan="1"
+                colspan="1"
+                aria-label="Platform(s): activate to sort column ascending"
+              >
+                Logo
+              </th>
+              <th
+                class="sorting"
+                tabindex="0"
+                aria-controls="createdAt"
+                rowspan="1"
+                colspan="1"
+                aria-label="Platform(s): activate to sort column ascending"
+              >
+                Created At
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let campaign of campaigns">
+              <td class="dtr-control sorting_1" tabindex="0">
+                {{ campaign.id }}
+              </td>
+              <td>{{ campaign.enTitle }}</td>
+              <td>{{ campaign.type }}</td>
+              <td>{{ campaign.logo }}</td>
+              <td>{{ campaign.createdAt }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

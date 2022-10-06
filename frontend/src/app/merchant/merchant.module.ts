@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { MerchantsListComponent } from './merchants-list/merchants-list.component';
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 import { BranchModule } from '../branch/branch.module';
+import { CampaignListComponent } from '../campaign/campaign-list/campaign-list.component';
 
 @NgModule({
   declarations: [
     AddMerchantComponent,
     MerchantsListComponent,
     MerchantDetailsComponent,
+    CampaignListComponent,
   ],
   imports: [CommonModule, MerchantRoutingModule, FormsModule, BranchModule],
 })

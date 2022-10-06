@@ -1,7 +1,7 @@
 import { CampaignService } from './campaign.service';
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
-import { SearchCampaignsInput } from './inputs/list-campaigns.dto';
+import { SearchCampaignsInput } from './inputs/search-campaigns.dto';
 import { AddCampaignDto } from './inputs/add-campaign.dto';
 
 @Controller('campaign')

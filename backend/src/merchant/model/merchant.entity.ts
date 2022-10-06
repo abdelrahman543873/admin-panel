@@ -74,7 +74,7 @@ export class Merchant {
   @Column({ name: 'posBusinessId' })
   integrationId: string;
 
-  @Column()
+  @Column({ name: 'createdAt' })
   @CreateDateColumn()
   createdAt: Date;
 

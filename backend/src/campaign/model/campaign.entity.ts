@@ -1,8 +1,8 @@
 import { Merchant } from './../../merchant/model/merchant.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
-  Generated,
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
@@ -42,4 +42,7 @@ export class Campaign {
 
   @Column({ name: 'description_ar' })
   arDescription: string;
+
+  @CreateDateColumn({ name: 'createdAt' })
+  createdAt: Date;
 }
