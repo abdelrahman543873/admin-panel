@@ -12,6 +12,7 @@ import { DeviceRepository } from '../src/device/device.repository';
 import { Connection } from 'typeorm';
 import { CampaignRepository } from '../src/campaign/campaign.repository';
 import { MerchantCategoryRepository } from '../src/category/category.repository';
+import { MerchantStatusRepository } from '../src/merchant/repositories/merchant-status.repository';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -41,4 +42,5 @@ export default async (): Promise<void> => {
   global.branchRepository = app.get<BranchRepository>(BranchRepository);
   global.deviceRepository = app.get<DeviceRepository>(DeviceRepository);
   global.campaignRepository = app.get<CampaignRepository>(CampaignRepository);
+  global.merchantStatusRepository = app.get<MerchantStatusRepository>(MerchantStatusRepository)
 };

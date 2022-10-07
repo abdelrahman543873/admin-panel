@@ -34,7 +34,7 @@ export const buildBranchParams = async (
     latitude: obj.latitude || +address.latitude(),
     merchant: obj.merchant || (await merchantFactory()),
     workingHours: obj.workingHours || random.word(),
-    city: obj.city || datatype.number(),
+    city: obj.city || 1,
     brandKey: obj.brandKey || random.word(),
     enDistrict: obj.enDistrict || random.word(),
     arDistrict: obj.arDistrict || random.word(),

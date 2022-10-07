@@ -7,12 +7,13 @@ interface DeviceType {
   activationCode?: string;
   branch?: Branch;
   branchKey?: string;
-  activationStatus?: boolean;
+  activationStatus?: number;
   token?: string;
   model?: string;
   appVersion?: string;
   os?: string;
   osVersion?: string;
+  status?: number;
 }
 
 export const buildDeviceParams = async (
@@ -22,7 +23,7 @@ export const buildDeviceParams = async (
     activationCode: obj.activationCode || datatype.string(45),
     branch: obj.branch || (await branchFactory()),
     branchKey: obj.branchKey || datatype.string(),
-    activationStatus: obj.activationStatus || datatype.boolean(),
+    activationStatus: obj.activationStatus || 1,
     token: obj.token || datatype.string(),
     model: obj.model || datatype.string(),
     appVersion: obj.appVersion || datatype.string(45),

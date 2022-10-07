@@ -12,7 +12,7 @@ describe('search campaigns suite case', () => {
       url: `${CAMPAIGN_SEARCH}?merchantId=${campaign.merchant.id}`,
       token: admin.token,
     });
-    expect(response.body[0].merchant.id).toBe(campaign.merchant.id);
+    expect(response.body.items[0].merchant.id).toBe(campaign.merchant.id);
   });
 
   it('should search campaign list with enTitle', async () => {
@@ -23,6 +23,7 @@ describe('search campaigns suite case', () => {
       url: `${CAMPAIGN_SEARCH}?enTitle=${campaign.enTitle}`,
       token: admin.token,
     });
-    expect(response.body[0].merchant.id).toBe(campaign.merchant.id);
+
+    expect(response.body.items[0].merchant.id).toBe(campaign.merchant.id);
   });
 });

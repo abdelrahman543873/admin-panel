@@ -16,7 +16,7 @@ export class CampaignController {
 
   @UseGuards(JwtAuthGuard)
   @Get('search')
-  async listCampaigns(@Query() input: SearchCampaignsInput) {
+  async searchCampaigns(@Query() input: SearchCampaignsInput) {
     return await this.campaignService.listCampaigns(input);
   }
 }

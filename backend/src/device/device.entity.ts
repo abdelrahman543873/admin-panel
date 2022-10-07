@@ -23,8 +23,8 @@ export class Device {
   @Column({ name: 'posIdBranch' })
   branchKey: string;
 
-  @Column()
-  activationStatus: boolean;
+  @Column({ type: 'tinyint' })
+  activationStatus: number;
 
   @Column()
   token: string;

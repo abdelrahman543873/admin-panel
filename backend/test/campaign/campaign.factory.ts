@@ -11,7 +11,7 @@ interface CampaignType {
   arTitle?: string;
   type?: number;
   logo?: string;
-  status?: boolean;
+  status?: number;
 }
 
 export const buildCampaignParams = async (
@@ -23,9 +23,9 @@ export const buildCampaignParams = async (
     arTitle: obj.arTitle || name.title(),
     enDescription: obj.enDescription || random.words(),
     arDescription: obj.arDescription || random.words(),
-    type: obj.type || datatype.number(),
+    type: obj.type || 1,
     logo: obj.logo || internet.url(),
-    status: obj.status || datatype.boolean(),
+    status: obj.status || 1,
   };
 };
 

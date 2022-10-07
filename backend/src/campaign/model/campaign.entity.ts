@@ -34,8 +34,8 @@ export class Campaign {
   @Column()
   logo: string;
 
-  @Column({ name: 'idCampaignStatus' })
-  status: boolean;
+  @Column({ name: 'idCampaignStatus', type: 'tinyint' })
+  status: number;
 
   @Column({ name: 'description' })
   enDescription: string;

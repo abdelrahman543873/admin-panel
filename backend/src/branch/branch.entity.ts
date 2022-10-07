@@ -28,7 +28,7 @@ export class Branch {
   merchant: Merchant;
 
   //TODO change when city entity is created
-  @Column({ nullable: true, name: 'idCity', default: 1 })
+  @Column({ name: 'idCity', default: 1 })
   city: number;
 
   @Column({ name: 'posIdBranch_branch' })

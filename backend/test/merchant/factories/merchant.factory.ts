@@ -3,6 +3,7 @@ import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from './pos.factory';
 import { Merchant } from '../../../src/merchant/model/merchant.entity';
 import { Pos } from '../../../src/merchant/model/pos.entity';
+
 interface MerchantType {
   enName?: string;
   arName?: string;
