@@ -6,6 +6,7 @@ import { SearchBranchesInput } from './inputs/search-branches.input';
 import { AddBranchInput } from './inputs/add-branch.dto';
 import { GetBranchInput } from './inputs/get-branch.dto';
 import { Branch } from './branch.entity';
+import { paginate } from 'nestjs-typeorm-paginate';
 @Injectable()
 export class BranchRepository extends BaseRepository<Branch> {
   constructor(
@@ -27,13 +28,17 @@ export class BranchRepository extends BaseRepository<Branch> {
   }
 
   searchBranches(input: SearchBranchesInput) {
-    return this.branch.find({
-      where: {
-        ...(input.merchantId && { merchant: { id: input.merchantId } }),
-        ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
-        ...(input.arName && { arName: ILike(`%${input.arName}%`) }),
+    return paginate<Branch>(
+      this.branch,
+      { limit: input.limit, page: input.offset },
+      {
+        where: {
+          ...(input.merchantId && { merchant: { id: input.merchantId } }),
+          ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
+          ...(input.arName && { arName: ILike(`%${input.arName}%`) }),
+        },
+        relations: ['merchant'],
       },
-      relations: ['merchant'],
-    });
+    );
   }
 }

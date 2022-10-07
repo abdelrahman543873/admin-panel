@@ -12,7 +12,7 @@ describe('search branches suite case', () => {
       url: `${SEARCH_BRANCHES}?merchantId=${branch.merchant.id}&enName=${branch.enName}`,
       token: admin.token,
     });
-    expect(response.body.length).toBeGreaterThanOrEqual(1);
-    expect(response.body[0].enName).toBe(branch.enName);
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
+    expect(response.body.items[0].enName).toBe(branch.enName);
   });
 });
