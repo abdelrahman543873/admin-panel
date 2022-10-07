@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -14,6 +15,7 @@ import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { PaginationDto } from '../shared/dtos/pagination.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -38,7 +40,7 @@ export class MerchantController {
   }
 
   @Get()
-  async getMerchants() {
-    return await this.merchantService.getMerchants();
+  async getMerchants(@Query() input: PaginationDto) {
+    return await this.merchantService.getMerchants(input);
   }
 }

@@ -5,6 +5,8 @@ import { AddMerchantInput } from '../inputs/add-merchant.dto';
 import { Merchant } from '../model/merchant.entity';
 import { GetMerchantInput } from '../inputs/get-merchant.dto';
 import { BaseRepository } from '../../shared/abstract/repository.abstract';
+import { paginate } from 'nestjs-typeorm-paginate';
+import { PaginationDto } from '../../shared/dtos/pagination.dto';
 
 @Injectable()
 export class MerchantRepository extends BaseRepository<Merchant> {
@@ -35,7 +37,13 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     });
   }
 
-  getMerchants() {
-    return this.merchant.find({ relations: ['pos'] });
+  getMerchants(input: PaginationDto) {
+    return paginate<Merchant>(
+      this.merchant,
+      { limit: input.limit, page: input.offset },
+      {
+        relations: ['pos'],
+      },
+    );
   }
 }

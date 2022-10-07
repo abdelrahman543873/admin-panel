@@ -11,7 +11,7 @@ export class CampaignService {
   constructor(private readonly http: HttpClient) {}
 
   searchCampaigns(input: SearchBranchesDto) {
-    return this.http.get<CampaignInterface[]>(
+    return this.http.get<{ items: CampaignInterface[] }>(
       `${environment.host}/campaign/search`,
       {
         params: {

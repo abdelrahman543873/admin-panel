@@ -27,7 +27,7 @@ export class MerchantDetailsComponent implements OnInit {
     this.merchantService
       .getMerchantBranches(this.merchantId)
       .subscribe((data) => {
-        this.branches = data;
+        this.branches = data.items;
         this.nonExistingBranchSearch = false;
       });
   }

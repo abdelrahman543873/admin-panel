@@ -13,7 +13,7 @@ export class MerchantsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.merchantService.getMerchants().subscribe((data) => {
-      this.merchants = data;
+      this.merchants = data.items;
     });
   }
 }

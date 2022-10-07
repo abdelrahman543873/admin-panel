@@ -13,7 +13,9 @@ export class MerchantService {
   }
 
   getMerchants() {
-    return this.http.get<MerchantModel[]>(`${environment.host}/merchant`);
+    return this.http.get<{ items: MerchantModel[] }>(
+      `${environment.host}/merchant`,
+    );
   }
 
   getMerchant(id: number) {
@@ -21,7 +23,7 @@ export class MerchantService {
   }
 
   getMerchantBranches(merchant: number) {
-    return this.http.get<BranchInterface[]>(
+    return this.http.get<{ items: BranchInterface[] }>(
       `${environment.host}/branch/search?merchantId=${merchant}`,
     );
   }

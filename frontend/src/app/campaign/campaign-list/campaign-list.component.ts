@@ -19,14 +19,14 @@ export class CampaignListComponent implements OnInit {
         merchantId: this.merchantId,
       })
       .subscribe((campaigns) => {
-        this.campaigns = campaigns;
+        this.campaigns = campaigns.items;
         this.existingCampaigns = true;
       });
   }
 
   searchCampaignsWithTitle(enTitle: string) {
     this.campaignService.searchCampaigns({ enTitle }).subscribe((campaigns) => {
-      if (campaigns.length) this.campaigns = campaigns;
+      if (campaigns.items.length) this.campaigns = campaigns.items;
       else this.existingCampaigns = false;
     });
   }

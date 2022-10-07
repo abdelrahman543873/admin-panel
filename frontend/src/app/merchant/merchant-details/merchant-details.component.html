@@ -54,41 +54,42 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8">
-      <form
-        class="input-group"
-        data-widget="sidebar-search"
-        #merchantForm="ngForm"
-      >
-        <p class="col-md-1">Branches</p>
-        <input
-          class="col-md-3"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          name="search"
-          #search
-          ngModel
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-sidebar"
-            (click)="searchMerchants(search.value)"
-          >
-            <i class="fas fa-search fa-fw"></i>
+    <div class="row">
+      <div class="col-md-8">
+        <form
+          class="input-group"
+          data-widget="sidebar-search"
+          #merchantForm="ngForm"
+        >
+          <p class="col-md-2">Branches</p>
+          <input
+            class="col-md-3"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="search"
+            #search
+            ngModel
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-sidebar"
+              (click)="searchMerchants(search.value)"
+            >
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+          <button class="btn btn-info" (click)="open()">
+            Create new Branch
           </button>
-        </div>
-        <button class="btn btn-info" (click)="open()">Create new Branch</button>
-      </form>
+        </form>
+      </div>
+      <div class="col-md-8" *ngIf="nonExistingBranchSearch">
+        <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+          invalid branch name
+        </p>
+      </div>
     </div>
-    <div class="col-md-8" *ngIf="nonExistingBranchSearch">
-      <p class="btn btn-default bg-maroon toastsDefaultMaroon">
-        invalid branch name
-      </p>
-    </div>
-  </div>
-
-  <div class="row">
     <div class="card-footer">
       <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
         <div class="col-sm-12">
