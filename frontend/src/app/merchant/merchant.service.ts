@@ -4,6 +4,8 @@ import { AddMerchantInput } from './dto/add-merchant.dto';
 import { environment } from '../../environments/environment';
 import { MerchantModel } from './interfaces/merchant.interface';
 import { BranchInterface } from '../branch/intefaces/branch.interface';
+import { GetMerchantsDto } from './dto/search-merchants.dto';
+import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}
@@ -12,9 +14,10 @@ export class MerchantService {
     return this.http.post(`${environment.host}/merchant`, input);
   }
 
-  getMerchants() {
-    return this.http.get<{ items: MerchantModel[] }>(
+  getMerchants(input: GetMerchantsDto = {}) {
+    return this.http.get<PaginationInterface<MerchantModel>>(
       `${environment.host}/merchant`,
+      { params: { ...input } },
     );
   }
 

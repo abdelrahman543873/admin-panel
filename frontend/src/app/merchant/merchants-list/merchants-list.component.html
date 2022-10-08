@@ -1,83 +1,122 @@
-<div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-  <div class="row">
-    <div class="col-sm-12">
-      <table
-        id="example2"
-        class="table table-bordered table-hover dataTable dtr-inline"
-        aria-describedby="example2_info"
-      >
-        <thead>
-          <tr>
-            <th
-              class="sorting sorting_asc"
-              tabindex="0"
-              rowspan="1"
-              colspan="1"
-              aria-sort="ascending"
-              aria-label="Rendering engine: activate to sort column descending"
-            >
-              Id
-            </th>
-            <th
-              class="sorting sorting_asc"
-              tabindex="0"
-              aria-controls="example2"
-              rowspan="1"
-              colspan="1"
-              aria-sort="ascending"
-              aria-label="Rendering engine: activate to sort column descending"
-            >
-              Name
-            </th>
-            <th
-              class="sorting"
-              tabindex="0"
-              aria-controls="example2"
-              rowspan="1"
-              colspan="1"
-              aria-label="Platform(s): activate to sort column ascending"
-            >
-              POS
-            </th>
-            <th
-              class="sorting"
-              tabindex="0"
-              aria-controls="example2"
-              rowspan="1"
-              colspan="1"
-              aria-label="Browser: activate to sort column ascending"
-            >
-              Category
-            </th>
-            <th
-              class="sorting"
-              tabindex="0"
-              aria-controls="example2"
-              rowspan="1"
-              colspan="1"
-              aria-label="Browser: activate to sort column ascending"
-            >
-              Created At
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let merchant of merchants"
-            routerLink="/frontend/home/merchant/{{ merchant.id }}"
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <label for="numberOfEntries" class="col-sm-1">Show</label>
+        <div class="btn-group col-sm-2" id="numberOfEntries">
+          <button
+            type="button"
+            class="btn btn-default dropdown-toggle dropdown-icon"
+            data-toggle="dropdown"
+            aria-expanded="false"
           >
-            <td class="dtr-control sorting_1" tabindex="0">
-              {{ merchant.id }}
-            </td>
-            <td class="dtr-control sorting_1" tabindex="0">
-              {{ merchant.enName }}
-            </td>
-            <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
-            <td>to be set</td>
-            <td>{{ merchant?.createdAt }}</td>
-          </tr>
-        </tbody>
-      </table>
+            {{ paginationLimit }}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="paginate(15)">15</a>
+            <a class="dropdown-item" (click)="paginate(25)">25</a>
+            <a class="dropdown-item" (click)="paginate(50)">50</a>
+            <a class="dropdown-item" (click)="paginate(100)">100</a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="dataTables_wrapper dt-bootstrap4 row">
+          <div class="row">
+            <table
+              class="table table-bordered table-hover dataTable dtr-inline"
+            >
+              <thead>
+                <tr>
+                  <th
+                    class="sorting sorting_asc"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-sort="ascending"
+                    aria-label="Rendering engine: activate to sort column descending"
+                  >
+                    Id
+                  </th>
+                  <th
+                    class="sorting sorting_asc"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-sort="ascending"
+                    aria-label="Rendering engine: activate to sort column descending"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    POS
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Browser: activate to sort column ascending"
+                  >
+                    Category
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Browser: activate to sort column ascending"
+                  >
+                    Created At
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let merchant of merchants"
+                  routerLink="/frontend/home/merchant/{{ merchant.id }}"
+                >
+                  <td class="dtr-control sorting_1" tabindex="0">
+                    {{ merchant.id }}
+                  </td>
+                  <td class="dtr-control sorting_1" tabindex="0">
+                    {{ merchant.enName }}
+                  </td>
+                  <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
+                  <td>to be set</td>
+                  <td>{{ merchant?.createdAt }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-5">
+              <div class="dataTables_info" role="status" aria-live="polite">
+                Showing {{ paginationLimit }} merchants of
+                {{ totalNumberOfMerchants }} merchants
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ngb-pagination
+                  class="d-flex justify-content-end"
+                  [collectionSize]="totalNumberOfMerchants"
+                  [(page)]="currentPage"
+                  [pageSize]="paginationLimit"
+                  [maxSize]="5"
+                  (pageChange)="paginate(paginationLimit, currentPage)"
+                ></ngb-pagination>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

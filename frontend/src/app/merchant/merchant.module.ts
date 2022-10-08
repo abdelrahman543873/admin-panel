@@ -7,6 +7,7 @@ import { MerchantsListComponent } from './merchants-list/merchants-list.componen
 import { MerchantDetailsComponent } from './merchant-details/merchant-details.component';
 import { BranchModule } from '../branch/branch.module';
 import { CampaignListComponent } from '../campaign/campaign-list/campaign-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,12 @@ import { CampaignListComponent } from '../campaign/campaign-list/campaign-list.c
     MerchantDetailsComponent,
     CampaignListComponent,
   ],
-  imports: [CommonModule, MerchantRoutingModule, FormsModule, BranchModule],
+  imports: [
+    CommonModule,
+    MerchantRoutingModule,
+    FormsModule,
+    BranchModule,
+    NgbModule,
+  ],
 })
 export class MerchantModule {}
