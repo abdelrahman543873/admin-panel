@@ -35,7 +35,7 @@ export class CampaignListComponent implements OnInit {
       .searchCampaigns({ limit, offset, merchantId: this.merchantId })
       .subscribe((data) => {
         this.campaigns = data.items;
-        this.totalNumberOfCampaigns = data.meta.itemCount;
+        this.totalNumberOfCampaigns = data.meta.totalItems;
       });
   }
 }
