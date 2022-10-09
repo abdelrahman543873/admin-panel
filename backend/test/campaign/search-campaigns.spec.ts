@@ -2,7 +2,7 @@ import { CAMPAIGN_SEARCH } from '../endpoints/campaign.endpoints';
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { adminFactory } from '../admin/admin.factory';
-import { campaignFactory } from './campaign.factory';
+import { campaignFactory } from './factories/campaign.factory';
 describe('search campaigns suite case', () => {
   it('should get campaign list', async () => {
     const admin = await adminFactory();

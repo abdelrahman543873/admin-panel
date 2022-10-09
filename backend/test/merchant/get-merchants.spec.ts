@@ -12,8 +12,8 @@ describe('get merchants suite case', () => {
       url: MERCHANT,
       token: admin.token,
     });
-    expect(response.body.list.length).toBeGreaterThanOrEqual(1);
-    expect(response.body.list[0]).toHaveProperty('arName');
-    expect(response.body.list[0].pos).toHaveProperty('id');
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
+    expect(response.body.items[0]).toHaveProperty('arName');
+    expect(response.body.items[0].pos).toHaveProperty('id');
   });
 });

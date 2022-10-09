@@ -1,7 +1,7 @@
 import { testRequest } from '../request';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { adminFactory } from '../admin/admin.factory';
-import { buildCampaignParams } from './campaign.factory';
+import { buildCampaignParams } from './factories/campaign.factory';
 import { CAMPAIGN } from '../endpoints/campaign.endpoints';
 describe('add campaign suite case', () => {
   it('should add campaign', async () => {
@@ -17,6 +17,7 @@ describe('add campaign suite case', () => {
         merchantId: merchant.id,
       },
     });
+    expect(response.body).toHaveProperty('id');
     expect(response.body.merchant.id).toBe(merchant.id);
     expect(response.body.enTitle).toBe(campaign.enTitle);
   });

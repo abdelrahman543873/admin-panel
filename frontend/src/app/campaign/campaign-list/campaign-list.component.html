@@ -10,7 +10,7 @@
                 type="search"
                 class="form-control form-control-lg"
                 placeholder="search for campaigns"
-                name="search"
+                arDescription="search"
                 #search
                 ngModel
               />
@@ -25,7 +25,7 @@
               </div>
             </div>
           </form>
-          <button class="btn btn-info col-sm-1">Create new Campaign</button>
+          <button class="btn btn-info col-sm-1" (click)="open()">Create new Campaign</button>
           <div class="col-sm-4 offset-sm-4">
             <button
               type="button"

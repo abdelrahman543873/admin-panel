@@ -42,6 +42,9 @@ export class BranchListComponent implements OnInit {
       animation: true,
     });
     modalRef.componentInstance.merchantId = this.merchantId;
+    modalRef.componentInstance.branchAdded.subscribe(() => {
+      this.paginate(this.paginationLimit);
+    });
   }
 
   searchMerchants(enName: string) {

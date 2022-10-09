@@ -1,0 +1,83 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Branch</h4>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #addCampaignDto="ngForm">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="enTitle">English Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="enTitle"
+          name="enTitle"
+          placeholder="Enter Campaign English Title"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="arTitle">Arabic Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="arTitle"
+          name="arTitle"
+          placeholder="Enter Branch Arabic Title"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="enDescription">English Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="enDescription"
+          name="enDescription"
+          placeholder="Enter English description"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="arDescritpion">Arabic Description</label>
+        <input
+          type="string"
+          class="form-control"
+          id="arDescritpion"
+          name="arDescription"
+          placeholder="Enter Manager Phone"
+          ngModel
+          required
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default"
+    data-dismiss="modal"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    Close
+  </button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="addCampaign(addCampaignDto.value)"
+  >
+    Save changes
+  </button>
+</div>

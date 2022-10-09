@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
-import { Campaign } from './model/campaign.entity';
-import { BaseRepository } from '../shared/abstract/repository.abstract';
-import { SearchCampaignsInput } from './inputs/search-campaigns.dto';
-import { AddCampaignDto } from './inputs/add-campaign.dto';
+import { Campaign } from '../models/campaign.entity';
+import { BaseRepository } from '../../shared/abstract/repository.abstract';
+import { SearchCampaignsInput } from '../inputs/search-campaigns.dto';
+import { AddCampaignDto } from '../inputs/add-campaign.dto';
 import { paginate } from 'nestjs-typeorm-paginate';
 
 @Injectable()
@@ -30,9 +30,10 @@ export class CampaignRepository extends BaseRepository<Campaign> {
   }
 
   addCampaign(input: AddCampaignDto) {
-    return this.campaign.create({
+    return this.campaign.save({
       ...input,
       merchant: { id: input.merchantId },
+      type: { id: 1 },
     });
   }
 }

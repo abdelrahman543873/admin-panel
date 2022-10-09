@@ -1,4 +1,5 @@
-import { Merchant } from './../../merchant/model/merchant.entity';
+import { Merchant } from '../../merchant/model/merchant.entity';
+import { CampaignType } from './campaign-type.entity';
 import {
   Column,
   CreateDateColumn,
@@ -15,6 +16,7 @@ export class Campaign {
     type: 'uuid',
     length: 50,
     generated: 'uuid',
+    primary: true,
   })
   id: string;
 
@@ -28,10 +30,11 @@ export class Campaign {
   @Column({ name: 'title_ar' })
   arTitle: string;
 
-  @Column({ name: 'idCampaignType' })
-  type: number;
+  @ManyToOne(() => CampaignType)
+  @JoinColumn([{ name: 'idCampaignType' }])
+  type: CampaignType;
 
-  @Column()
+  @Column({ nullable: true })
   logo: string;
 
   @Column({ name: 'idCampaignStatus', type: 'tinyint' })

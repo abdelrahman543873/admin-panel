@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { CampaignInterface } from './interfaces/campaign.interface';
 import { SearchBranchesDto } from './inputs/search-branches.dto';
 import { PaginationInterface } from '../shared/interfaces/pagination.interface';
+import { AddCampaignDto } from './inputs/add-campaigns.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,13 @@ export class CampaignService {
           ...(input.enTitle && { enTitle: input.enTitle }),
         },
       },
+    );
+  }
+
+  addCampaign(input: AddCampaignDto) {
+    return this.http.post<CampaignInterface>(
+      `${environment.host}/campaign`,
+      input,
     );
   }
 }

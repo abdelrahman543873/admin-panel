@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CampaignService } from '../campaign.service';
 import { CampaignInterface } from '../interfaces/campaign.interface';
+import { AddCampaignComponent } from '../add-campaign/add-campaign.component';
 
 @Component({
   selector: 'app-campaign-list',
@@ -14,7 +16,10 @@ export class CampaignListComponent implements OnInit {
   paginationLimit: number = 5;
   totalNumberOfCampaigns!: number;
   currentPage = 1;
-  constructor(private readonly campaignService: CampaignService) {}
+  constructor(
+    private readonly campaignService: CampaignService,
+    private modalService: NgbModal,
+  ) {}
 
   ngOnInit(): void {
     this.paginate(this.paginationLimit);
@@ -31,6 +36,16 @@ export class CampaignListComponent implements OnInit {
           this.existingCampaigns = false;
         }
       });
+  }
+
+  open() {
+    const modalRef = this.modalService.open(AddCampaignComponent, {
+      animation: true,
+    });
+    modalRef.componentInstance.merchantId = this.merchantId;
+    modalRef.componentInstance.campaignAdded.subscribe(() => {
+      this.paginate(this.paginationLimit);
+    });
   }
 
   paginate(limit: number, offset: number = 1) {

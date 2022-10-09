@@ -1,60 +1,58 @@
-<div id="container">
-  <div class="row">
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box">
-        <div class="info-box-content">
-          <span class="info-box-text">Merchant Image</span>
-        </div>
-        <span class="info-box-icon elevation-1">
-          <img
-            src="{{ merchant?.imageUrl }}"
-            alt="{{ merchant?.enName }}"
-            class="img-fluid"
-          />
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box">
+      <div class="info-box-content">
+        <span class="info-box-text">Merchant Image</span>
+      </div>
+      <span class="info-box-icon elevation-1">
+        <img
+          src="{{ merchant?.imageUrl }}"
+          alt="{{ merchant?.enName }}"
+          class="img-fluid"
+        />
+      </span>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="info-box mb-3">
+      <div class="info-box-content">
+        <span class="info-box-text">Merchant Name</span>
+        <span class="info-box-text">
+          {{ merchant?.enName }}
         </span>
-      </div>
-    </div>
-
-    <div class="col-sm-2">
-      <div class="info-box mb-3">
-        <div class="info-box-content">
-          <span class="info-box-text">Merchant Name</span>
-          <span class="info-box-text">
-            {{ merchant?.enName }}
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-2">
-      <div class="info-box mb-3">
-        <div class="info-box-content">
-          <span class="info-box-text">Merchant Category</span>
-          <span class="info-box-text">to be set</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-2">
-      <div class="info-box mb-3">
-        <div class="info-box-content">
-          <span class="info-box-text">Pos Type</span>
-          <span class="info-box-text">{{ merchant?.pos?.title }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-2">
-      <div class="info-box mb-3">
-        <div class="info-box-content">
-          <span class="info-box-text">Integration Id</span>
-          <span class="info-box-number">{{ merchant?.integrationId }}</span>
-        </div>
       </div>
     </div>
   </div>
 
-  <app-branch-list [merchantId]="merchantId"></app-branch-list>
+  <div class="col-sm-2">
+    <div class="info-box mb-3">
+      <div class="info-box-content">
+        <span class="info-box-text">Merchant Category</span>
+        <span class="info-box-text">to be set</span>
+      </div>
+    </div>
+  </div>
 
-  <app-campaign-list [merchantId]="merchantId"></app-campaign-list>
+  <div class="col-sm-2">
+    <div class="info-box mb-3">
+      <div class="info-box-content">
+        <span class="info-box-text">Pos Type</span>
+        <span class="info-box-text">{{ merchant?.pos?.title }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="info-box mb-3">
+      <div class="info-box-content">
+        <span class="info-box-text">Integration Id</span>
+        <span class="info-box-number">{{ merchant?.integrationId }}</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<app-branch-list [merchantId]="merchantId"></app-branch-list>
+
+<app-campaign-list [merchantId]="merchantId"></app-campaign-list>
