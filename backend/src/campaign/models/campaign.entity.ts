@@ -1,11 +1,13 @@
 import { Merchant } from '../../merchant/model/merchant.entity';
 import { CampaignType } from './campaign-type.entity';
+import { CampaignImage } from './campaign-image.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryColumn,
 } from 'typeorm';
 
@@ -48,4 +50,7 @@ export class Campaign {
 
   @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;
+
+  @OneToOne(() => CampaignImage, (campaign) => campaign.id)
+  image: CampaignImage;
 }

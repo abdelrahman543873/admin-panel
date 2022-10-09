@@ -14,6 +14,7 @@ import { CampaignRepository } from '../src/campaign/repositories/campaign.reposi
 import { MerchantCategoryRepository } from '../src/category/category.repository';
 import { MerchantStatusRepository } from '../src/merchant/repositories/merchant-status.repository';
 import { CampaignTypeRepository } from '../src/campaign/repositories/campaign-type.repository';
+import { CampaignImageRepository } from '../src/campaign/repositories/campaign-image.repository';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -50,5 +51,8 @@ export default async (): Promise<void> => {
   );
   global.campaignTypeRepository = app.get<CampaignTypeRepository>(
     CampaignTypeRepository,
+  );
+  global.campaignImageRepository = app.get<CampaignImageRepository>(
+    CampaignImageRepository,
   );
 };

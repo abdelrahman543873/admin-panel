@@ -24,7 +24,7 @@ export class CampaignRepository extends BaseRepository<Campaign> {
           ...(input.merchantId && { merchant: { id: input.merchantId } }),
           ...(input.enTitle && { enTitle: ILike(`%${input.enTitle}%`) }),
         },
-        relations: ['merchant'],
+        relations: ['merchant', 'type', 'image'],
       },
     );
   }
