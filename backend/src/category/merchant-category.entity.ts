@@ -1,33 +1,22 @@
-import { Merchant } from './../merchant/model/merchant.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'MerchantCategory' })
 export class MerchantCategory {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Merchant)
-  @JoinColumn({ name: 'merchant' })
-  merchant: Merchant;
-
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'titleEn' })
   enTitle: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, name: 'titleAr' })
   arTitle: string;
 
-  @Column()
+  @Column({ name: 'descriptionEn', nullable: true })
   enDescription: string;
 
-  @Column()
+  @Column({ name: 'descriptionAr', nullable: true })
   arDescription: string;
 
-  @Column()
+  @Column({ nullable: true })
   logo: string;
 }
