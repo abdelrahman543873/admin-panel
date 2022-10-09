@@ -44,9 +44,9 @@ export class BranchListComponent implements OnInit {
     modalRef.componentInstance.merchantId = this.merchantId;
   }
 
-  searchMerchants(branchName: string) {
+  searchMerchants(enName: string) {
     this.merchantService
-      .searchMerchantBranches({ merchantId: this.merchantId, name: branchName })
+      .searchMerchantBranches({ merchantId: this.merchantId, enName })
       .subscribe((data) => {
         if (data.items.length) {
           this.branches = data.items;

@@ -32,7 +32,6 @@ export class MerchantService {
       {
         params: {
           ...input,
-          ...(input.name && { enTitle: input.name }),
         },
       },
     );

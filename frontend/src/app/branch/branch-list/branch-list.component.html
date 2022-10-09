@@ -3,11 +3,7 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <form
-            class="col-sm-2"
-            data-widget="sidebar-search"
-            #merchantForm="ngForm"
-          >
+          <form class="col-sm-2" #merchantForm="ngForm">
             <div class="input-group">
               <input
                 type="search"
@@ -56,19 +52,16 @@
         </div>
       </div>
       <div class="card-body">
-        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <div class="dataTables_wrapper dt-bootstrap4">
           <div class="row">
             <table
-              id="example2"
               class="table table-bordered table-hover dataTable dtr-inline"
-              aria-describedby="example2_info"
             >
               <thead>
                 <tr>
                   <th
                     class="sorting sorting_asc"
                     tabindex="0"
-                    aria-controls="example2"
                     rowspan="1"
                     colspan="1"
                     aria-sort="ascending"
@@ -77,9 +70,18 @@
                     Branch Id
                   </th>
                   <th
+                    class="sorting sorting_asc"
+                    tabindex="0"
+                    rowspan="1"
+                    colspan="1"
+                    aria-sort="ascending"
+                    aria-label="Rendering engine: activate to sort column descending"
+                  >
+                    district
+                  </th>
+                  <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="example2"
                     rowspan="1"
                     colspan="1"
                     aria-label="Browser: activate to sort column ascending"
@@ -89,7 +91,6 @@
                   <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="example2"
                     rowspan="1"
                     colspan="1"
                     aria-label="Platform(s): activate to sort column ascending"
@@ -99,7 +100,15 @@
                   <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Manager Name
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
                     rowspan="1"
                     colspan="1"
                     aria-label="Platform(s): activate to sort column ascending"
@@ -109,33 +118,20 @@
                   <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="example2"
                     rowspan="1"
                     colspan="1"
                     aria-label="Platform(s): activate to sort column ascending"
                   >
-                    Pos Id Branch
+                    Manager phone number
                   </th>
                   <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="example2"
                     rowspan="1"
                     colspan="1"
                     aria-label="Platform(s): activate to sort column ascending"
                   >
                     Created At
-                  </th>
-
-                  <th
-                    class="sorting"
-                    tabindex="0"
-                    aria-controls="example2"
-                    rowspan="1"
-                    colspan="1"
-                    aria-label="Platform(s): activate to sort column ascending"
-                  >
-                    Show On Map
                   </th>
                 </tr>
               </thead>
@@ -144,12 +140,13 @@
                   <td class="dtr-control sorting_1" tabindex="0">
                     {{ branch.id }}
                   </td>
+                  <td>{{ branch.enDistrict }}</td>
                   <td>{{ branch.arName }}</td>
                   <td>{{ branch.enName }}</td>
-                  <td>yet to be added</td>
-                  <td>yet to be added</td>
+                  <td>{{ branch.managerName }}</td>
+                  <td>{{ branch.brandKey }}</td>
+                  <td>{{ branch.managerPhoneNumber }}</td>
                   <td>{{ branch.createdAt }}</td>
-                  <td>yet to be added</td>
                 </tr>
               </tbody>
             </table>
