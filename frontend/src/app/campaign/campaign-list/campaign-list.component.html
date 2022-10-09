@@ -25,7 +25,9 @@
               </div>
             </div>
           </form>
-          <button class="btn btn-info col-sm-1" (click)="open()">Create new Campaign</button>
+          <button class="btn btn-info col-sm-1" (click)="open()">
+            Create new Campaign
+          </button>
           <div class="col-sm-4 offset-sm-4">
             <button
               type="button"
@@ -120,8 +122,13 @@
                     {{ campaign.id }}
                   </td>
                   <td>{{ campaign.enTitle }}</td>
-                  <td>{{ campaign.type }}</td>
-                  <td>{{ campaign.logo }}</td>
+                  <td>{{ campaign.type.enName }}</td>
+                  <td class="col-1 text-center">
+                    <img
+                      src="{{ campaign.image.imageUrl }}"
+                      class="img-fluid"
+                    />
+                  </td>
                   <td>{{ campaign.createdAt }}</td>
                 </tr>
               </tbody>
