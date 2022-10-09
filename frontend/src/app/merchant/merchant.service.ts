@@ -6,6 +6,7 @@ import { MerchantModel } from './interfaces/merchant.interface';
 import { BranchInterface } from '../branch/intefaces/branch.interface';
 import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 import { PaginationDto } from '../shared/classes/pagination.dto';
+import { SearchBranchesDto } from './dto/search-branches.dto';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}
@@ -25,15 +26,15 @@ export class MerchantService {
     return this.http.get<MerchantModel>(`${environment.host}/merchant/${id}`);
   }
 
-  getMerchantBranches(merchant: number) {
+  searchMerchantBranches(input: SearchBranchesDto) {
     return this.http.get<PaginationInterface<BranchInterface>>(
-      `${environment.host}/branch/search?merchantId=${merchant}`,
-    );
-  }
-
-  searchMerchantBranches(merchant: number, name: string) {
-    return this.http.get<BranchInterface[]>(
-      `${environment.host}/branch/search?merchantId=${merchant}&enName=${name}`,
+      `${environment.host}/branch/search`,
+      {
+        params: {
+          ...input,
+          ...(input.name && { enTitle: input.name }),
+        },
+      },
     );
   }
 }

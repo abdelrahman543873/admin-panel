@@ -2,6 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
+        <!-- have the search bar in shared component -->
         <div class="row">
           <form class="col-sm-2" #merchantForm="ngForm">
             <div class="input-group">
@@ -24,6 +25,9 @@
               </div>
             </div>
           </form>
+          <button class="btn btn-info col-sm-1">
+            Create new Campaign 
+          </button>
           <div class="col-sm-4 offset-sm-4">
             <button
               type="button"
@@ -34,7 +38,7 @@
               Show {{ paginationLimit }}
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" (click)="paginate(15)">15</a>
+              <a class="dropdown-item" (click)="paginate(5)">5</a>
               <a class="dropdown-item" (click)="paginate(25)">25</a>
               <a class="dropdown-item" (click)="paginate(50)">50</a>
               <a class="dropdown-item" (click)="paginate(100)">100</a>
@@ -129,7 +133,7 @@
             <div class="col-md-5">
               <div class="dataTables_info" role="status" aria-live="polite">
                 Showing {{ paginationLimit }} merchants of
-                {{ totalNumberOfCampaigns }} merchants
+                {{ totalNumberOfCampaigns }} Campaigns
               </div>
             </div>
             <div class="col-md-7">

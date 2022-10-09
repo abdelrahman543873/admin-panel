@@ -16,7 +16,7 @@ export class CampaignService {
       `${environment.host}/campaign/search`,
       {
         params: {
-          ...(input.merchantId && { merchantId: input.merchantId }),
+          ...input,
           ...(input.enTitle && { enTitle: input.enTitle }),
         },
       },

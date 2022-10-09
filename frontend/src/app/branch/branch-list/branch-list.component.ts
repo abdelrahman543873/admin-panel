@@ -10,23 +10,30 @@ import { BranchInterface } from '../intefaces/branch.interface';
   styleUrls: ['./branch-list.component.scss'],
 })
 export class BranchListComponent implements OnInit {
+  existingCampaigns: boolean = true;
+  paginationLimit: number = 5;
+  totalNumberOfBranches!: number;
+  currentPage = 1;
+  branches?: BranchInterface[];
+  @Input() merchantId!: number;
+  nonExistingBranchSearch: boolean = false;
+
   constructor(
     private merchantService: MerchantService,
     private modalService: NgbModal,
   ) {}
-  branches?: BranchInterface[];
-  @Input() merchantId!: number;
-  nonExistingBranchSearch: boolean = false;
+
   ngOnInit(): void {
-    this.getMerchantBranches();
+    this.paginate(5);
   }
 
-  getMerchantBranches() {
+  paginate(limit: number, offset: number = 1) {
+    this.paginationLimit = limit;
     this.merchantService
-      .getMerchantBranches(this.merchantId)
+      .searchMerchantBranches({ limit, offset, merchantId: this.merchantId })
       .subscribe((data) => {
         this.branches = data.items;
-        this.nonExistingBranchSearch = false;
+        this.totalNumberOfBranches = data.meta.totalItems;
       });
   }
 
@@ -39,10 +46,10 @@ export class BranchListComponent implements OnInit {
 
   searchMerchants(branchName: string) {
     this.merchantService
-      .searchMerchantBranches(this.merchantId, branchName)
+      .searchMerchantBranches({ merchantId: this.merchantId, name: branchName })
       .subscribe((data) => {
-        if (data.length) {
-          this.branches = data;
+        if (data.items.length) {
+          this.branches = data.items;
           this.nonExistingBranchSearch = false;
         } else this.nonExistingBranchSearch = true;
       });

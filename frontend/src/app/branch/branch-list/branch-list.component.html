@@ -1,136 +1,180 @@
 <div class="row">
-  <div class="row">
-    <div class="col-md-8">
-      <form
-        class="input-group"
-        data-widget="sidebar-search"
-        #merchantForm="ngForm"
-      >
-        <p class="col-md-2">Branches</p>
-        <input
-          class="col-md-3"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          name="search"
-          #search
-          ngModel
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-sidebar"
-            (click)="searchMerchants(search.value)"
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <form
+            class="col-sm-2"
+            data-widget="sidebar-search"
+            #merchantForm="ngForm"
           >
-            <i class="fas fa-search fa-fw"></i>
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control form-control-lg"
+                placeholder="search for branches"
+                name="search"
+                #search
+                ngModel
+              />
+              <div class="input-group-append">
+                <button
+                  type="submit"
+                  class="btn btn-lg btn-default"
+                  (click)="searchMerchants(search.value)"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-info col-sm-1" (click)="open()">
+            Create new Branch
           </button>
+          <!-- outsource pagination component into shared module -->
+          <div class="col-sm-4 offset-sm-4">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Show {{ paginationLimit }}
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="paginate(5)">5</a>
+              <a class="dropdown-item" (click)="paginate(25)">25</a>
+              <a class="dropdown-item" (click)="paginate(50)">50</a>
+              <a class="dropdown-item" (click)="paginate(100)">100</a>
+            </div>
+          </div>
         </div>
-        <button class="btn btn-info" (click)="open()">Create new Branch</button>
-      </form>
-    </div>
-    <div class="col-md-8" *ngIf="nonExistingBranchSearch">
-      <p class="btn btn-default bg-maroon toastsDefaultMaroon">
-        invalid branch name
-      </p>
-    </div>
-  </div>
-  <div class="card-footer">
-    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-      <div class="col-sm-12">
-        <table
-          id="example2"
-          class="table table-bordered table-hover dataTable dtr-inline"
-          aria-describedby="example2_info"
-        >
-          <thead>
-            <tr>
-              <th
-                class="sorting sorting_asc"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-sort="ascending"
-                aria-label="Rendering engine: activate to sort column descending"
-              >
-                Branch Id
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Browser: activate to sort column ascending"
-              >
-                Name Ar
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Name En
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Pos Branch Name
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Pos Id Branch
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Created At
-              </th>
+        <div class="row col-sm-2" *ngIf="nonExistingBranchSearch">
+          <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+            invalid branch name
+          </p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <table
+              id="example2"
+              class="table table-bordered table-hover dataTable dtr-inline"
+              aria-describedby="example2_info"
+            >
+              <thead>
+                <tr>
+                  <th
+                    class="sorting sorting_asc"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-sort="ascending"
+                    aria-label="Rendering engine: activate to sort column descending"
+                  >
+                    Branch Id
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Browser: activate to sort column ascending"
+                  >
+                    Name Ar
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Name En
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Pos Branch Name
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Pos Id Branch
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Created At
+                  </th>
 
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Show On Map
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let branch of branches">
-              <td class="dtr-control sorting_1" tabindex="0">
-                {{ branch.id }}
-              </td>
-              <td>{{ branch.arName }}</td>
-              <td>{{ branch.enName }}</td>
-              <td>yet to be added</td>
-              <td>yet to be added</td>
-              <td>{{ branch.createdAt }}</td>
-              <td>yet to be added</td>
-            </tr>
-          </tbody>
-        </table>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Show On Map
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let branch of branches">
+                  <td class="dtr-control sorting_1" tabindex="0">
+                    {{ branch.id }}
+                  </td>
+                  <td>{{ branch.arName }}</td>
+                  <td>{{ branch.enName }}</td>
+                  <td>yet to be added</td>
+                  <td>yet to be added</td>
+                  <td>{{ branch.createdAt }}</td>
+                  <td>yet to be added</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="dataTables_info" role="status" aria-live="polite">
+                Showing {{ paginationLimit }} merchants of
+                {{ totalNumberOfBranches }} branches
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ngb-pagination
+                  class="d-flex justify-content-end"
+                  [collectionSize]="totalNumberOfBranches"
+                  [(page)]="currentPage"
+                  [pageSize]="paginationLimit"
+                  [maxSize]="5"
+                  (pageChange)="paginate(paginationLimit, currentPage)"
+                ></ngb-pagination>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
