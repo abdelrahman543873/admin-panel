@@ -24,8 +24,12 @@ export class CampaignListComponent implements OnInit {
     this.campaignService
       .searchCampaigns({ enTitle, merchantId: this.merchantId })
       .subscribe((campaigns) => {
-        if (campaigns.items.length) this.campaigns = campaigns.items;
-        else this.existingCampaigns = false;
+        if (campaigns.items.length) {
+          this.campaigns = campaigns.items;
+          this.totalNumberOfCampaigns = campaigns.meta.totalItems;
+        } else {
+          this.existingCampaigns = false;
+        }
       });
   }
 

@@ -51,6 +51,7 @@ export class BranchListComponent implements OnInit {
         if (data.items.length) {
           this.branches = data.items;
           this.nonExistingBranchSearch = false;
+          this.totalNumberOfBranches = data.meta.totalItems;
         } else this.nonExistingBranchSearch = true;
       });
   }

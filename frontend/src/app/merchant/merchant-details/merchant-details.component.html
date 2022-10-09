@@ -1,17 +1,17 @@
 <div id="container">
   <div class="row">
-    <div class="col-sm-2">
-      <div class="info-box mb-3">
-        <div class="info-box">
-          <span class="elevation-1">
-            <span class="info-box-text">Merchant Image</span>
-            <img
-              src="{{ merchant?.imageUrl }}"
-              alt="{{ merchant?.enName }}"
-              class="img-fluid mb-1"
-            />
-          </span>
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <div class="info-box-content">
+          <span class="info-box-text">Merchant Image</span>
         </div>
+        <span class="info-box-icon elevation-1">
+          <img
+            src="{{ merchant?.imageUrl }}"
+            alt="{{ merchant?.enName }}"
+            class="img-fluid"
+          />
+        </span>
       </div>
     </div>
 
@@ -43,6 +43,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-sm-2">
       <div class="info-box mb-3">
         <div class="info-box-content">
