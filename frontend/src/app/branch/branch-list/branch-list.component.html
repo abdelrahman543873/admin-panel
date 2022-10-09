@@ -157,8 +157,13 @@
           <div class="row">
             <div class="col-md-5">
               <div class="dataTables_info" role="status" aria-live="polite">
-                Showing {{ paginationLimit }} merchants of
-                {{ totalNumberOfBranches }} branches
+                Showing
+                {{
+                  paginationLimit > totalNumberOfBranches
+                    ? totalNumberOfBranches
+                    : paginationLimit
+                }}
+                branches of {{ totalNumberOfBranches }} branches
               </div>
             </div>
             <div class="col-md-7">
