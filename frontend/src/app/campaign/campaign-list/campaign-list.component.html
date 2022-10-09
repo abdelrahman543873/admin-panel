@@ -1,113 +1,151 @@
 <div class="row">
-  <div class="row card-header">
-    <div class="col-md-8">
-      <form
-        class="input-group"
-        data-widget="sidebar-search"
-        #merchantForm="ngForm"
-      >
-        <p class="col-md-2">Campaigns</p>
-        <input
-          class="col-md-3"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          name="search"
-          #search
-          ngModel
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-sidebar"
-            (click)="searchCampaignsWithTitle(search.value)"
-          >
-            <i class="fas fa-search fa-fw"></i>
-          </button>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <form class="col-sm-2" #merchantForm="ngForm">
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control form-control-lg"
+                placeholder="search for campaigns"
+                name="search"
+                #search
+                ngModel
+              />
+              <div class="input-group-append">
+                <button
+                  type="submit"
+                  class="btn btn-lg btn-default"
+                  (click)="searchCampaignsWithTitle(search.value)"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <div class="col-sm-4 offset-sm-4">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Show {{ paginationLimit }}
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="paginate(15)">15</a>
+              <a class="dropdown-item" (click)="paginate(25)">25</a>
+              <a class="dropdown-item" (click)="paginate(50)">50</a>
+              <a class="dropdown-item" (click)="paginate(100)">100</a>
+            </div>
+          </div>
         </div>
-        <button class="btn btn-info">Create New Campaign</button>
-      </form>
-    </div>
-    <div class="col-md-8" *ngIf="!existingCampaigns">
-      <p class="btn btn-default bg-maroon toastsDefaultMaroon">
-        invalid campaign name
-      </p>
-    </div>
-  </div>
-  <div class="card-footer">
-    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-      <div class="col-sm-12">
-        <table
-          id="Campaign-list"
-          class="table table-bordered table-hover dataTable dtr-inline"
-          aria-describedby="Campaign list of selected merchant"
-        >
-          <thead>
-            <tr>
-              <th
-                class="sorting sorting_asc"
-                tabindex="0"
-                aria-controls="example2"
-                rowspan="1"
-                colspan="1"
-                aria-sort="ascending"
-                aria-label="Rendering engine: activate to sort column descending"
-              >
-                Id
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="title"
-                rowspan="1"
-                colspan="1"
-                aria-label="Browser: activate to sort column ascending"
-              >
-                Title
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="description"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Type
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="logo"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Logo
-              </th>
-              <th
-                class="sorting"
-                tabindex="0"
-                aria-controls="createdAt"
-                rowspan="1"
-                colspan="1"
-                aria-label="Platform(s): activate to sort column ascending"
-              >
-                Created At
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let campaign of campaigns">
-              <td class="dtr-control sorting_1" tabindex="0">
-                {{ campaign.id }}
-              </td>
-              <td>{{ campaign.enTitle }}</td>
-              <td>{{ campaign.type }}</td>
-              <td>{{ campaign.logo }}</td>
-              <td>{{ campaign.createdAt }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-sm-2" *ngIf="!existingCampaigns">
+            <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+              invalid campaign name
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <table
+              id="Campaign-list"
+              class="table table-bordered table-hover dataTable dtr-inline"
+              aria-describedby="Campaign list of selected merchant"
+            >
+              <thead>
+                <tr>
+                  <th
+                    class="sorting sorting_asc"
+                    tabindex="0"
+                    aria-controls="example2"
+                    rowspan="1"
+                    colspan="1"
+                    aria-sort="ascending"
+                    aria-label="Rendering engine: activate to sort column descending"
+                  >
+                    Id
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="title"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Browser: activate to sort column ascending"
+                  >
+                    Title
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="description"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Type
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="logo"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Logo
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="createdAt"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending"
+                  >
+                    Created At
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let campaign of campaigns">
+                  <td class="dtr-control sorting_1" tabindex="0">
+                    {{ campaign.id }}
+                  </td>
+                  <td>{{ campaign.enTitle }}</td>
+                  <td>{{ campaign.type }}</td>
+                  <td>{{ campaign.logo }}</td>
+                  <td>{{ campaign.createdAt }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="dataTables_info" role="status" aria-live="polite">
+                Showing {{ paginationLimit }} merchants of
+                {{ totalNumberOfCampaigns }} merchants
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ngb-pagination
+                  class="d-flex justify-content-end"
+                  [collectionSize]="totalNumberOfCampaigns"
+                  [(page)]="currentPage"
+                  [pageSize]="paginationLimit"
+                  [maxSize]="5"
+                  (pageChange)="paginate(paginationLimit, currentPage)"
+                ></ngb-pagination>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

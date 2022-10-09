@@ -7,7 +7,6 @@ import { datatype } from 'faker';
 describe('branch suite case', () => {
   it('should add branch', async () => {
     const admin = await adminFactory();
-    console.log(admin);
     const branchParams = await buildBranchParams();
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
