@@ -64,7 +64,7 @@
                     colspan="1"
                     aria-label="Browser: activate to sort column ascending"
                   >
-                    Category
+                    Subscription
                   </th>
                   <th
                     class="sorting"
@@ -89,7 +89,7 @@
                     {{ merchant.enName }}
                   </td>
                   <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
-                  <td>to be set</td>
+                  <td>{{ merchant.subscriptionStatus | lowercase }}</td>
                   <td>{{ merchant?.createdAt }}</td>
                 </tr>
               </tbody>

@@ -72,17 +72,27 @@
                     aria-sort="ascending"
                     aria-label="Rendering engine: activate to sort column descending"
                   >
-                    Id
+                    Campaign Id
                   </th>
                   <th
                     class="sorting"
                     tabindex="0"
-                    aria-controls="title"
+                    aria-controls="arName"
                     rowspan="1"
                     colspan="1"
                     aria-label="Browser: activate to sort column ascending"
                   >
-                    Title
+                    Name Ar
+                  </th>
+                  <th
+                    class="sorting"
+                    tabindex="0"
+                    aria-controls="enName"
+                    rowspan="1"
+                    colspan="1"
+                    aria-label="Browser: activate to sort column ascending"
+                  >
+                   Name En 
                   </th>
                   <th
                     class="sorting"
@@ -121,6 +131,7 @@
                   <td class="dtr-control sorting_1" tabindex="0">
                     {{ campaign.id }}
                   </td>
+                  <td>{{ campaign.arTitle }}</td>
                   <td>{{ campaign.enTitle }}</td>
                   <td>{{ campaign.type.enName }}</td>
                   <td class="col-1 text-center">

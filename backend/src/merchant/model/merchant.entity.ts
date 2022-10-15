@@ -10,6 +10,8 @@ import {
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
 import { Pos } from './pos.entity';
+import { SUBSCRIPTION_STATUS } from '../merchant.enum';
+import { getValuesFromEnum } from '../../shared/utils/columnEnum';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {
@@ -73,6 +75,20 @@ export class Merchant {
 
   @Column({ name: 'posBusinessId' })
   integrationId: string;
+
+  @Column({
+    name: 'idsubscription_status',
+    type: 'int',
+    default: 1,
+    transformer: {
+      to: (value?: SUBSCRIPTION_STATUS) => +SUBSCRIPTION_STATUS[value] || 1,
+      from: (value: number) => {
+        // as subscription status value starts from one , a random value was added for correct mapping
+        return ['random value', ...Object.keys(SUBSCRIPTION_STATUS)][value];
+      },
+    },
+  })
+  subscriptionStatus: string;
 
   @Column({ name: 'createdAt' })
   @CreateDateColumn()

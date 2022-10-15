@@ -10,6 +10,7 @@ export interface MerchantModel {
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
+  subscriptionStatus: string;
   integrationId: string;
   pos: PosModel;
   category: {

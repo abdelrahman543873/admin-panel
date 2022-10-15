@@ -3,6 +3,7 @@ import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from './pos.factory';
 import { Merchant } from '../../../src/merchant/model/merchant.entity';
 import { Pos } from '../../../src/merchant/model/pos.entity';
+import { SUBSCRIPTION_STATUS } from '../../../src/merchant/merchant.enum';
 
 interface MerchantType {
   enName?: string;
@@ -17,6 +18,7 @@ interface MerchantType {
   token?: string;
   phoneNumber?: string;
   integrationId?: string;
+  subscriptionStatus?: string;
 }
 
 export const buildMerchantParams = async (
@@ -35,6 +37,9 @@ export const buildMerchantParams = async (
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
     integrationId: obj.integrationId || datatype.string(),
+    subscriptionStatus:
+      obj.integrationId ||
+      random.arrayElement(Object.keys(SUBSCRIPTION_STATUS)),
   };
 };
 
