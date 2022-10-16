@@ -46,7 +46,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-2" *ngIf="totalNumberOfCampaigns === 0">
+          <div
+            class="col-sm-2"
+            *ngIf="totalNumberOfCampaigns === 0 && search.value"
+          >
             <p class="btn btn-default bg-maroon toastsDefaultMaroon">
               invalid campaign name
             </p>
@@ -92,7 +95,7 @@
                     colspan="1"
                     aria-label="Browser: activate to sort column ascending"
                   >
-                   Name En 
+                    Name En
                   </th>
                   <th
                     class="sorting"

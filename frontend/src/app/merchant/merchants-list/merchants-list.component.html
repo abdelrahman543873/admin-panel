@@ -49,7 +49,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-2" *ngIf="totalNumberOfMerchants === 0">
+          <div
+            class="col-sm-2"
+            *ngIf="totalNumberOfMerchants === 0 && search.value"
+          >
             <p class="btn btn-default bg-maroon toastsDefaultMaroon">
               invalid merchant name
             </p>
