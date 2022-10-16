@@ -17,10 +17,9 @@ import { join } from 'path';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: false,
+      migrationsRun: false,
       autoLoadEntities: true,
-      // migrations: [migration1664322329124],
-      // migrationsRun: true,
-      // logging: true,
+      migrations: [migration1664322329124],
     }),
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'client'),
