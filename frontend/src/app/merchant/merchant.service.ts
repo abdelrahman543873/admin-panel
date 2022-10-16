@@ -7,6 +7,7 @@ import { BranchInterface } from '../branch/intefaces/branch.interface';
 import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 import { PaginationDto } from '../shared/classes/pagination.dto';
 import { SearchBranchesDto } from './dto/search-branches.dto';
+import { SearchMerchantsDto } from './dto/search-merchants.dto';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}
@@ -15,7 +16,7 @@ export class MerchantService {
     return this.http.post(`${environment.host}/merchant`, input);
   }
 
-  getMerchants(input: PaginationDto = {}) {
+  getMerchants(input: SearchMerchantsDto = {}) {
     return this.http.get<PaginationInterface<MerchantModel>>(
       `${environment.host}/merchant`,
       { params: { ...input } },

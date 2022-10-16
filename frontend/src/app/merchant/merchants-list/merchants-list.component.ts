@@ -25,6 +25,20 @@ export class MerchantsListComponent implements OnInit {
     this.paginationLimit = limit;
     this.merchantService.getMerchants({ limit, offset }).subscribe((data) => {
       this.merchants = data.items;
+      this.totalNumberOfMerchants = data.meta.totalItems;
     });
+  }
+
+  searchMerchants(enName: string) {
+    this.merchantService
+      .getMerchants({
+        limit: this.paginationLimit,
+        offset: this.currentPage,
+        enName,
+      })
+      .subscribe((data) => {
+        this.merchants = data.items;
+        this.totalNumberOfMerchants = data.meta.totalItems;
+      });
   }
 }

@@ -2,21 +2,57 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <label for="numberOfEntries" class="col-sm-1">Show</label>
-        <div class="btn-group col-sm-2" id="numberOfEntries">
+        <div class="row">
+          <form class="col-sm-2" #merchantForm="ngForm">
+            <div class="input-group">
+              <input
+                type="search"
+                class="form-control form-control-lg"
+                placeholder="search for campaigns"
+                arDescription="search"
+                #search
+                ngModel
+              />
+              <div class="input-group-append">
+                <button
+                  type="submit"
+                  class="btn btn-lg btn-default"
+                  (click)="searchMerchants(search.value)"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
           <button
             type="button"
-            class="btn btn-default dropdown-toggle dropdown-icon"
-            data-toggle="dropdown"
-            aria-expanded="false"
+            class="btn btn-info col-sm-1"
+            routerLink="/frontend/home/merchant/add"
           >
-            {{ paginationLimit }}
+            Create new Merchant
           </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="paginate(15)">15</a>
-            <a class="dropdown-item" (click)="paginate(25)">25</a>
-            <a class="dropdown-item" (click)="paginate(50)">50</a>
-            <a class="dropdown-item" (click)="paginate(100)">100</a>
+          <div class="col-sm-4 offset-sm-4">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Show {{ paginationLimit }}
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="paginate(5)">5</a>
+              <a class="dropdown-item" (click)="paginate(25)">25</a>
+              <a class="dropdown-item" (click)="paginate(50)">50</a>
+              <a class="dropdown-item" (click)="paginate(100)">100</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2" *ngIf="!totalNumberOfMerchants">
+            <p class="btn btn-default bg-maroon toastsDefaultMaroon">
+              invalid merchant name
+            </p>
           </div>
         </div>
       </div>

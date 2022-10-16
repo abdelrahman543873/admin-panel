@@ -12,7 +12,6 @@ import { AddCampaignComponent } from '../add-campaign/add-campaign.component';
 export class CampaignListComponent implements OnInit {
   campaigns!: CampaignInterface[];
   @Input() merchantId!: number;
-  existingCampaigns: boolean = true;
   paginationLimit: number = 5;
   totalNumberOfCampaigns!: number;
   currentPage = 1;
@@ -29,12 +28,8 @@ export class CampaignListComponent implements OnInit {
     this.campaignService
       .searchCampaigns({ enTitle, merchantId: this.merchantId })
       .subscribe((campaigns) => {
-        if (campaigns.items.length) {
-          this.campaigns = campaigns.items;
-          this.totalNumberOfCampaigns = campaigns.meta.totalItems;
-        } else {
-          this.existingCampaigns = false;
-        }
+        this.campaigns = campaigns.items;
+        this.totalNumberOfCampaigns = campaigns.meta.totalItems;
       });
   }
 

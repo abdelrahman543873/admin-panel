@@ -16,7 +16,6 @@ export class BranchListComponent implements OnInit {
   currentPage = 1;
   branches?: BranchInterface[];
   @Input() merchantId!: number;
-  nonExistingBranchSearch: boolean = false;
 
   constructor(
     private merchantService: MerchantService,
@@ -51,11 +50,8 @@ export class BranchListComponent implements OnInit {
     this.merchantService
       .searchMerchantBranches({ merchantId: this.merchantId, enName })
       .subscribe((data) => {
-        if (data.items.length) {
-          this.branches = data.items;
-          this.nonExistingBranchSearch = false;
-          this.totalNumberOfBranches = data.meta.totalItems;
-        } else this.nonExistingBranchSearch = true;
+        this.branches = data.items;
+        this.totalNumberOfBranches = data.meta.totalItems;
       });
   }
 }

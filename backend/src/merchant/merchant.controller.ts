@@ -16,6 +16,7 @@ import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PaginationDto } from '../shared/dtos/pagination.dto';
+import { SearchMerchantsDto } from './inputs/search-merchants.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -40,7 +41,7 @@ export class MerchantController {
   }
 
   @Get()
-  async getMerchants(@Query() input: PaginationDto) {
+  async getMerchants(@Query() input: SearchMerchantsDto) {
     return await this.merchantService.getMerchants(input);
   }
 }

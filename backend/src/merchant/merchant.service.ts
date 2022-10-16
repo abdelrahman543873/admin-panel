@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AddMerchantInput } from './inputs/add-merchant.dto';
 import { MerchantRepository } from './repositories/merchant.repository';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
-import { PaginationDto } from '../shared/dtos/pagination.dto';
+import { SearchMerchantsDto } from './inputs/search-merchants.dto';
 
 @Injectable()
 export class MerchantService {
@@ -15,7 +15,7 @@ export class MerchantService {
     return this.merchantRepository.getMerchant(input);
   }
 
-  getMerchants(input: PaginationDto) {
+  getMerchants(input: SearchMerchantsDto) {
     return this.merchantRepository.getMerchants(input);
   }
 }
