@@ -3,7 +3,9 @@ import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { SearchCampaignsInput } from './inputs/search-campaigns.dto';
 import { AddCampaignDto } from './inputs/add-campaign.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Campaign')
 @Controller('campaign')
 export class CampaignController {
   constructor(private campaignService: CampaignService) {}

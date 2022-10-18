@@ -4,7 +4,9 @@ import { GetBranchInput } from './inputs/get-branch.dto';
 import { SearchBranchesInput } from '../branch/inputs/search-branches.input';
 import { BranchService } from './branch.service';
 import { IntegrateBranchDto } from './inputs/integrate-branch.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Branch')
 @Controller('branch')
 export class BranchController {
   constructor(private readonly branchService: BranchService) {}

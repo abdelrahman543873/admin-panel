@@ -3,7 +3,9 @@ import { AddDeviceInput } from './inputs/add-device.dto';
 import { GetDeviceInput } from './inputs/get-device.input';
 import { DeviceService } from './device.service';
 import { SearchDevicesDto } from './inputs/search-devices.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Device')
 @Controller('device')
 export class DeviceController {
   constructor(private readonly deviceService: DeviceService) {}
