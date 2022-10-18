@@ -17,7 +17,6 @@ interface MerchantType {
   pos?: Pos;
   token?: string;
   phoneNumber?: string;
-  integrationId?: string;
   subscriptionStatus?: string;
 }
 
@@ -31,14 +30,13 @@ export const buildMerchantParams = async (
     enDescription: obj.enDescription || name.title(),
     arDescription: obj.arDescription || name.title(),
     email: obj.email || internet.email(),
-    brandKey: obj.brandKey || random.word(),
+    brandKey: obj.brandKey ?? random.word(),
     imageUrl: obj.imageUrl || internet.url(),
     pos: obj.pos || (await posFactory()),
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
-    integrationId: obj.integrationId || datatype.string(),
     subscriptionStatus:
-      obj.integrationId ||
+      obj.subscriptionStatus ||
       random.arrayElement(Object.keys(SUBSCRIPTION_STATUS)),
   };
 };

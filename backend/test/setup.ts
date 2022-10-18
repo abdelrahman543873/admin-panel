@@ -15,6 +15,7 @@ import { MerchantCategoryRepository } from '../src/category/category.repository'
 import { MerchantStatusRepository } from '../src/merchant/repositories/merchant-status.repository';
 import { CampaignTypeRepository } from '../src/campaign/repositories/campaign-type.repository';
 import { CampaignImageRepository } from '../src/campaign/repositories/campaign-image.repository';
+import { ApplicationExceptionFilter } from '../src/shared/error/application-error.filter';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -30,6 +31,7 @@ export default async (): Promise<void> => {
       forbidNonWhitelisted: true,
     }),
   );
+  app.useGlobalFilters(new ApplicationExceptionFilter());
   app.setGlobalPrefix('backend');
   await app.init();
   global.app = app;

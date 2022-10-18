@@ -87,7 +87,7 @@
   "requiresCompatibilities": ["EC2"],
   "networkMode": null,
   "runtimePlatform": null,
-  "cpu": "512",
+  "cpu": "256",
   "revision": 27,
   "status": "ACTIVE",
   "inferenceAccelerators": null,

@@ -43,7 +43,7 @@ export class Merchant {
   })
   email: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'posBusinessId' })
   brandKey: string;
 
   @Column({ nullable: true })
@@ -72,9 +72,6 @@ export class Merchant {
   @OneToOne(() => Pos)
   @JoinColumn({ name: 'idPos' })
   pos: Pos;
-
-  @Column({ name: 'posBusinessId' })
-  integrationId: string;
 
   @Column({
     name: 'idsubscription_status',

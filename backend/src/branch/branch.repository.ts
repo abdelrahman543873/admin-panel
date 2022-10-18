@@ -23,8 +23,15 @@ export class BranchRepository extends BaseRepository<Branch> {
     return this.branch.save({ ...input, merchant: { id: input.merchantId } });
   }
 
+  updateBrandKey(id: number, brandKey: string) {
+    return this.branch.update({ id }, { brandKey });
+  }
+
   getBranch(input: GetBranchInput) {
-    return this.branch.findOne({ where: { id: input.id } });
+    return this.branch.findOne({
+      where: { id: input.id },
+      relations: ['merchant'],
+    });
   }
 
   searchBranches(input: SearchBranchesInput) {
