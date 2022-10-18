@@ -1,8 +1,8 @@
 import { internet, name, phone, random, datatype } from 'faker';
 import { merchantTestRepo } from '../test-repos/merchant.test-repo';
-import { posFactory } from './pos.factory';
+import { posFactory } from '../../pos/pos.factory';
 import { Merchant } from '../../../src/merchant/model/merchant.entity';
-import { Pos } from '../../../src/merchant/model/pos.entity';
+import { Pos } from '../../../src/pos/pos.entity';
 import { SUBSCRIPTION_STATUS } from '../../../src/merchant/merchant.enum';
 
 interface MerchantType {

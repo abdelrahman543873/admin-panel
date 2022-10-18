@@ -4,7 +4,7 @@ import { adminFactory } from '../admin/admin.factory';
 import { branchFactory } from './branch.factory';
 import { merchantFactory } from '../merchant/factories/merchant.factory';
 import { INTEGRATE_BRANCH } from '../endpoints/branch.endopints';
-import { posFactory } from '../merchant/factories/pos.factory';
+import { posFactory } from '../pos/pos.factory';
 describe('integrate branch suite case', () => {
   it('should integrate branch when the merchant has a brand key', async () => {
     const admin = await adminFactory();

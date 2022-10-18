@@ -1,8 +1,8 @@
 import { name, datatype, random } from 'faker';
-import { posTestRepo } from '../test-repos/pos.test-repo';
+import { posTestRepo } from './pos.test-repo';
 import { randomUUID } from 'crypto';
-import { merchantStatusFactory } from './merchant-status.factory';
-import { MerchantStatus } from '../../../src/merchant/model/merchant-status.entity';
+import { MerchantStatus } from '../../src/merchant/model/merchant-status.entity';
+
 interface PosType {
   type?: string;
   token?: string;

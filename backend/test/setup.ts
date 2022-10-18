@@ -6,7 +6,6 @@ import { useContainer } from 'class-validator';
 import { MerchantRepository } from '../src/merchant/repositories/merchant.repository';
 import { AdminRepository } from '../src/admin/admin.repository';
 import { JwtService } from '@nestjs/jwt';
-import { PosRepository } from '../src/merchant/repositories/pos.repository';
 import { BranchRepository } from '../src/branch/branch.repository';
 import { DeviceRepository } from '../src/device/device.repository';
 import { Connection } from 'typeorm';
@@ -16,6 +15,7 @@ import { MerchantStatusRepository } from '../src/merchant/repositories/merchant-
 import { CampaignTypeRepository } from '../src/campaign/repositories/campaign-type.repository';
 import { CampaignImageRepository } from '../src/campaign/repositories/campaign-image.repository';
 import { ApplicationExceptionFilter } from '../src/shared/error/application-error.filter';
+import { PosRepository } from '../src/pos/pos.repository';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({

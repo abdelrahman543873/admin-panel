@@ -9,9 +9,8 @@ import {
 } from 'typeorm';
 import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer';
 import * as bcrypt from 'bcryptjs';
-import { Pos } from './pos.entity';
+import { Pos } from '../../pos/pos.entity';
 import { SUBSCRIPTION_STATUS } from '../merchant.enum';
-import { getValuesFromEnum } from '../../shared/utils/columnEnum';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {

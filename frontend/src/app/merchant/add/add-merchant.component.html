@@ -4,122 +4,151 @@
   </div>
   <form #addMerchant="ngForm" (ngSubmit)="submit(addMerchant)">
     <div class="card-body">
-      <div class="form-group">
-        <label for="name_ar">Arabic Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name_ar"
-          arDescription="name_ar"
-          placeholder="Enter Merchant Arabic Name"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="name">English Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="name"
-          arDescription="name"
-          placeholder="Enter Merchant English Name"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="description">English Slogan</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          arDescription="description"
-          placeholder="Enter Merchant English Slogan"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="description_ar">Arabic Slogan</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description_ar"
-          arDescription="description_ar"
-          placeholder="Enter Merchant Arabic Slogan"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="email">Account Email</label>
-        <input
-          type="text"
-          class="form-control"
-          id="email"
-          arDescription="email"
-          email
-          placeholder="Enter Merchant Account Email"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="brandKey">Brand Key</label>
-        <input
-          type="text"
-          class="form-control"
-          id="brandKey"
-          arDescription="brandKey"
-          placeholder="Enter Merchant Brand Key "
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="imageUrl">Logo</label>
-        <div class="input-group">
-          <div class="custom-file">
-            <input
-              type="file"
-              class="custom-file-input"
-              id="imageUrl"
-              name="imageUrl"
-            />
-            <label class="custom-file-label" for="imageUrl">Choose file</label>
-          </div>
-          <div class="input-group-append">
-            <span class="input-group-text">Upload</span>
+      <div class="row">
+        <h5>Merchant Information</h5>
+        <div class="form-group col-6">
+          <label for="name_ar">Merchant Name Ar</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name_ar"
+            arDescription="name_ar"
+            placeholder="Enter Merchant Arabic Name"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="name">Merchant Name En</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            arDescription="name"
+            placeholder="Enter Merchant English Name"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="description">Merchant Slogan En</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            arDescription="description"
+            placeholder="Enter Merchant English Slogan"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="description_ar">Merchant Slogan Ar</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description_ar"
+            arDescription="description_ar"
+            placeholder="Enter Merchant Arabic Slogan"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="category">Merchant Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            placeholder="Enter Merchant Category"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="imageUrl">Merchant Logo</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="imageUrl"
+                name="imageUrl"
+              />
+              <label class="custom-file-label" for="imageUrl"
+                >Choose file</label
+              >
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text">Upload</span>
+            </div>
           </div>
         </div>
+        <div class="form-group col-6">
+          <label for="email">Account Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            arDescription="email"
+            email
+            placeholder="Enter Merchant Account Email"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label for="pos">Account Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Enter Merchant password"
+            ngModel
+          />
+        </div>
       </div>
-      <div class="form-group">
-        <label for="pos">Pos</label>
-        <input
-          type="number"
-          class="form-control"
-          id="pos"
-          arDescription="pos"
-          placeholder="Enter Merchant pos"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="category">Category</label>
-        <input
-          type="number"
-          class="form-control"
-          id="category"
-          arDescription="category"
-          placeholder="Enter Merchant category"
-          ngModel
-        />
-      </div>
-      <div class="form-group">
-        <label for="pos">password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          arDescription="password"
-          placeholder="Enter Merchant password"
-          ngModel
-        />
+      <div class="row">
+        <h5>Merchant Integration</h5>
+        <div class="form-group col-6">
+          <div class="form-group">
+            <label for="Pos">Pos</label>
+            <select
+              #mySelect
+              (change)="selectPos(mySelect.value)"
+              class="custom-select"
+            >
+              <option *ngFor="let pos of poses" [value]="pos">
+                {{ pos }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-6" *ngIf="currentPosSelection === 'Marn'">
+          <label for="brandKey">Brand Key</label>
+          <input
+            type="text"
+            class="form-control"
+            id="brandKey"
+            arDescription="brandKey"
+            placeholder="Enter Merchant Brand Key "
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6" *ngIf="currentPosSelection === 'Ratm'">
+          <label for="brandKey">Integration Id</label>
+          <input
+            type="text"
+            class="form-control"
+            arDescription="brandKey"
+            placeholder="Enter Merchant Brand Key "
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6" *ngIf="currentPosSelection === 'Ratm'">
+          <label for="brandKey">Access Token</label>
+          <input
+            type="text"
+            class="form-control"
+            arDescription="brandKey"
+            placeholder="Enter Merchant Brand Key "
+            ngModel
+          />
+        </div>
       </div>
     </div>
     <div class="card-footer">

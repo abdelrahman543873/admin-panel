@@ -1,3 +1,4 @@
+import { MerchantStatus } from '../merchant/model/merchant-status.entity';
 import {
   Column,
   Entity,
@@ -5,7 +6,6 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { MerchantStatus } from './merchant-status.entity';
 
 @Entity({ name: 'POS' })
 export class Pos {

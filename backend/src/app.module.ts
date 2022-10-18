@@ -9,6 +9,7 @@ import { CampaignModule } from './campaign/campaign.module';
 import { BranchModule } from './branch/branch.module';
 import { DeviceModule } from './device/device.module';
 import { CategoryModule } from './category/category.module';
+import { PosModule } from './pos/pos.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CategoryModule } from './category/category.module';
     BranchModule,
     DeviceModule,
     CategoryModule,
+    PosModule,
   ],
   providers: [AppService],
   controllers: [AppController],

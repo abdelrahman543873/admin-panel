@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { PosRepository } from '../repositories/pos.repository';
 import {
   registerDecorator,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
+import { PosRepository } from '../pos.repository';
 
 @ValidatorConstraint({ async: true })
 @Injectable()

@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { IsExistingPos } from '../validators/is-existing-pos.validator';
+import { IsExistingPos } from '../../pos/validators/is-existing-pos.validator';
 
 export class AddMerchantInput {
   @IsString()

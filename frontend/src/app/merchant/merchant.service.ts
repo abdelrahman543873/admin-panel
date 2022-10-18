@@ -5,7 +5,6 @@ import { environment } from '../../environments/environment';
 import { MerchantModel } from './interfaces/merchant.interface';
 import { BranchInterface } from '../branch/intefaces/branch.interface';
 import { PaginationInterface } from '../shared/interfaces/pagination.interface';
-import { PaginationDto } from '../shared/classes/pagination.dto';
 import { SearchBranchesDto } from './dto/search-branches.dto';
 import { SearchMerchantsDto } from './dto/search-merchants.dto';
 @Injectable({ providedIn: 'root' })

@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, BaseEntity } from 'typeorm';
+import { Repository } from 'typeorm';
 import { AddMerchantInput } from '../inputs/add-merchant.dto';
 import { Merchant } from '../model/merchant.entity';
 import { GetMerchantInput } from '../inputs/get-merchant.dto';
 import { BaseRepository } from '../../shared/abstract/repository.abstract';
 import { paginate } from 'nestjs-typeorm-paginate';
-import { PaginationDto } from '../../shared/dtos/pagination.dto';
 import { SearchMerchantsDto } from '../inputs/search-merchants.dto';
 
 @Injectable()
