@@ -76,12 +76,12 @@ export class Merchant {
   @Column({
     name: 'idsubscription_status',
     type: 'int',
-    default: 1,
     transformer: {
-      to: (value?: SUBSCRIPTION_STATUS) => +SUBSCRIPTION_STATUS[value] || 1,
+      to: (value?: SUBSCRIPTION_STATUS) => {
+        return +SUBSCRIPTION_STATUS[value] || 1;
+      },
       from: (value: number) => {
-        // as subscription status value starts from one , a random value was added for correct mapping
-        return ['random value', ...Object.keys(SUBSCRIPTION_STATUS)][value];
+        return [...Object.keys(SUBSCRIPTION_STATUS)][value - 1];
       },
     },
   })

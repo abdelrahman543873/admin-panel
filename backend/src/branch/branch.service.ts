@@ -6,7 +6,6 @@ import { BranchRepository } from './branch.repository';
 import { IntegrateBranchDto } from './inputs/integrate-branch.dto';
 import { ApplicationException } from '../shared/error/application.exception';
 import { IntegrationService } from '../shared/integration/integration.service';
-import { MarnResponse } from '../shared/integration/interfaces/marn.interface';
 @Injectable()
 export class BranchService {
   constructor(
@@ -22,23 +21,30 @@ export class BranchService {
 
   async integrateBranch(input: IntegrateBranchDto) {
     const branch = await this.branchRepository.getBranch({ id: input.id });
-    let brandKeys: MarnResponse;
+    let posBrandKeys: Array<string>;
     // will favour a stored brand key over input brand key
     // only uses input brand key if there is no brand key stored in the merchant
     if (branch.merchant.brandKey) {
-      brandKeys = await this.integrationService.fetchMarnLocationBrandKeys(
-        branch.merchant.brandKey,
-      );
+      posBrandKeys = await this.integrationService.fetchBranchBrandKeys({
+        brandKey: branch.merchant.brandKey,
+        pos: branch.merchant.pos.title,
+      });
     } else if (!branch.merchant.brandKey && input.brandKey) {
-      brandKeys = await this.integrationService.fetchMarnLocationBrandKeys(
-        input.brandKey,
-      );
+      posBrandKeys = await this.integrationService.fetchBranchBrandKeys({
+        brandKey: input.brandKey,
+        pos: branch.merchant.pos.title,
+      });
     } else if (!branch.merchant.brandKey && !input.brandKey) {
       throw new ApplicationException(602);
     }
+    // allows user to choose which pos branch to integrate if there is more than one pos branch available
+    // and throws error , if user enters branch id that is larger than available pos branches
+    if (posBrandKeys.length > 1 && input.posBranch + 1 > posBrandKeys.length) {
+      throw new ApplicationException(604);
+    }
     await this.branchRepository.updateBrandKey(
       branch.id,
-      brandKeys.Locations[0].LocationKey,
+      posBrandKeys.length > 1 ? posBrandKeys[input.posBranch] : posBrandKeys[0],
     );
     return this.branchRepository.getBranch(input);
   }

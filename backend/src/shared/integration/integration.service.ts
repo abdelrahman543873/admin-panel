@@ -21,6 +21,18 @@ export class IntegrationService {
     if (!marnResponse.data.Locations.length) {
       throw new ApplicationException(601);
     }
-    return marnResponse.data;
+    return marnResponse.data.Locations.map((location) => {
+      return location.LocationKey;
+    });
+  }
+
+  async fetchBranchBrandKeys(input: { pos: string; brandKey: string }) {
+    const integrations = {
+      Marn: this.fetchMarnLocationBrandKeys(input.brandKey),
+    };
+    if (!Object.keys(integrations).includes(input.pos)) {
+      throw new ApplicationException(603);
+    }
+    return integrations[input.pos];
   }
 }

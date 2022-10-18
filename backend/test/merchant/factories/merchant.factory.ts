@@ -35,9 +35,7 @@ export const buildMerchantParams = async (
     pos: obj.pos || (await posFactory()),
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
-    subscriptionStatus:
-      obj.subscriptionStatus ||
-      random.arrayElement(Object.keys(SUBSCRIPTION_STATUS)),
+    subscriptionStatus: obj.subscriptionStatus || 'TRIAL',
   };
 };
 

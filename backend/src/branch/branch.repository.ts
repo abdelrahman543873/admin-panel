@@ -30,7 +30,7 @@ export class BranchRepository extends BaseRepository<Branch> {
   getBranch(input: GetBranchInput) {
     return this.branch.findOne({
       where: { id: input.id },
-      relations: ['merchant'],
+      relations: { merchant: { pos: true } },
     });
   }
 
