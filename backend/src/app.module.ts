@@ -8,7 +8,7 @@ import { AppController } from './app.controller';
 import { CampaignModule } from './campaign/campaign.module';
 import { BranchModule } from './branch/branch.module';
 import { DeviceModule } from './device/device.module';
-import { CategoryModule } from './merchant-category/category.module';
+import { MerchantCategoryModule } from './merchant-category/merchant-category.module';
 import { PosModule } from './pos/pos.module';
 
 @Module({
@@ -20,7 +20,7 @@ import { PosModule } from './pos/pos.module';
     CampaignModule,
     BranchModule,
     DeviceModule,
-    CategoryModule,
+    MerchantCategoryModule,
     PosModule,
   ],
   providers: [AppService],

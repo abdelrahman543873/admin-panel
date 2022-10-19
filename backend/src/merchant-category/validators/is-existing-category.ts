@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MerchantCategoryRepository } from '../category.repository';
+import { MerchantCategoryRepository } from '../merchant-category.repository';
 import {
   registerDecorator,
   ValidationOptions,
