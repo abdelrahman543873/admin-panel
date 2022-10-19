@@ -24,6 +24,7 @@ export class AddMerchantComponent implements OnInit {
   }
 
   submit(form: NgForm) {
+    if (form.invalid) return;
     this.merchantService
       .addMerchant({ ...form.value, pos: form.value.pos.id })
       .subscribe((data) => {

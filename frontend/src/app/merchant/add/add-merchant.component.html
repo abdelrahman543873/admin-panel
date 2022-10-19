@@ -109,9 +109,10 @@
             <label>Pos</label>
             <select
               class="custom-select"
-              [ngModel]="poses"
+              [ngModel]="pos.value"
               name="pos"
               #pos="ngModel"
+              required
             >
               <option *ngFor="let pos of poses" [ngValue]="pos">
                 {{ pos.title }}
@@ -119,7 +120,7 @@
             </select>
           </div>
         </div>
-        <div class="form-group col-6" *ngIf="pos.value.title === 'Marn'">
+        <div class="form-group col-6" *ngIf="pos.value?.title === 'Marn'">
           <label>Brand Key</label>
           <input
             type="text"
@@ -131,11 +132,11 @@
             required
           />
         </div>
-        <div class="form-group col-6" *ngIf="pos.value.title === 'Ratm'">
+        <div class="form-group col-6" *ngIf="pos.value?.title === 'Ratm'">
           <label>Integration Id</label>
           <button type="button" class="form-control">integration id</button>
         </div>
-        <div class="form-group col-6" *ngIf="pos.value.title === 'Ratm'">
+        <div class="form-group col-6" *ngIf="pos.value?.title === 'Ratm'">
           <label>Access Token</label>
           <input
             type="text"
