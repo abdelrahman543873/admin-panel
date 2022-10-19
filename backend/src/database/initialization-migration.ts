@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class migration1664322329124 implements MigrationInterface {
-  name = 'migration1664322329139';
+  name = 'migration1664322329149';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -58,10 +58,10 @@ export class migration1664322329124 implements MigrationInterface {
       `ALTER TABLE \`Merchant\` ADD \`idCategory\` int NULL`,
     );
     await queryRunner.query(
-      `ALTER TABLE \`Merchant\` ADD UNIQUE INDEX \`IDX_f5afc6bd442e26f5f60503c117\` (\`idCategory\`)`,
+      `ALTER TABLE \`Merchant\` ADD INDEX \`IDX_f5afc6bd442e26f5f60503c117\` (\`idCategory\`)`,
     );
     await queryRunner.query(
-      `CREATE UNIQUE INDEX \`REL_f5afc6bd442e26f5f60503c117\` ON \`Merchant\` (\`idCategory\`)`,
+      `CREATE INDEX \`REL_f5afc6bd442e26f5f60503c117\` ON \`Merchant\` (\`idCategory\`)`,
     );
     await queryRunner.query(
       `ALTER TABLE \`Merchant\` ADD CONSTRAINT \`FK_f5afc6bd442e26f5f60503c117c\` FOREIGN KEY (\`idCategory\`) REFERENCES \`MerchantCategory\`(\`idMerchantCategory\`) ON DELETE NO ACTION ON UPDATE NO ACTION`,

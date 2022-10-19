@@ -8,4 +8,6 @@ export class AddMerchantInput {
   brandKey?: string;
   pos!: number;
   password!: string;
+  category!: number;
+  file!: File;
 }

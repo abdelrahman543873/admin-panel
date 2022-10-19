@@ -12,7 +12,14 @@ export class MerchantService {
   constructor(private readonly http: HttpClient) {}
 
   addMerchant(input: AddMerchantInput) {
-    return this.http.post(`${environment.host}/merchant`, input);
+    const uploadData = new FormData();
+    Object.keys(input).forEach((key) => {
+      if (key === 'file')
+        uploadData.append('imageUrl', input.file, input.file.name);
+      // @ts-ignore: Unreachable code error
+      else uploadData.append(key, input[key]);
+    });
+    return this.http.post(`${environment.host}/merchant`, uploadData);
   }
 
   getMerchants(input: SearchMerchantsDto = {}) {

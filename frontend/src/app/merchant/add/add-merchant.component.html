@@ -51,15 +51,20 @@
           />
         </div>
         <div class="form-group col-6">
-          <label>Merchant Category</label>
-          <input
-            type="text"
-            class="form-control"
-            name="category"
-            placeholder="Enter Merchant Category"
-            ngModel
-            required
-          />
+          <div class="form-group">
+            <label>Merchant Category</label>
+            <select
+              class="custom-select"
+              [ngModel]="category.value"
+              name="category"
+              #category="ngModel"
+              required
+            >
+              <option *ngFor="let category of categories" [ngValue]="category">
+                {{ category.enTitle }}
+              </option>
+            </select>
+          </div>
         </div>
         <div class="form-group col-6">
           <label>Merchant Logo</label>
@@ -68,8 +73,7 @@
               <input
                 type="file"
                 class="custom-file-input"
-                id="imageUrl"
-                name="imageUrl"
+                (change)="selectFile($event)"
               />
               <label class="custom-file-label">Choose file</label>
             </div>
@@ -97,6 +101,17 @@
             class="form-control"
             name="password"
             placeholder="Enter Merchant password"
+            ngModel
+            required
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            placeholder="Enter Merchant Phone number"
             ngModel
             required
           />

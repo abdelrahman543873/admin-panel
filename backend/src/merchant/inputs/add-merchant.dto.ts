@@ -15,10 +15,9 @@ export class AddMerchantInput {
   enName: string;
 
   //TODO change to phone number validation
-  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  phoneNumber?: string;
+  phoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
