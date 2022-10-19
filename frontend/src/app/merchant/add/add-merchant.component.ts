@@ -13,6 +13,7 @@ export class AddMerchantComponent implements OnInit {
   poses!: Array<{ title: string; id: number }>;
   categories!: Array<{ enTitle: string; id: number }>;
   selectedFile!: File;
+  merchantAdded = false;
   constructor(
     private merchantService: MerchantService,
     private posService: PosService,
@@ -45,7 +46,7 @@ export class AddMerchantComponent implements OnInit {
         file: this.selectedFile,
       })
       .subscribe((data) => {
-        console.log(data);
+        this.merchantAdded = true;
       });
   }
 }

@@ -171,6 +171,15 @@
       <div class="row">
         <button
           type="button"
+          class="btn btn-success toastsDefaultSuccess col-3"
+          *ngIf="merchantAdded"
+        >
+          Merchant Add successfully
+        </button>
+      </div>
+      <div class="row">
+        <button
+          type="button"
           class="btn btn-danger toastsDefaultDanger col-3"
           *ngIf="
             addMerchant.submitted &&
