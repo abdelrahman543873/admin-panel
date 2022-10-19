@@ -19,7 +19,6 @@ async function bootstrap() {
       exposedHeaders: '*',
     },
   });
-  app.enableCors();
   const config = app.get(ConfigService);
   app.use(cookieParser());
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
