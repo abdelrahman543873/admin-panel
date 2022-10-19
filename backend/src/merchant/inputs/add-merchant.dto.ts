@@ -15,9 +15,10 @@ export class AddMerchantInput {
   enName: string;
 
   //TODO change to phone number validation
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  phoneNumber: string;
+  phoneNumber?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -34,15 +35,10 @@ export class AddMerchantInput {
   @IsEmail()
   email: string;
 
-  @IsString()
-  @IsNotEmpty()
-  brandKey: string;
-
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ type: 'string', format: 'binary' })
-  imageUrl: string;
+  brandKey?: string;
 
   @IsExistingPos()
   @IsInt()

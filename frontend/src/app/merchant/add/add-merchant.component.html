@@ -7,61 +7,62 @@
       <div class="row">
         <h5>Merchant Information</h5>
         <div class="form-group col-6">
-          <label for="name_ar">Merchant Name Ar</label>
+          <label>Merchant Name Ar</label>
           <input
             type="text"
             class="form-control"
-            id="name_ar"
-            arDescription="name_ar"
+            name="arName"
             placeholder="Enter Merchant Arabic Name"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="name">Merchant Name En</label>
+          <label>Merchant Name En</label>
           <input
             type="text"
             class="form-control"
-            id="name"
-            arDescription="name"
+            name="enName"
             placeholder="Enter Merchant English Name"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="description">Merchant Slogan En</label>
+          <label>Merchant Slogan En</label>
           <input
             type="text"
             class="form-control"
-            id="description"
-            arDescription="description"
+            name="enDescription"
             placeholder="Enter Merchant English Slogan"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="description_ar">Merchant Slogan Ar</label>
+          <label>Merchant Slogan Ar</label>
           <input
             type="text"
             class="form-control"
-            id="description_ar"
-            arDescription="description_ar"
+            name="arDescription"
             placeholder="Enter Merchant Arabic Slogan"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="category">Merchant Category</label>
+          <label>Merchant Category</label>
           <input
             type="text"
             class="form-control"
-            id="category"
+            name="category"
             placeholder="Enter Merchant Category"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="imageUrl">Merchant Logo</label>
+          <label>Merchant Logo</label>
           <div class="input-group">
             <div class="custom-file">
               <input
@@ -70,9 +71,7 @@
                 id="imageUrl"
                 name="imageUrl"
               />
-              <label class="custom-file-label" for="imageUrl"
-                >Choose file</label
-              >
+              <label class="custom-file-label">Choose file</label>
             </div>
             <div class="input-group-append">
               <span class="input-group-text">Upload</span>
@@ -80,25 +79,26 @@
           </div>
         </div>
         <div class="form-group col-6">
-          <label for="email">Account Email</label>
+          <label>Account Email</label>
           <input
             type="text"
             class="form-control"
-            id="email"
-            arDescription="email"
+            name="email"
             email
             placeholder="Enter Merchant Account Email"
             ngModel
+            required
           />
         </div>
         <div class="form-group col-6">
-          <label for="pos">Account Password</label>
+          <label>Account Password</label>
           <input
             type="password"
             class="form-control"
-            id="password"
+            name="password"
             placeholder="Enter Merchant password"
             ngModel
+            required
           />
         </div>
       </div>
@@ -106,20 +106,21 @@
         <h5>Merchant Integration</h5>
         <div class="form-group col-6">
           <div class="form-group">
-            <label for="Pos">Pos</label>
+            <label>Pos</label>
             <select
-              #mySelect
-              (change)="selectPos(mySelect.value)"
               class="custom-select"
+              [ngModel]="poses"
+              name="pos"
+              #pos="ngModel"
             >
-              <option *ngFor="let pos of poses" [value]="pos">
-                {{ pos }}
+              <option *ngFor="let pos of poses" [ngValue]="pos">
+                {{ pos.title }}
               </option>
             </select>
           </div>
         </div>
-        <div class="form-group col-6" *ngIf="currentPosSelection === 'Marn'">
-          <label for="brandKey">Brand Key</label>
+        <div class="form-group col-6" *ngIf="pos.value.title === 'Marn'">
+          <label>Brand Key</label>
           <input
             type="text"
             class="form-control"
@@ -127,31 +128,43 @@
             arDescription="brandKey"
             placeholder="Enter Merchant Brand Key "
             ngModel
+            required
           />
         </div>
-        <div class="form-group col-6" *ngIf="currentPosSelection === 'Ratm'">
-          <label for="brandKey">Integration Id</label>
+        <div class="form-group col-6" *ngIf="pos.value.title === 'Ratm'">
+          <label>Integration Id</label>
+          <button type="button" class="form-control">integration id</button>
+        </div>
+        <div class="form-group col-6" *ngIf="pos.value.title === 'Ratm'">
+          <label>Access Token</label>
           <input
             type="text"
             class="form-control"
-            arDescription="brandKey"
-            ngModel
-          />
-        </div>
-        <div class="form-group col-6" *ngIf="currentPosSelection === 'Ratm'">
-          <label for="brandKey">Access Token</label>
-          <input
-            type="text"
-            class="form-control"
-            arDescription="brandKey"
+            name="brandKey"
             placeholder="Enter Merchant Brand Key "
             ngModel
+            required
           />
         </div>
       </div>
     </div>
     <div class="card-footer">
-      <button class="btn btn-primary">Submit</button>
+      <div class="row">
+        <button class="btn btn-primary col-3">Submit</button>
+      </div>
+      <div class="row">
+        <button
+          type="button"
+          class="btn btn-danger toastsDefaultDanger col-3"
+          *ngIf="
+            addMerchant.submitted &&
+            addMerchant.invalid &&
+            (addMerchant.dirty || addMerchant.touched)
+          "
+        >
+          please enter all fields correctly
+        </button>
+      </div>
     </div>
   </form>
 </div>

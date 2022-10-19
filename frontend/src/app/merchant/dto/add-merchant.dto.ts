@@ -1,12 +1,11 @@
 export class AddMerchantInput {
-  name?: string;
-  name_ar?: string;
-  description?: string;
-  description_ar?: string;
-  email?: string;
+  enName!: string;
+  phoneNumber!: string;
+  arName!: string;
+  enDescription!: string;
+  arDescription!: string;
+  email!: string;
   brandKey?: string;
-  imageUrl?: string;
-  pos?: number;
-  category?: number;
-  password?: string;
+  pos!: number;
+  password!: string;
 }
