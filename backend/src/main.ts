@@ -11,7 +11,14 @@ import { useContainer } from 'class-validator';
 import { ApplicationExceptionFilter } from './shared/error/application-error.filter';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    cors: {
+      allowedHeaders: '*',
+      origin: '*',
+      methods: '*',
+      exposedHeaders: '*',
+    },
+  });
   app.enableCors();
   const config = app.get(ConfigService);
   app.use(cookieParser());
