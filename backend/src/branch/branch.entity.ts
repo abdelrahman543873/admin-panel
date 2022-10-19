@@ -68,6 +68,9 @@ export class Branch {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
+  @Column({ nullable: true })
+  activationDate?: Date;
+
   @Column({ name: 'nameEn' })
   enName: string;
 

@@ -18,9 +18,9 @@ export class AddBranchComponent {
     public readonly branchService: BranchService,
   ) {}
 
-  addBranch(branchDto: AddBranchDto) {
+  addBranch(branchDto: NgForm) {
     this.branchService
-      .addBranch({ ...branchDto, merchantId: this.merchantId })
+      .addBranch({ ...branchDto.value, merchantId: this.merchantId })
       .subscribe((branch) => {
         if (branch.id) {
           this.branchAdded.emit();

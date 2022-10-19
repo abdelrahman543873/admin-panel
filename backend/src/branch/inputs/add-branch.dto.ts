@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsExistingMerchant } from '../../merchant/validators/is-existing-merchant';
 import {
+  IsDate,
   IsInt,
   IsLatitude,
   IsLongitude,
@@ -18,6 +19,10 @@ export class AddBranchInput {
   @IsString()
   @IsNotEmpty()
   arName: string;
+
+  @IsDate()
+  @Type(() => Date)
+  activationDate?: Date;
 
   @IsString()
   @IsNotEmpty()

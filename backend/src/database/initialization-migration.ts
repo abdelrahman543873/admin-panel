@@ -66,6 +66,9 @@ export class migration1664322329124 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE \`Merchant\` ADD CONSTRAINT \`FK_f5afc6bd442e26f5f60503c117c\` FOREIGN KEY (\`idCategory\`) REFERENCES \`MerchantCategory\`(\`idMerchantCategory\`) ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
+    await queryRunner.query(
+      `ALTER TABLE \`Branch\` ADD \`activationDate\` datetime NULL`,
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {}

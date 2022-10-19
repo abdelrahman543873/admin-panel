@@ -14,11 +14,10 @@
   <form #addBranchDto="ngForm">
     <div class="card-body">
       <div class="form-group">
-        <label for="enName">English Name</label>
+        <label>Branch Name En</label>
         <input
           type="text"
           class="form-control"
-          id="enName"
           name="enName"
           placeholder="Enter Branch English Name"
           ngModel
@@ -26,11 +25,10 @@
         />
       </div>
       <div class="form-group">
-        <label for="arName">Arabic Name</label>
+        <label>Branch Name Ar</label>
         <input
           type="text"
           class="form-control"
-          id="arName"
           name="arName"
           placeholder="Enter Branch Arabic Name"
           ngModel
@@ -38,55 +36,11 @@
         />
       </div>
       <div class="form-group">
-        <label for="managerName">Manager Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="managerName"
-          name="managerName"
-          placeholder="Enter Manager Name"
-          ngModel
-          required
-        />
+        <label>Activation Date</label>
+        <input type="date" class="form-control" name="activationDate" ngModel />
       </div>
       <div class="form-group">
-        <label for="managerPhoneNumber">Manager Phone</label>
-        <input
-          type="string"
-          class="form-control"
-          id="managerPhoneNumber"
-          name="managerPhoneNumber"
-          placeholder="Enter Manager Phone"
-          ngModel
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="enDistrict">District</label>
-        <input
-          type="text"
-          class="form-control"
-          id="enDistrict"
-          name="enDistrict"
-          placeholder="Enter District Name"
-          ngModel
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="arDistrict">District Arabic Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="arDistrict"
-          name="arDistrict"
-          placeholder="Enter District Arabic Name"
-          ngModel
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="latitude">Latitude</label>
+        <label>Latitude</label>
         <input
           type="number"
           class="form-control"
@@ -98,7 +52,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="longitude">Longitude</label>
+        <label>Longitude</label>
         <input
           type="number"
           class="form-control"
@@ -124,7 +78,7 @@
   <button
     type="submit"
     class="btn btn-primary"
-    (click)="addBranch(addBranchDto.value)"
+    (click)="addBranch(addBranchDto)"
   >
     Save changes
   </button>
