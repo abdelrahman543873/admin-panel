@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { AddMerchantInput } from '../inputs/add-merchant.dto';
 import { Merchant } from '../model/merchant.entity';
 import { GetMerchantInput } from '../inputs/get-merchant.dto';
@@ -43,7 +43,10 @@ export class MerchantRepository extends BaseRepository<Merchant> {
       this.merchant,
       { limit: input.limit, page: input.offset },
       {
-        where: { ...(input.enName && { enName: input.enName }) },
+        where: {
+          ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
+          ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
+        },
         relations: ['pos'],
       },
     );

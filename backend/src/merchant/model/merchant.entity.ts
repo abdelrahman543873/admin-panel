@@ -95,6 +95,9 @@ export class Merchant {
   @CreateDateColumn()
   createdAt: Date;
 
+  @Column({ name: 'idEcommerceType' })
+  ecommerceType?: number;
+
   @Column()
   @UpdateDateColumn()
   updatedAt: Date;

@@ -13,6 +13,7 @@ export interface MerchantModel {
   subscriptionStatus: string;
   integrationId: string;
   pos: PosModel;
+  ecommerceType?: number;
   category: {
     id: number;
     name: string;

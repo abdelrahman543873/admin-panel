@@ -6,4 +6,9 @@ export class SearchMerchantsDto extends PaginationDto {
   @IsNotEmpty()
   @IsString()
   enName?: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  arName?: string;
 }
