@@ -10,7 +10,7 @@ import { BranchRepository } from '../src/branch/branch.repository';
 import { DeviceRepository } from '../src/device/device.repository';
 import { Connection } from 'typeorm';
 import { CampaignRepository } from '../src/campaign/repositories/campaign.repository';
-import { MerchantCategoryRepository } from '../src/category/category.repository';
+import { MerchantCategoryRepository } from '../src/merchant-category/category.repository';
 import { MerchantStatusRepository } from '../src/merchant/repositories/merchant-status.repository';
 import { CampaignTypeRepository } from '../src/campaign/repositories/campaign-type.repository';
 import { CampaignImageRepository } from '../src/campaign/repositories/campaign-image.repository';

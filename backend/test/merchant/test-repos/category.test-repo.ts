@@ -1,4 +1,4 @@
-import { CategoryRepository } from '../../../src/category/category.repository';
+import { CategoryRepository } from '../../../src/merchant-category/category.repository';
 
 export const categoryTestRepo = (): CategoryRepository =>
   global.categoryRepository;

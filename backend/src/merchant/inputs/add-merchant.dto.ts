@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsEmail,
@@ -7,6 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { IsExistingMerchantCategory } from '../../merchant-category/validators/is-existing-category';
 import { IsExistingPos } from '../../pos/validators/is-existing-pos.validator';
 
 export class AddMerchantInput {
@@ -44,6 +44,11 @@ export class AddMerchantInput {
   @IsInt()
   @Type(() => Number)
   pos: number;
+
+  @IsExistingMerchantCategory()
+  @IsInt()
+  @Type(() => Number)
+  category: number;
 
   @IsOptional()
   @IsString()

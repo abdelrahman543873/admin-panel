@@ -20,6 +20,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     return this.merchant.save({
       ...input,
       pos: { id: input.pos },
+      category: { id: input.category },
       ...(logo && {
         imageUrl: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
       }),

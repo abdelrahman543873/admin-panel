@@ -3,7 +3,8 @@ import { merchantTestRepo } from '../test-repos/merchant.test-repo';
 import { posFactory } from '../../pos/pos.factory';
 import { Merchant } from '../../../src/merchant/model/merchant.entity';
 import { Pos } from '../../../src/pos/pos.entity';
-import { SUBSCRIPTION_STATUS } from '../../../src/merchant/merchant.enum';
+import { MerchantCategory } from '../../../src/merchant-category/merchant-category.entity';
+import { merchantCategoryFactory } from '../../merchant-category/merchant-category.factory';
 
 interface MerchantType {
   enName?: string;
@@ -18,6 +19,7 @@ interface MerchantType {
   token?: string;
   phoneNumber?: string;
   subscriptionStatus?: string;
+  category?: MerchantCategory;
 }
 
 export const buildMerchantParams = async (
@@ -33,6 +35,7 @@ export const buildMerchantParams = async (
     brandKey: obj.brandKey ?? random.word(),
     imageUrl: obj.imageUrl || internet.url(),
     pos: obj.pos || (await posFactory()),
+    category: obj.category || (await merchantCategoryFactory()),
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
     subscriptionStatus: obj.subscriptionStatus || 'TRIAL',
@@ -46,5 +49,6 @@ export const merchantFactory = async (
   return await merchantTestRepo().save({
     ...params,
     pos: { id: params.pos.id },
+    category: { id: params.category.id },
   });
 };

@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'MerchantCategory' })
 export class MerchantCategory {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'idMerchantCategory' })
   id: number;
 
   @Column({ unique: true, name: 'titleEn' })

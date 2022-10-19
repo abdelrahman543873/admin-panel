@@ -11,6 +11,7 @@ import { lowerCaseTransformer } from '../../shared/utils/lower-case-transformer'
 import * as bcrypt from 'bcryptjs';
 import { Pos } from '../../pos/pos.entity';
 import { SUBSCRIPTION_STATUS } from '../merchant.enum';
+import { MerchantCategory } from '../../merchant-category/merchant-category.entity';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {
@@ -71,6 +72,10 @@ export class Merchant {
   @OneToOne(() => Pos)
   @JoinColumn({ name: 'idPos' })
   pos: Pos;
+
+  @OneToOne(() => MerchantCategory)
+  @JoinColumn({ name: 'idCategory' })
+  category: MerchantCategory;
 
   @Column({
     name: 'idsubscription_status',
