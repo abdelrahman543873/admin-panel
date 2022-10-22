@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MerchantService } from '../merchant.service';
 import { PosService } from '../../pos/pos.service';
 import { MerchantCategoryService } from '../../merchant-category/merchant-category.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-add-merchant',
   templateUrl: './add-merchant.component.html',
   styleUrls: ['./add-merchant.component.scss'],
 })
-export class AddMerchantComponent implements OnInit {
+export class AddMerchantComponent implements OnInit, OnDestroy {
   poses!: Array<{ title: string; id: number }>;
   categories!: Array<{ enTitle: string; id: number }>;
   selectedFile!: File;
-  merchantAdded = false;
   constructor(
     private merchantService: MerchantService,
     private posService: PosService,
     private merchantCategoryService: MerchantCategoryService,
+    public activeModal: NgbActiveModal,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +40,10 @@ export class AddMerchantComponent implements OnInit {
   }
 
   async submit(form: NgForm) {
-    if (form.invalid) return;
+    if (form.invalid) {
+      this.showDanger();
+      return;
+    }
     this.merchantService
       .addMerchant({
         ...form.value,
@@ -46,7 +52,25 @@ export class AddMerchantComponent implements OnInit {
         file: this.selectedFile,
       })
       .subscribe((data) => {
-        this.merchantAdded = true;
+        this.showSuccess(data.enName);
       });
+  }
+
+  showSuccess(merchantName: string) {
+    this.toastService.show(`merchant ${merchantName} Added Successfully`, {
+      classname: 'bg-success text-light',
+      delay: 3000,
+    });
+  }
+
+  showDanger() {
+    this.toastService.show(`Please enter data correctly`, {
+      classname: 'bg-danger text-light',
+      delay: 3000,
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.toastService.clear();
   }
 }

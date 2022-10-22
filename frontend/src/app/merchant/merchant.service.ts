@@ -19,7 +19,10 @@ export class MerchantService {
       // @ts-ignore: Unreachable code error
       else uploadData.append(key, input[key]);
     });
-    return this.http.post(`${environment.host}/merchant`, uploadData);
+    return this.http.post<MerchantModel>(
+      `${environment.host}/merchant`,
+      uploadData,
+    );
   }
 
   getMerchants(input: SearchMerchantsDto = {}) {

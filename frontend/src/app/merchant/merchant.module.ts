@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MerchantRoutingModule } from './merchant-routing.module';
 import { AddMerchantComponent } from './add/add-merchant.component';
@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BranchListComponent } from '../branch/branch-list/branch-list.component';
 import { BranchModule } from '../branch/branch.module';
 import { CampaignModule } from '../campaign/campaign.module';
+import { ToastsContainer } from '../shared/components/toast/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CampaignModule } from '../campaign/campaign.module';
     MerchantDetailsComponent,
     CampaignListComponent,
     BranchListComponent,
+    ToastsContainer,
   ],
   imports: [
     CommonModule,
@@ -27,5 +29,6 @@ import { CampaignModule } from '../campaign/campaign.module';
     BranchModule,
     CampaignModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MerchantModule {}
