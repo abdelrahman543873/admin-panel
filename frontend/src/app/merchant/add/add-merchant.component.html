@@ -83,6 +83,9 @@
                 type="file"
                 class="custom-file-input"
                 (change)="selectFile($event)"
+                required
+                ngModel
+                name="file"
               />
               <label class="custom-file-label">Choose file</label>
             </div>

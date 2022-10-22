@@ -16,6 +16,7 @@ import { CampaignTypeRepository } from '../src/campaign/repositories/campaign-ty
 import { CampaignImageRepository } from '../src/campaign/repositories/campaign-image.repository';
 import { ApplicationExceptionFilter } from '../src/shared/error/application-error.filter';
 import { PosRepository } from '../src/pos/pos.repository';
+import { TypeOrmExceptionFilter } from '../src/shared/error/typeorm-exception.filter';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -31,7 +32,10 @@ export default async (): Promise<void> => {
       forbidNonWhitelisted: true,
     }),
   );
-  app.useGlobalFilters(new ApplicationExceptionFilter());
+  app.useGlobalFilters(
+    new ApplicationExceptionFilter(),
+    new TypeOrmExceptionFilter(),
+  );
   app.setGlobalPrefix('backend');
   await app.init();
   global.app = app;

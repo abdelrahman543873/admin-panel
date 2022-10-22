@@ -51,28 +51,24 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
         category: form.value.category.id,
         file: this.selectedFile,
       })
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.showSuccess(data.enName);
-        },
-        (error) => {
-          this.showDanger(`error from server ${error.message}`);
-        },
-      );
+      .subscribe({
+        next: (data) => this.showSuccess(data.enName),
+        error: (error) =>
+          this.showDanger(`error from server ${error.error.message}`),
+      });
   }
 
   showSuccess(merchantName: string) {
     this.toastService.show(`merchant ${merchantName} Added Successfully`, {
       classname: 'bg-success text-light',
-      delay: 3000,
+      delay: 5000,
     });
   }
 
   showDanger(message: string) {
     this.toastService.show(message, {
       classname: 'bg-danger text-light',
-      delay: 3000,
+      delay: 5000,
     });
   }
 

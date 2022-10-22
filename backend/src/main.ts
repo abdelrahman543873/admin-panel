@@ -9,6 +9,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { useContainer } from 'class-validator';
 import { ApplicationExceptionFilter } from './shared/error/application-error.filter';
+import { TypeOrmExceptionFilter } from './shared/error/typeorm-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -44,7 +45,10 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.useGlobalFilters(new ApplicationExceptionFilter());
+  app.useGlobalFilters(
+    new ApplicationExceptionFilter(),
+    new TypeOrmExceptionFilter(),
+  );
   await app.listen(config.get<string>('APP_PORT'));
   Logger.log(`server listening: ${await app.getUrl()}`);
 }
