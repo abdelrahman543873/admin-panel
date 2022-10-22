@@ -3,12 +3,6 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-
-// TODO remove this and fix ngbmodal problem
-.modal-backdrop {
-  display: none;
-}
-
-.modal {
-  background: rgba(0, 0, 0, 0.5);
+ngb-modal-backdrop {
+  z-index: 1050 !important;
 }

@@ -29,6 +29,7 @@ export class MerchantsListComponent implements OnInit {
   open() {
     this.modalService.open(AddMerchantComponent, {
       animation: true,
+      size: 'lg',
     });
   }
 

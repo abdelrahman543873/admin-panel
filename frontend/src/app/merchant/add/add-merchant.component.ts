@@ -41,7 +41,7 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
 
   async submit(form: NgForm) {
     if (form.invalid) {
-      this.showDanger();
+      this.showDanger(`Please enter data correctly`);
       return;
     }
     this.merchantService
@@ -51,9 +51,15 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
         category: form.value.category.id,
         file: this.selectedFile,
       })
-      .subscribe((data) => {
-        this.showSuccess(data.enName);
-      });
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.showSuccess(data.enName);
+        },
+        (error) => {
+          this.showDanger(`error from server ${error.message}`);
+        },
+      );
   }
 
   showSuccess(merchantName: string) {
@@ -63,8 +69,8 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
     });
   }
 
-  showDanger() {
-    this.toastService.show(`Please enter data correctly`, {
+  showDanger(message: string) {
+    this.toastService.show(message, {
       classname: 'bg-danger text-light',
       delay: 3000,
     });
