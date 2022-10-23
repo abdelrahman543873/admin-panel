@@ -93,5 +93,7 @@
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
-  "volumes": []
+  "volumes": [],
+  "taskRoleArn": "arn:aws:iam::979925633203:role/test-RootRole-1NYS64WWA6H1M",
+  "executionRoleArn": "arn:aws:iam::979925633203:role/test-RootRole-1NYS64WWA6H1M"
 }
