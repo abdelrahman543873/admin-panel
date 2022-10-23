@@ -23,7 +23,9 @@ export class MerchantRepository extends BaseRepository<Merchant> {
       pos: { id: input.pos },
       category: { id: input.category },
       ...(logo && {
-        imageUrl: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
+        imageUrl: `${
+          process.env.ONLINE_HOST || process.env.APP_URL
+        }/merchant/logos/${logo.filename}`,
       }),
     });
   }
@@ -61,7 +63,9 @@ export class MerchantRepository extends BaseRepository<Merchant> {
         ...(input.pos && { pos: { id: input.pos } }),
         ...(input.category && { category: { id: input.category } }),
         ...(logo && {
-          imageUrl: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
+          imageUrl: `${
+            process.env.ONLINE_HOST || process.env.APP_URL
+          }/merchant/logos/${logo.filename}`,
         }),
       },
     );

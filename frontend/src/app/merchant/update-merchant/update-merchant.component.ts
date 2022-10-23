@@ -63,7 +63,9 @@ export class UpdateMerchantComponent implements OnInit {
   async submit(form: NgForm) {
     const updatedValues: any = {};
     Object.keys(form.controls).forEach((formElement) => {
-      if (form.controls[formElement].dirty) {
+      if (form.controls[formElement].dirty && formElement === 'file') {
+        updatedValues['file'] = this.selectedFile;
+      } else if (form.controls[formElement].dirty) {
         updatedValues[formElement] = form.controls[formElement].value;
       }
     });
@@ -98,10 +100,6 @@ export class UpdateMerchantComponent implements OnInit {
       classname: 'bg-danger text-light',
       delay: 5000,
     });
-  }
-
-  selectValue(value: any) {
-    console.log(value);
   }
 
   ngOnDestroy(): void {

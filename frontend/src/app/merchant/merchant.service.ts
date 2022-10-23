@@ -29,9 +29,10 @@ export class MerchantService {
   updateMerchant(input: UpdateMerchantDto) {
     const uploadData = new FormData();
     Object.keys(input).forEach((key) => {
-      if (key === 'file')
+      if (key === 'file') {
         // @ts-ignore: Unreachable code error
         uploadData.append('imageUrl', input.file, input.file.name);
+      }
       // @ts-ignore: Unreachable code error
       else uploadData.append(key, input[key]);
     });
