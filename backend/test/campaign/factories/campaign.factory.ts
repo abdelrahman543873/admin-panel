@@ -36,6 +36,6 @@ export const campaignFactory = async (obj: CampaignType = {}) => {
   return await campaignTestRepo().save({
     ...params,
     merchant: { id: params.merchant.id },
-    type: { id: 1 },
+    type: { id: params.type.id },
   });
 };

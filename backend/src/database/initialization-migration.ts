@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class migration1664322329124 implements MigrationInterface {
-  name = 'migration1664322329149';
+export class InitializationMigration implements MigrationInterface {
+  name = 'migration1664322329150';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -69,6 +69,11 @@ export class migration1664322329124 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE \`Branch\` ADD \`activationDate\` datetime NULL`,
     );
+    await queryRunner.query('SET FOREIGN_KEY_CHECKS = 0');
+    await queryRunner.query(
+      `ALTER TABLE \`EcommerceType\` MODIFY COLUMN idEcommerceType INT auto_increment`,
+    );
+    await queryRunner.query('SET FOREIGN_KEY_CHECKS = 1');
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {}

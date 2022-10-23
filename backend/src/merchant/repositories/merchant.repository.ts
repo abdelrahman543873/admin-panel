@@ -47,7 +47,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
           ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
           ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
         },
-        relations: ['pos'],
+        relations: ['pos', 'ecommerceType'],
       },
     );
   }

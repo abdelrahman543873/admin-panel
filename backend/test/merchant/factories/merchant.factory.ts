@@ -5,6 +5,8 @@ import { Merchant } from '../../../src/merchant/model/merchant.entity';
 import { Pos } from '../../../src/pos/pos.entity';
 import { MerchantCategory } from '../../../src/merchant-category/merchant-category.entity';
 import { merchantCategoryFactory } from '../../merchant-category/merchant-category.factory';
+import { Ecommerce } from '../../../src/ecommerce/ecommerce.entity';
+import { ecommerceFactory } from '../../ecommerce/ecommerce.factory';
 
 interface MerchantType {
   enName?: string;
@@ -20,6 +22,7 @@ interface MerchantType {
   phoneNumber?: string;
   subscriptionStatus?: string;
   category?: MerchantCategory;
+  ecommerceType?: Ecommerce;
 }
 
 export const buildMerchantParams = async (
@@ -39,6 +42,7 @@ export const buildMerchantParams = async (
     token: obj.token || datatype.uuid(),
     phoneNumber: obj.phoneNumber || datatype.string(14),
     subscriptionStatus: obj.subscriptionStatus || 'TRIAL',
+    ecommerceType: obj.ecommerceType || (await ecommerceFactory()),
   };
 };
 
@@ -50,5 +54,6 @@ export const merchantFactory = async (
     ...params,
     pos: { id: params.pos.id },
     category: { id: params.category.id },
+    ecommerceType: { id: params.ecommerceType.id },
   });
 };

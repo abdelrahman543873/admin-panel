@@ -1,4 +1,5 @@
 import { PosModel } from './pos.interface';
+import { Ecommerce } from '../../ecommerce/commerce.interface';
 export interface MerchantModel {
   id: string;
   enName: string;
@@ -13,7 +14,7 @@ export interface MerchantModel {
   subscriptionStatus: string;
   integrationId: string;
   pos: PosModel;
-  ecommerceType?: number;
+  ecommerceType?: Ecommerce | null;
   category: {
     id: number;
     name: string;

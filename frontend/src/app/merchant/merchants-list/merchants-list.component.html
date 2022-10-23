@@ -136,7 +136,13 @@
                   <td class="dtr-control sorting_1" tabindex="0">
                     {{ merchant.ecommerceType ? 'Ecom' : 'Instore' }}
                   </td>
-                  <td>{{ merchant?.pos?.title || 'not set yet' }}</td>
+                  <td>
+                    {{
+                      merchant?.pos?.title ||
+                        merchant?.ecommerceType?.enType ||
+                        'not set yet'
+                    }}
+                  </td>
                   <td>{{ merchant.subscriptionStatus | lowercase }}</td>
                   <td>{{ merchant?.createdAt }}</td>
                 </tr>

@@ -16,4 +16,20 @@ describe('get merchants suite case', () => {
     expect(response.body.items[0]).toHaveProperty('arName');
     expect(response.body.items[0].pos).toHaveProperty('id');
   });
+
+  it('should search merchants by name and return ecommerceType', async () => {
+    const admin = await adminFactory();
+    const merchant = await merchantFactory();
+    const response = await testRequest({
+      method: HTTP_METHODS_ENUM.GET,
+      url: `${MERCHANT}?enName=${merchant.enName}`,
+      token: admin.token,
+    });
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
+    expect(response.body.items[0]).toHaveProperty('arName');
+    expect(response.body.items[0].pos).toHaveProperty('id');
+    expect(response.body.items[0].ecommerceType.id).toBe(
+      merchant.ecommerceType.id,
+    );
+  });
 });

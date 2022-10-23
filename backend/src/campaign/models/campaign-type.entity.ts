@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'CampaignType' })
 export class CampaignType {
-  @PrimaryColumn({ name: 'idCampaignType' })
+  @PrimaryGeneratedColumn({ name: 'idCampaignType' })
   id: number;
 
   @Column('varchar', { name: 'type_en', length: 45 })

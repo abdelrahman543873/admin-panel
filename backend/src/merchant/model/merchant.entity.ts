@@ -12,6 +12,7 @@ import * as bcrypt from 'bcryptjs';
 import { Pos } from '../../pos/pos.entity';
 import { SUBSCRIPTION_STATUS } from '../merchant.enum';
 import { MerchantCategory } from '../../merchant-category/merchant-category.entity';
+import { Ecommerce } from '../../ecommerce/ecommerce.entity';
 
 @Entity({ name: 'Merchant' })
 export class Merchant {
@@ -95,8 +96,9 @@ export class Merchant {
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column({ name: 'idEcommerceType' })
-  ecommerceType?: number;
+  @OneToOne(() => Ecommerce)
+  @JoinColumn({ name: 'idEcommerceType' })
+  ecommerceType?: Ecommerce;
 
   @Column()
   @UpdateDateColumn()

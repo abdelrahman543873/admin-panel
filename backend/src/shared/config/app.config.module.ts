@@ -1,4 +1,4 @@
-import { migration1664322329124 } from './../../database/initialization-migration';
+import { InitializationMigration } from './../../database/initialization-migration';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -19,7 +19,7 @@ import { join } from 'path';
       synchronize: false,
       migrationsRun: false,
       autoLoadEntities: true,
-      migrations: [migration1664322329124],
+      migrations: [InitializationMigration],
     }),
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'client'),

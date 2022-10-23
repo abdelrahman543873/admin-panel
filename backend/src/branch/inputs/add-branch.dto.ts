@@ -20,6 +20,7 @@ export class AddBranchInput {
   @IsNotEmpty()
   arName: string;
 
+  @IsOptional()
   @IsDate()
   @Type(() => Date)
   activationDate?: Date;

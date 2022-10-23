@@ -10,6 +10,7 @@ import { BranchModule } from './branch/branch.module';
 import { DeviceModule } from './device/device.module';
 import { MerchantCategoryModule } from './merchant-category/merchant-category.module';
 import { PosModule } from './pos/pos.module';
+import { EcommerceModule } from './ecommerce/ecommerce.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PosModule } from './pos/pos.module';
     DeviceModule,
     MerchantCategoryModule,
     PosModule,
+    EcommerceModule,
   ],
   providers: [AppService],
   controllers: [AppController],

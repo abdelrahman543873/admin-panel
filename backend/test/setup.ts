@@ -17,6 +17,7 @@ import { CampaignImageRepository } from '../src/campaign/repositories/campaign-i
 import { ApplicationExceptionFilter } from '../src/shared/error/application-error.filter';
 import { PosRepository } from '../src/pos/pos.repository';
 import { TypeOrmExceptionFilter } from '../src/shared/error/typeorm-exception.filter';
+import { EcommerceRepository } from '../src/ecommerce/ecommerce.repository';
 
 export default async (): Promise<void> => {
   const module = await Test.createTestingModule({
@@ -61,4 +62,6 @@ export default async (): Promise<void> => {
   global.campaignImageRepository = app.get<CampaignImageRepository>(
     CampaignImageRepository,
   );
+  global.ecommerceRepository =
+    app.get<EcommerceRepository>(EcommerceRepository);
 };
