@@ -19,6 +19,10 @@ export interface MerchantModel {
   ecommerceType?: Ecommerce | null;
   category: {
     id: number;
-    name: string;
+    enTitle: string;
+    arTitle: string;
+    enDescription: string;
+    arDescription: string;
+    logo: string;
   };
 }
