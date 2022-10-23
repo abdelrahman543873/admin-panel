@@ -11,7 +11,8 @@
         "options": {
           "awslogs-group": "/ecs/admin-backend",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
         }
       },
       "entryPoint": null,
