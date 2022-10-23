@@ -3,6 +3,7 @@ import { AddMerchantInput } from './inputs/add-merchant.dto';
 import { MerchantRepository } from './repositories/merchant.repository';
 import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { SearchMerchantsDto } from './inputs/search-merchants.dto';
+import { UpdateMerchantDto } from './inputs/update-merchant.dto';
 
 @Injectable()
 export class MerchantService {
@@ -17,5 +18,9 @@ export class MerchantService {
 
   getMerchants(input: SearchMerchantsDto) {
     return this.merchantRepository.getMerchants(input);
+  }
+
+  updateMerchant(input: UpdateMerchantDto, logo: Express.Multer.File) {
+    return this.merchantRepository.updateMerchant(input, logo);
   }
 }

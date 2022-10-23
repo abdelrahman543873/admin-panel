@@ -1,4 +1,4 @@
-import { DeepPartial, Repository } from 'typeorm';
+import { DeepPartial, FindManyOptions, Repository } from 'typeorm';
 import { RepositoryInterface } from '../interfaces/repository.interface';
 
 export abstract class BaseRepository<Entity> implements RepositoryInterface {
@@ -14,5 +14,13 @@ export abstract class BaseRepository<Entity> implements RepositoryInterface {
 
   clear() {
     return this.repository.clear();
+  }
+
+  find(input: FindManyOptions<Entity>) {
+    return this.repository.find(input);
+  }
+
+  findOne(input: FindManyOptions<Entity>) {
+    return this.repository.findOne(input);
   }
 }

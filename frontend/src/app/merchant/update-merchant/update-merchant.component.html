@@ -1,0 +1,181 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title">update</h3>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #addMerchant="ngForm">
+      <div class="row">
+        <h5>Merchant Information</h5>
+        <div class="form-group col-6">
+          <label>Merchant Name Ar</label>
+          <input
+            type="text"
+            class="form-control"
+            name="arName"
+            [ngModel]="arName"
+            [defaultValue]="'hello'"
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Merchant Name En</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enName"
+            [ngModel]="enName"
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Merchant Slogan En</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enDescription"
+            [ngModel]="enDescription"
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Merchant Slogan Ar</label>
+          <input
+            type="text"
+            class="form-control"
+            name="arDescription"
+            [ngModel]="arDescription"
+          />
+        </div>
+        <div class="form-group col-6">
+          <div class="form-group">
+            <label>Merchant Category</label>
+            <select
+              class="custom-select"
+              name="category"
+              [ngModel]="category?.id"
+            >
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.enTitle }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label>Merchant Logo</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                (change)="selectFile($event)"
+              />
+              <label class="custom-file-label">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text">Upload</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label>Account Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            email
+            [ngModel]="email"
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Account Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Enter Merchant password"
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6">
+          <label>Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            [ngModel]="phoneNumber"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <h5>Merchant Integration</h5>
+        <div class="form-group col-6">
+          <div class="form-group">
+            <label>Pos</label>
+            <select class="custom-select" name="pos" [ngModel]="pos.id">
+              <option *ngFor="let pos of poses" [value]="pos.id">
+                {{ pos.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-6" *ngIf="pos.title === 'Marn'">
+          <label>Brand Key</label>
+          <input
+            type="text"
+            class="form-control"
+            name="brandKey"
+            placeholder="Enter Merchant Brand Key "
+            ngModel
+          />
+        </div>
+        <div class="form-group col-6" *ngIf="pos.title === 'Ratm'">
+          <label>Integration Id</label>
+          <button type="button" class="form-control">integration id</button>
+        </div>
+        <div class="form-group col-6" *ngIf="pos.title === 'Ratm'">
+          <label>Access Token</label>
+          <input
+            type="text"
+            class="form-control"
+            name="brandKey"
+            placeholder="Enter Merchant Brand Key "
+            ngModel
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary col-3" (click)="submit(addMerchant)">
+      Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-default col-3"
+      data-dismiss="modal"
+      (click)="activeModal.dismiss('Cross click')"
+    >
+      Close
+    </button>
+    <div class="row">
+      <button
+        type="button"
+        class="btn btn-danger toastsDefaultDanger col-3"
+        *ngIf="
+          addMerchant.submitted &&
+          addMerchant.invalid &&
+          (addMerchant.dirty || addMerchant.touched)
+        "
+      >
+        please enter all fields correctly
+      </button>
+    </div>
+  </div>
+</div>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

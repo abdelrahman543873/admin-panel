@@ -11,6 +11,7 @@ import { BranchListComponent } from '../branch/branch-list/branch-list.component
 import { BranchModule } from '../branch/branch.module';
 import { CampaignModule } from '../campaign/campaign.module';
 import { ToastsContainer } from '../shared/components/toast/toast-container.component';
+import { UpdateMerchantComponent } from './update-merchant/update-merchant.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ToastsContainer } from '../shared/components/toast/toast-container.comp
     CampaignListComponent,
     BranchListComponent,
     ToastsContainer,
+    UpdateMerchantComponent,
   ],
   imports: [
     CommonModule,

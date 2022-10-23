@@ -7,6 +7,7 @@ import { GetMerchantInput } from '../inputs/get-merchant.dto';
 import { BaseRepository } from '../../shared/abstract/repository.abstract';
 import { paginate } from 'nestjs-typeorm-paginate';
 import { SearchMerchantsDto } from '../inputs/search-merchants.dto';
+import { UpdateMerchantDto } from '../inputs/update-merchant.dto';
 
 @Injectable()
 export class MerchantRepository extends BaseRepository<Merchant> {
@@ -34,7 +35,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
   getMerchant(input: GetMerchantInput) {
     return this.merchant.findOne({
       where: { id: input.id },
-      relations: ['pos'],
+      relations: ['pos', 'category'],
     });
   }
 
@@ -48,6 +49,20 @@ export class MerchantRepository extends BaseRepository<Merchant> {
           ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
         },
         relations: ['pos', 'ecommerceType'],
+      },
+    );
+  }
+
+  updateMerchant(input: UpdateMerchantDto, logo: Express.Multer.File) {
+    return this.merchant.update(
+      { id: input.id },
+      {
+        ...input,
+        ...(input.pos && { pos: { id: input.pos } }),
+        ...(input.category && { category: { id: input.category } }),
+        ...(logo && {
+          imageUrl: `${process.env.APP_URL}/merchant/logos/${logo.filename}`,
+        }),
       },
     );
   }

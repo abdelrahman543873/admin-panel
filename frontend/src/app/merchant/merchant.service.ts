@@ -7,6 +7,7 @@ import { BranchInterface } from '../branch/intefaces/branch.interface';
 import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 import { SearchBranchesDto } from './dto/search-branches.dto';
 import { SearchMerchantsDto } from './dto/search-merchants.dto';
+import { UpdateMerchantDto } from './dto/update-merchant.dto';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}
@@ -20,6 +21,21 @@ export class MerchantService {
       else uploadData.append(key, input[key]);
     });
     return this.http.post<MerchantModel>(
+      `${environment.host}/merchant`,
+      uploadData,
+    );
+  }
+
+  updateMerchant(input: UpdateMerchantDto) {
+    const uploadData = new FormData();
+    Object.keys(input).forEach((key) => {
+      if (key === 'file')
+        // @ts-ignore: Unreachable code error
+        uploadData.append('imageUrl', input.file, input.file.name);
+      // @ts-ignore: Unreachable code error
+      else uploadData.append(key, input[key]);
+    });
+    return this.http.put<{ affected: number }>(
       `${environment.host}/merchant`,
       uploadData,
     );

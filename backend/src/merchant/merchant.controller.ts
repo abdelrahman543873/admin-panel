@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Query,
   UploadedFile,
   UseGuards,
@@ -16,6 +17,7 @@ import { GetMerchantInput } from './inputs/get-merchant.dto';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { SearchMerchantsDto } from './inputs/search-merchants.dto';
+import { UpdateMerchantDto } from './inputs/update-merchant.dto';
 
 @ApiTags('Merchant')
 @Controller('merchant')
@@ -42,5 +44,15 @@ export class MerchantController {
   @Get()
   async getMerchants(@Query() input: SearchMerchantsDto) {
     return await this.merchantService.getMerchants(input);
+  }
+
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('imageUrl'))
+  @Put()
+  async updateMerchant(
+    @Body() input: UpdateMerchantDto,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    return await this.merchantService.updateMerchant(input, logo);
   }
 }

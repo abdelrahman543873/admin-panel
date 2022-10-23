@@ -8,12 +8,14 @@ export interface MerchantModel {
   arDescription: string;
   email: string;
   brandKey: string;
-  imageUrl: string;
+  imageUrl?: string;
   createdAt: string;
   updatedAt: string;
   subscriptionStatus: string;
   integrationId: string;
-  pos: PosModel;
+  pos?: PosModel;
+  phoneNumber?: string;
+  password: string;
   ecommerceType?: Ecommerce | null;
   category: {
     id: number;
