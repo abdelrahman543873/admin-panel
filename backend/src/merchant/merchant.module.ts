@@ -17,7 +17,7 @@ import { MerchantStatusRepository } from './repositories/merchant-status.reposit
     MulterModule.register({
       preservePath: true,
       storage: diskStorage({
-        destination: './client/merchant/logos',
+        destination: './client/backend/merchant/logos',
         filename,
       }),
     }),

@@ -44,7 +44,6 @@ export class MerchantDetailsComponent implements OnInit {
 
   initializeMerchant() {
     this.merchantService.getMerchant(this.merchantId).subscribe((data) => {
-      console.log(data);
       this.merchant = data;
     });
   }

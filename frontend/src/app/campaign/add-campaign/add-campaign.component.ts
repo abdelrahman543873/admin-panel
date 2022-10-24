@@ -25,7 +25,6 @@ export class AddCampaignComponent implements OnInit {
         merchantId: this.merchantId,
       })
       .subscribe((campaign) => {
-        console.log(campaign);
         if (campaign.id) this.campaignAdded.emit();
       });
     this.activeModal.close('Save click');
