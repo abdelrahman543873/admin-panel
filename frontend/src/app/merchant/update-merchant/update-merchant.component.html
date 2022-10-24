@@ -58,7 +58,7 @@
             <select
               class="custom-select"
               name="category"
-              [ngModel]="category?.id ? category?.id : null"
+              [ngModel]="category?.id"
             >
               <option *ngFor="let category of categories" [value]="category.id">
                 {{ category.enTitle }}
@@ -119,11 +119,7 @@
         <div class="form-group col-6">
           <div class="form-group">
             <label>Pos</label>
-            <select
-              class="custom-select"
-              name="pos"
-              [ngModel]="pos?.id ? pos?.id : null"
-            >
+            <select class="custom-select" name="pos" [ngModel]="pos?.id">
               <option *ngFor="let pos of poses" [value]="pos.id">
                 {{ pos.title }}
               </option>
