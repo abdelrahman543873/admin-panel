@@ -29,7 +29,7 @@ export class UpdateMerchantComponent implements OnInit {
   @Input() updatedAt!: string;
   @Input() subscriptionStatus!: string;
   @Input() integrationId!: string;
-  @Input() pos!: PosModel;
+  @Input() pos?: PosModel;
   @Input() ecommerceType!: Ecommerce | null;
   @Input() phoneNumber!: Ecommerce | null;
   @Input() category?: {

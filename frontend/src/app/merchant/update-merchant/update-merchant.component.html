@@ -58,7 +58,7 @@
             <select
               class="custom-select"
               name="category"
-              [ngModel]="category?.id"
+              [ngModel]="category?.id ? category?.id : null"
             >
               <option *ngFor="let category of categories" [value]="category.id">
                 {{ category.enTitle }}
@@ -119,14 +119,18 @@
         <div class="form-group col-6">
           <div class="form-group">
             <label>Pos</label>
-            <select class="custom-select" name="pos" [ngModel]="pos.id">
+            <select
+              class="custom-select"
+              name="pos"
+              [ngModel]="pos?.id ? pos?.id : null"
+            >
               <option *ngFor="let pos of poses" [value]="pos.id">
                 {{ pos.title }}
               </option>
             </select>
           </div>
         </div>
-        <div class="form-group col-6" *ngIf="pos.title === 'Marn'">
+        <div class="form-group col-6" *ngIf="pos?.title === 'Marn'">
           <label>Brand Key</label>
           <input
             type="text"
@@ -136,11 +140,11 @@
             ngModel
           />
         </div>
-        <div class="form-group col-6" *ngIf="pos.title === 'Ratm'">
+        <div class="form-group col-6" *ngIf="pos?.title === 'Ratm'">
           <label>Integration Id</label>
           <button type="button" class="form-control">integration id</button>
         </div>
-        <div class="form-group col-6" *ngIf="pos.title === 'Ratm'">
+        <div class="form-group col-6" *ngIf="pos?.title === 'Ratm'">
           <label>Access Token</label>
           <input
             type="text"

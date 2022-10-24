@@ -1,13 +1,8 @@
 {
-  "ipcMode": null,
-  "executionRoleArn": null,
   "containerDefinitions": [
     {
-      "dnsSearchDomains": null,
-      "environmentFiles": null,
       "logConfiguration": {
         "logDriver": "awslogs",
-        "secretOptions": null,
         "options": {
           "awslogs-group": "/ecs/admin-backend",
           "awslogs-region": "us-east-1",
@@ -15,7 +10,6 @@
           "awslogs-create-group": "true"
         }
       },
-      "entryPoint": null,
       "portMappings": [
         {
           "hostPort": 0,
@@ -23,77 +17,16 @@
           "containerPort": 3000
         }
       ],
-      "command": null,
-      "linuxParameters": null,
       "cpu": 0,
-      "environment": [],
-      "resourceRequirements": null,
-      "ulimits": null,
-      "dnsServers": null,
-      "mountPoints": [],
-      "workingDirectory": null,
-      "secrets": null,
-      "dockerSecurityOptions": null,
-      "memory": null,
-      "memoryReservation": null,
-      "volumesFrom": [],
-      "stopTimeout": null,
       "image": "ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:$IMAGE_TAG",
-      "startTimeout": null,
-      "firelensConfiguration": null,
-      "dependsOn": null,
-      "disableNetworking": null,
-      "interactive": null,
-      "healthCheck": null,
-      "essential": true,
-      "links": null,
-      "hostname": null,
-      "extraHosts": null,
-      "pseudoTerminal": null,
-      "user": null,
-      "readonlyRootFilesystem": null,
-      "dockerLabels": null,
-      "systemControls": null,
-      "privileged": null,
       "name": "admin-backend"
     }
   ],
-  "placementConstraints": [],
   "memory": "1024",
-  "taskRoleArn": null,
-  "compatibilities": ["EXTERNAL", "EC2"],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:979925633203:task-definition/admin-backend:27",
   "family": "admin-backend",
-  "requiresAttributes": [
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    }
-  ],
-  "pidMode": null,
   "requiresCompatibilities": ["EC2"],
-  "networkMode": null,
-  "runtimePlatform": null,
   "cpu": "512",
-  "revision": 27,
   "status": "ACTIVE",
-  "inferenceAccelerators": null,
-  "proxyConfiguration": null,
-  "volumes": [],
   "taskRoleArn": "arn:aws:iam::979925633203:role/test-RootRole-1NYS64WWA6H1M",
   "executionRoleArn": "arn:aws:iam::979925633203:role/test-RootRole-1NYS64WWA6H1M"
 }
