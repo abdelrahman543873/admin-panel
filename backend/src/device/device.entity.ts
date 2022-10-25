@@ -20,8 +20,11 @@ export class Device {
   @JoinColumn({ name: 'idBranch' })
   branch: Branch;
 
-  @Column({ name: 'posIdBranch' })
-  integrationId: string;
+  @Column({ name: 'posIdBranch', nullable: true })
+  integrationId?: string;
+
+  @Column({ nullable: true })
+  posDeviceName?: string;
 
   @Column({ type: 'tinyint' })
   activationStatus: number;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {
   MarnBranchInterface,
   MarnDeviceResponse,
@@ -18,6 +18,7 @@ export class PosBranchListComponent implements OnInit {
   posDevices!: MarnDeviceResponse[];
   @Input() branchId!: number;
   @Input() deviceId!: number;
+  @Output() deviceIntegrated = new EventEmitter();
   constructor(
     private posService: PosService,
     private branchService: BranchService,
@@ -38,21 +39,23 @@ export class PosBranchListComponent implements OnInit {
       });
   }
 
-  integrate(input: { brandKey: string; integrationId: number }) {
+  integrate(brandKey: string, integrationId: number, posDeviceName: string) {
     this.branchService
       .integrateBranch({
         id: this.branchId,
-        brandKey: input.brandKey,
+        brandKey,
       })
       .subscribe({
         next: (data) => {
           this.deviceService
             .integrateDevice({
               id: this.deviceId,
-              integrationId: `${input.integrationId}`,
+              integrationId: `${integrationId}`,
+              posDeviceName,
             })
             .subscribe((data) => {
               this.showSuccess('device integrate successfully');
+              this.deviceIntegrated.emit();
             });
         },
         error: (error) => {

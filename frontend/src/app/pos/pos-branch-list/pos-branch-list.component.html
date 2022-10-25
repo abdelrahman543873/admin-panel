@@ -56,10 +56,11 @@
           class="nav-item"
           *ngFor="let posDevice of posDevices"
           (click)="
-            integrate({
-              brandKey: posBranch.LocationKey,
-              integrationId: posDevice.DeviceID
-            })
+            integrate(
+              posBranch.LocationKey,
+              posDevice.DeviceID,
+              posDevice.DeviceName
+            )
           "
         >
           <a class="nav-link" routerLinkActive="active-link">

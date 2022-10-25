@@ -74,6 +74,9 @@ export class InitializationMigration implements MigrationInterface {
       `ALTER TABLE \`EcommerceType\` MODIFY COLUMN idEcommerceType INT auto_increment`,
     );
     await queryRunner.query('SET FOREIGN_KEY_CHECKS = 1');
+    await queryRunner.query(
+      `ALTER TABLE \`Device\` ADD \`posDeviceName\` varchar(255)`,
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {}

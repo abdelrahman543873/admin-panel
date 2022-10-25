@@ -14,6 +14,7 @@ describe('integrate device suite case', () => {
       variables: {
         id: device.id,
         integrationId: deviceParams.integrationId,
+        posDeviceName: deviceParams.posDeviceName,
       },
       token: admin.token,
     });

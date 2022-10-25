@@ -1,6 +1,6 @@
 import { Branch } from './../../src/branch/branch.entity';
 import { branchFactory } from '../branch/branch.factory';
-import { datatype } from 'faker';
+import { datatype, name } from 'faker';
 import { deviceTestRepo } from './device.test-repo';
 
 interface DeviceType {
@@ -14,6 +14,7 @@ interface DeviceType {
   os?: string;
   osVersion?: string;
   status?: number;
+  posDeviceName?: string;
 }
 
 export const buildDeviceParams = async (
@@ -29,6 +30,7 @@ export const buildDeviceParams = async (
     appVersion: obj.appVersion || datatype.string(45),
     os: obj.os || datatype.string(45),
     osVersion: obj.osVersion || datatype.string(45),
+    posDeviceName: obj.posDeviceName || name.title(),
   };
 };
 

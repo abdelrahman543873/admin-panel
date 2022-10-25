@@ -35,6 +35,9 @@ export class DeviceListComponent implements OnInit {
     });
     modalRef.componentInstance.branchId = this.branchId;
     modalRef.componentInstance.deviceId = deviceId;
+    modalRef.componentInstance.deviceIntegrated.subscribe(() => {
+      this.paginate(this.paginationLimit);
+    });
   }
 
   paginate(limit: number, offset: number = 1) {

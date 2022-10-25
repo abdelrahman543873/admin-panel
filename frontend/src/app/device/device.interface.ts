@@ -5,6 +5,7 @@ export interface DeviceInterface {
   branch: BranchInterface;
   integrationId: string;
   activationStatus: number;
+  posDeviceName?: string;
   token: string;
   model: string;
   appVersion: string;

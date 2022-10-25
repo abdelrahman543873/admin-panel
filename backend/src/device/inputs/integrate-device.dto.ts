@@ -6,6 +6,10 @@ export class IntegrateDeviceDto {
   @IsNotEmpty()
   integrationId: string;
 
+  @IsString()
+  @IsNotEmpty()
+  posDeviceName: string;
+
   @IsInt()
   @Type(() => Number)
   id: number;

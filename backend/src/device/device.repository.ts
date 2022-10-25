@@ -32,10 +32,7 @@ export class DeviceRepository extends BaseRepository<Device> {
   }
 
   integrateDeviceDto(input: IntegrateDeviceDto) {
-    return this.device.update(
-      { id: input.id },
-      { integrationId: input.integrationId },
-    );
+    return this.device.update({ id: input.id }, { ...input });
   }
 
   getDeviceByBranch(input: GetPosDevices) {
