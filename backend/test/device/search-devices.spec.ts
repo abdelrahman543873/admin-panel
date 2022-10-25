@@ -12,6 +12,6 @@ describe('get devices suite case', () => {
       url: `${SEARCH_DEVICES}?branchId=${device.branch.id}`,
       token: admin.token,
     });
-    expect(response.body.length).toBeGreaterThanOrEqual(1);
+    expect(response.body.meta.totalItems).toBeGreaterThanOrEqual(1);
   });
 });

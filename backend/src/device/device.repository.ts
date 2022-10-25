@@ -6,6 +6,7 @@ import { Device } from './device.entity';
 import { AddDeviceInput } from './inputs/add-device.dto';
 import { GetDeviceInput } from './inputs/get-device.input';
 import { SearchDevicesDto } from './inputs/search-devices.dto';
+import { paginate } from 'nestjs-typeorm-paginate';
 @Injectable()
 export class DeviceRepository extends BaseRepository<Device> {
   constructor(
@@ -29,8 +30,12 @@ export class DeviceRepository extends BaseRepository<Device> {
   }
 
   searchDevices(input: SearchDevicesDto) {
-    return this.device.find({
-      where: { ...(input.branchId && { branch: { id: input.branchId } }) },
-    });
+    return paginate(
+      this.device,
+      { limit: input.limit, page: input.offset },
+      {
+        where: { ...(input.branchId && { branch: { id: input.branchId } }) },
+      },
+    );
   }
 }
