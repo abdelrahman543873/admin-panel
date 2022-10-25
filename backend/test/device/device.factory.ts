@@ -6,7 +6,7 @@ import { deviceTestRepo } from './device.test-repo';
 interface DeviceType {
   activationCode?: string;
   branch?: Branch;
-  branchKey?: string;
+  integrationId?: string;
   activationStatus?: number;
   token?: string;
   model?: string;
@@ -22,7 +22,7 @@ export const buildDeviceParams = async (
   return {
     activationCode: obj.activationCode || datatype.string(45),
     branch: obj.branch || (await branchFactory()),
-    branchKey: obj.branchKey || datatype.string(),
+    integrationId: obj.integrationId || datatype.string(),
     activationStatus: obj.activationStatus || 1,
     token: obj.token || datatype.string(),
     model: obj.model || datatype.string(),

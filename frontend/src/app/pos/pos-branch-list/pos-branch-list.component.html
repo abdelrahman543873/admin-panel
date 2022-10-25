@@ -1,0 +1,73 @@
+<!-- <div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+          <div class="row">
+            <table
+              id="Campaign-list"
+              class="table table-bordered table-hover dataTable dtr-inline"
+              aria-describedby="Campaign list of selected merchant"
+            >
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Location Key</th>
+                  <th>City</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let posBranch of posBranches">
+                  <td class="dtr-control sorting_1" tabindex="0">
+                    {{ posBranch.Name }}
+                  </td>
+                  <td>{{ posBranch.Address }}</td>
+                  <td>{{ posBranch.LocationKey }}</td>
+                  <td>{{ posBranch.City.Name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<nav class="mt-2">
+  <ul
+    class="nav nav-pills nav-sidebar flex-column"
+    data-widget="treeview"
+    role="menu"
+    data-accordion="false"
+  >
+    <li class="nav-item" *ngFor="let posBranch of posBranches">
+      <a class="nav-link active">
+        <p>
+          Name:{{ posBranch.Name }} Address:{{ posBranch.Address }} City:{{
+            posBranch.City.Name
+          }}
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li
+          class="nav-item"
+          *ngFor="let posDevice of posDevices"
+          (click)="
+            integrate({
+              brandKey: posBranch.LocationKey,
+              integrationId: posDevice.DeviceID
+            })
+          "
+        >
+          <a class="nav-link" routerLinkActive="active-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>{{ posDevice.DeviceName }}</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

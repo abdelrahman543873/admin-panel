@@ -8,21 +8,11 @@ import { MerchantDetailsComponent } from './merchant-details/merchant-details.co
 import { CampaignListComponent } from '../campaign/campaign-list/campaign-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BranchListComponent } from '../branch/branch-list/branch-list.component';
-import { BranchModule } from '../branch/branch.module';
 import { CampaignModule } from '../campaign/campaign.module';
-import { ToastsContainer } from '../shared/components/toast/toast-container.component';
 import { UpdateMerchantComponent } from './update-merchant/update-merchant.component';
+import { BranchModule } from '../branch/branch.module';
 
 @NgModule({
-  declarations: [
-    AddMerchantComponent,
-    MerchantsListComponent,
-    MerchantDetailsComponent,
-    CampaignListComponent,
-    BranchListComponent,
-    ToastsContainer,
-    UpdateMerchantComponent,
-  ],
   imports: [
     CommonModule,
     MerchantRoutingModule,
@@ -30,6 +20,14 @@ import { UpdateMerchantComponent } from './update-merchant/update-merchant.compo
     NgbModule,
     BranchModule,
     CampaignModule,
+  ],
+  declarations: [
+    AddMerchantComponent,
+    MerchantsListComponent,
+    MerchantDetailsComponent,
+    CampaignListComponent,
+    BranchListComponent,
+    UpdateMerchantComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

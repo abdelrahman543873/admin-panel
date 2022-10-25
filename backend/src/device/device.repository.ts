@@ -7,6 +7,8 @@ import { AddDeviceInput } from './inputs/add-device.dto';
 import { GetDeviceInput } from './inputs/get-device.input';
 import { SearchDevicesDto } from './inputs/search-devices.dto';
 import { paginate } from 'nestjs-typeorm-paginate';
+import { GetPosDevices } from './inputs/get-pos-devices';
+import { IntegrateDeviceDto } from './inputs/integrate-device.dto';
 @Injectable()
 export class DeviceRepository extends BaseRepository<Device> {
   constructor(
@@ -26,6 +28,20 @@ export class DeviceRepository extends BaseRepository<Device> {
     return this.device.findOne({
       where: { id: input.id },
       relations: ['branch'],
+    });
+  }
+
+  integrateDeviceDto(input: IntegrateDeviceDto) {
+    return this.device.update(
+      { id: input.id },
+      { integrationId: input.integrationId },
+    );
+  }
+
+  getDeviceByBranch(input: GetPosDevices) {
+    return this.device.findOne({
+      where: { id: input.deviceId },
+      relations: { branch: { merchant: { pos: true } } },
     });
   }
 

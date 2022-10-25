@@ -21,7 +21,7 @@ export class Device {
   branch: Branch;
 
   @Column({ name: 'posIdBranch' })
-  branchKey: string;
+  integrationId: string;
 
   @Column({ type: 'tinyint' })
   activationStatus: number;

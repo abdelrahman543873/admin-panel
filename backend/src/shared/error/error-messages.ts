@@ -12,4 +12,12 @@ export const LocalizedErrorMessages: IErrorMessage = {
     EN: 'this merchant has less pos branches',
     AR: 'this merchant has less pos branches',
   },
+  605: {
+    EN: 'please update the merchant brand key',
+    AR: 'please update the merchant brand key',
+  },
+  607: {
+    EN: "this resource type doesn't exist",
+    AR: "this resource type doesn't exist",
+  },
 };

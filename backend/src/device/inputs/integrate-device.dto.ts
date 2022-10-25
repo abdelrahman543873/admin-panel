@@ -1,13 +1,11 @@
 import { Type } from 'class-transformer';
 import { IsInt, IsNotEmpty, IsString } from 'class-validator';
-import { IsExistingBranch } from '../validators/is-existing-branch';
 
-export class IntegrateBranchDto {
+export class IntegrateDeviceDto {
   @IsString()
   @IsNotEmpty()
-  brandKey: string;
+  integrationId: string;
 
-  @IsExistingBranch()
   @IsInt()
   @Type(() => Number)
   id: number;
