@@ -2,7 +2,7 @@ import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 import { MerchantService } from '../merchant.service';
 import { MerchantCategoryService } from '../../merchant-category/merchant-category.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastService } from '../../shared/services/toast.service';
+import { ToastService } from '../../shared/components/toast/toast.service';
 import { PosService } from '../../pos/pos.service';
 import { NgForm } from '@angular/forms';
 import { PosModel } from '../interfaces/pos.interface';

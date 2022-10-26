@@ -6,7 +6,7 @@ import {
 import { PosService } from '../pos.service';
 import { BranchService } from '../../branch/branch.service';
 import { DeviceService } from '../../device/device.service';
-import { ToastService } from '../../shared/services/toast.service';
+import { ToastService } from '../../shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-pos-branch-list',

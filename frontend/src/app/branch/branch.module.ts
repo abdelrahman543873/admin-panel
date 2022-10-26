@@ -7,7 +7,8 @@ import { BranchRoutingModule } from './branch-routing.module';
 import { DeviceListComponent } from '../device/device-list/device-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PosBranchListComponent } from '../pos/pos-branch-list/pos-branch-list.component';
-import { ToastsContainer } from '../shared/components/toast/toast-container.component';
+import { BranchListComponent } from './branch-list/branch-list.component';
+import { ToastModule } from '../shared/components/toast/toast.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,15 @@ import { ToastsContainer } from '../shared/components/toast/toast-container.comp
     BranchDetailsComponent,
     DeviceListComponent,
     PosBranchListComponent,
-    ToastsContainer,
+    BranchListComponent,
   ],
-  imports: [CommonModule, FormsModule, BranchRoutingModule, NgbModule],
-  exports: [ToastsContainer],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BranchRoutingModule,
+    NgbModule,
+    ToastModule,
+  ],
+  exports: [BranchListComponent],
 })
 export class BranchModule {}

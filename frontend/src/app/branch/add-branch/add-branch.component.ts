@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BranchService } from '../branch.service';
-import { AddBranchDto } from '../inputs/add-branch.dto';
 @Component({
   selector: 'app-add-branch-modal',
   templateUrl: './add-branch.component.html',
