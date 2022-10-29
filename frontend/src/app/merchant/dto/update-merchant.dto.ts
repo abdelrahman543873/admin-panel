@@ -5,6 +5,7 @@ export class UpdateMerchantDto {
   enDescription?: string;
   arDescription?: string;
   email?: string;
+  accessToken?: string;
   brandKey?: string;
   pos?: number;
   password?: string;

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { AddBranchDto } from './inputs/add-branch.dto';
 import { BranchInterface } from './intefaces/branch.interface';
 import { IntegrateBranchDto } from './inputs/integrate-branch.dto';
+import { GetBranchDto } from './inputs/get-branch.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,12 @@ export class BranchService {
     return this.http.put<{ affected: number }>(
       `${environment.host}/branch/integrate`,
       input,
+    );
+  }
+
+  getBranch(input: GetBranchDto) {
+    return this.http.get<BranchInterface>(
+      `${environment.host}/branch/${input.id}`,
     );
   }
 }

@@ -67,6 +67,9 @@ export class MerchantRepository extends BaseRepository<Merchant> {
             process.env.ONLINE_HOST || process.env.APP_URL
           }/merchant/logos/${logo.filename}`,
         }),
+        // done per business need
+        // when a ratm branch is updated , the posBusinessId column value should be the same as the id value
+        ...(input.accessToken && { brandKey: `${input.id}` }),
       },
     );
   }

@@ -23,6 +23,7 @@ interface MerchantType {
   subscriptionStatus?: string;
   category?: MerchantCategory;
   ecommerceType?: Ecommerce;
+  accessToken?: string;
 }
 
 export const buildMerchantParams = async (
@@ -43,6 +44,7 @@ export const buildMerchantParams = async (
     phoneNumber: obj.phoneNumber || datatype.string(14),
     subscriptionStatus: obj.subscriptionStatus || 'TRIAL',
     ecommerceType: obj.ecommerceType || (await ecommerceFactory()),
+    accessToken: obj.accessToken || random.word(),
   };
 };
 

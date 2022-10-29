@@ -7,6 +7,7 @@ import { PosService } from '../pos.service';
 import { BranchService } from '../../branch/branch.service';
 import { DeviceService } from '../../device/device.service';
 import { ToastService } from '../../shared/components/toast/toast.service';
+import { RatmBranch, RatmDevice } from '../interfaces/ratm.interface';
 
 @Component({
   selector: 'app-pos-branch-list',
@@ -14,10 +15,11 @@ import { ToastService } from '../../shared/components/toast/toast.service';
   styleUrls: ['./pos-branch-list.component.scss'],
 })
 export class PosBranchListComponent implements OnInit {
-  posBranches!: MarnBranchInterface[];
-  posDevices!: MarnDeviceResponse[];
+  posBranches!: (MarnBranchInterface & RatmBranch)[];
+  posDevices!: (MarnDeviceResponse & RatmDevice)[];
   @Input() branchId!: number;
   @Input() deviceId!: number;
+  merchantId!: number;
   @Output() deviceIntegrated = new EventEmitter();
   constructor(
     private posService: PosService,
@@ -37,6 +39,9 @@ export class PosBranchListComponent implements OnInit {
       .subscribe((data) => {
         this.posDevices = data;
       });
+    this.branchService.getBranch({ id: this.branchId }).subscribe((data) => {
+      this.merchantId = data.merchant.id;
+    });
   }
 
   integrate(brandKey: string, integrationId: number, posDeviceName: string) {

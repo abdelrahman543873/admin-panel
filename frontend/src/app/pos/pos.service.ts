@@ -10,6 +10,7 @@ import {
   MarnDeviceResponse,
 } from './interfaces/marn.interface';
 import { GetPosDevicesDto } from './inputs/get-pos-devices.interface';
+import { RatmBranch, RatmDevice } from './interfaces/ratm.interface';
 
 @Injectable({ providedIn: 'root' })
 export class PosService {
@@ -27,7 +28,7 @@ export class PosService {
   }
 
   getPosesBranches(input: GetPosBranchesDto) {
-    return this.http.get<MarnBranchInterface[]>(
+    return this.http.get<(MarnBranchInterface & RatmBranch)[]>(
       `${environment.host}/branch/pos`,
       {
         params: {
@@ -38,7 +39,7 @@ export class PosService {
   }
 
   getPosesDevices(input: GetPosDevicesDto) {
-    return this.http.get<MarnDeviceResponse[]>(
+    return this.http.get<(MarnDeviceResponse & RatmDevice)[]>(
       `${environment.host}/device/pos`,
       {
         params: {

@@ -1,7 +1,7 @@
 import { PosModel } from './pos.interface';
 import { Ecommerce } from '../../ecommerce/commerce.interface';
 export interface MerchantModel {
-  id: string;
+  id: number;
   enName: string;
   arName: string;
   enDescription: string;

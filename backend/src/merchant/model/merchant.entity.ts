@@ -45,7 +45,7 @@ export class Merchant {
   email: string;
 
   @Column({ nullable: true, name: 'posBusinessId' })
-  brandKey: string;
+  brandKey?: string;
 
   @Column({ nullable: true })
   link: string;
@@ -103,4 +103,19 @@ export class Merchant {
   @Column()
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({
+    name: 'access_token',
+    type: 'text',
+    nullable: true,
+    transformer: {
+      to: (value?: string) => {
+        return `{ accessToken: "${value}" }`;
+      },
+      from: (value?: string) => {
+        return value ? eval(value) : value;
+      },
+    },
+  })
+  accessToken?: string & { accessToken: string };
 }

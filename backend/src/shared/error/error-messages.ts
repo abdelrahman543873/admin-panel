@@ -20,4 +20,12 @@ export const LocalizedErrorMessages: IErrorMessage = {
     EN: "this resource type doesn't exist",
     AR: "this resource type doesn't exist",
   },
+  608: {
+    EN: 'invalid ratm auth token',
+    AR: 'invalid ratm auth token',
+  },
+  609: {
+    EN: 'invalid Marn brand key',
+    AR: 'invalid Marn brand key',
+  },
 };

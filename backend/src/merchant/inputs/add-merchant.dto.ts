@@ -39,6 +39,11 @@ export class AddMerchantInput {
   @IsNotEmpty()
   brandKey?: string;
 
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  accessToken?: string;
+
   @IsExistingPos()
   @IsInt()
   @Type(() => Number)

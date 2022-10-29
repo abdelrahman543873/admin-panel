@@ -32,9 +32,13 @@ export class BranchService {
     const branch = await this.branchRepository.getBranch({
       id: input.branchId,
     });
-    if (!branch.merchant.brandKey) throw new ApplicationException(605);
+    if (!branch.merchant.brandKey && !branch.merchant.accessToken)
+      throw new ApplicationException(605);
     const posBrandKeys = await this.integrationService.fetchBranchBrandKeys({
-      brandKey: branch.merchant.brandKey,
+      // or ordering in brandKey is important
+      // on RATM updates , the brand key is just the id of the merchant
+      // not a valid token , that's why access token should always take precedence to brandKey
+      brandKey: branch.merchant.accessToken || branch.merchant.brandKey,
       pos: branch.merchant.pos.title,
       resourceType: 'branch',
     });

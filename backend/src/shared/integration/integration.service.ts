@@ -4,39 +4,100 @@ import { firstValueFrom } from 'rxjs';
 import { ApplicationException } from '../error/application.exception';
 import { MarnDevicesResponse, MarnResponse } from './interfaces/marn.interface';
 import { IntegrationLinks } from './integration.enum';
+import { RatmResponse } from './interfaces/ratm.interface';
 
 @Injectable()
 export class IntegrationService {
   constructor(private httpsService: HttpService) {}
+  integrations = {
+    // this is bound to allow the passing of the http service dependency
+    // httpService is undefined if this binding is removed
+    Marn: {
+      branch: this.fetchMarnLocationBrandKeys.bind(this),
+      device: this.fetchMarnDeviceBrandKeys.bind(this),
+    },
+    Ratm: {
+      branch: this.fetchRatmBranches.bind(this),
+      device: this.fetchRatmDevices.bind(this),
+    },
+  };
 
-  async fetchMarnLocationBrandKeys(brandKey: string) {
-    const marnResponse = await firstValueFrom(
-      this.httpsService.get<MarnResponse>(IntegrationLinks.Marn.Location, {
-        headers: {
-          Authorization: `Bearer ${process.env.MARN_TOKEN}`,
-          BrandKey: brandKey,
+  async fetchMarnLocationBrandKeys(BrandKey: string) {
+    try {
+      const marnResponse = await this.httpsService.axiosRef.get<MarnResponse>(
+        IntegrationLinks.Marn.Location,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.MARN_TOKEN}`,
+            BrandKey,
+          },
         },
-      }),
-    );
-    if (!marnResponse.data.Locations.length) {
-      throw new ApplicationException(601);
+      );
+      if (!marnResponse.data.Locations.length) {
+        throw new ApplicationException(601);
+      }
+      return marnResponse.data.Locations;
+    } catch (error) {
+      throw new ApplicationException(609);
     }
-    return marnResponse.data.Locations;
   }
 
-  async fetchMarnDeviceBrandKeys(brandKey: string) {
-    const marnResponse = await firstValueFrom(
-      this.httpsService.get<MarnDevicesResponse>(IntegrationLinks.Marn.Device, {
-        headers: {
-          Authorization: `Bearer ${process.env.MARN_TOKEN}`,
-          BrandKey: brandKey,
-        },
-      }),
-    );
-    if (!marnResponse.data.DevicesData.length) {
-      throw new ApplicationException(601);
+  async fetchMarnDeviceBrandKeys(BrandKey: string) {
+    try {
+      const marnResponse =
+        await this.httpsService.axiosRef.get<MarnDevicesResponse>(
+          IntegrationLinks.Marn.Device,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.MARN_TOKEN}`,
+              BrandKey,
+            },
+          },
+        );
+      if (!marnResponse.data.DevicesData.length) {
+        throw new ApplicationException(601);
+      }
+      return marnResponse.data.DevicesData;
+    } catch (error) {
+      throw new ApplicationException(609);
     }
-    return marnResponse.data.DevicesData;
+  }
+
+  async fetchRatmBranches(authToken: string) {
+    try {
+      const ratmResponse = await this.httpsService.axiosRef.get<RatmResponse>(
+        IntegrationLinks.Ratm.Location,
+        {
+          headers: {
+            auth: `${authToken}`,
+          },
+        },
+      );
+      if (!ratmResponse.data.data.length) {
+        throw new ApplicationException(601);
+      }
+      return ratmResponse.data.data;
+    } catch (error) {
+      throw new ApplicationException(608);
+    }
+  }
+
+  async fetchRatmDevices(authToken: string) {
+    try {
+      const ratmResponse = await firstValueFrom(
+        this.httpsService.get<RatmResponse>(IntegrationLinks.Ratm.Device, {
+          headers: {
+            auth: `${authToken}`,
+          },
+        }),
+      );
+      if (!ratmResponse.data.data.length) {
+        throw new ApplicationException(601);
+      }
+      return ratmResponse.data.data;
+    } catch (error) {
+      throw new ApplicationException(608);
+    }
   }
 
   async fetchBranchBrandKeys(input: {
@@ -44,18 +105,16 @@ export class IntegrationService {
     brandKey: string;
     resourceType: string;
   }) {
-    const integrations = {
-      Marn: {
-        branch: this.fetchMarnLocationBrandKeys(input.brandKey),
-        device: this.fetchMarnDeviceBrandKeys(input.brandKey),
-      },
-    };
-    if (!Object.keys(integrations).includes(input.pos))
+    if (!Object.keys(this.integrations).includes(input.pos))
       throw new ApplicationException(603);
 
-    if (!Object.keys(integrations[input.pos]).includes(input.resourceType)) {
+    if (
+      !Object.keys(this.integrations[input.pos]).includes(input.resourceType)
+    ) {
       throw new ApplicationException(607);
     }
-    return integrations[input.pos][input.resourceType];
+    return await this.integrations[input.pos][input.resourceType](
+      input.brandKey,
+    );
   }
 }

@@ -31,7 +31,11 @@ export class DeviceService {
     const device = await this.deviceRepository.getDeviceByBranch({
       deviceId: input.deviceId,
     });
-    const brandKey = device?.branch?.merchant?.brandKey;
+    const brandKey =
+      // or ordering in brandKey is important
+      // on RATM updates , the brand key is just the id of the merchant
+      // not a valid token , that's why access token should always take precedence to brandKey
+      device.branch.merchant?.accessToken || device.branch.merchant?.brandKey;
     if (!brandKey) throw new ApplicationException(605);
     const devicesData = await this.integrationService.fetchBranchBrandKeys({
       brandKey,
