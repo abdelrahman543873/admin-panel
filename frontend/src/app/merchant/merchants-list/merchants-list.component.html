@@ -9,34 +9,46 @@
     <div class="card">
       <div class="card-header">
         <div class="row">
-          <form class="col-sm-2" #merchantForm="ngForm">
-            <div class="input-group">
-              <input
-                type="search"
-                class="form-control form-control-lg"
-                placeholder="search for merchants"
-                arDescription="search"
-                #search
-                ngModel
-              />
-              <div class="input-group-append">
-                <button
-                  type="submit"
-                  class="btn btn-lg btn-default"
-                  (click)="searchMerchants(search.value)"
-                >
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
+          <div class="input-group col-sm-2">
+            <input
+              type="search"
+              class="form-control form-control-lg"
+              placeholder="search for merchants"
+              arDescription="search"
+              #search
+              ngModel
+            />
+            <div class="input-group-append">
+              <button
+                type="submit"
+                class="btn btn-lg btn-default"
+                (click)="searchMerchants(search.value)"
+              >
+                <i class="fa fa-search"></i>
+              </button>
             </div>
-          </form>
+          </div>
           <button type="button" class="btn btn-info col-sm-1" (click)="open()">
             Create new Merchant
           </button>
-          <div class="col-sm-4 offset-sm-4">
+          <div class="col-sm-3">
             <button
               type="button"
-              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3"
+              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3 float-sm-right"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              All Merchants
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item">Instore</a>
+              <a class="dropdown-item" (click)="getEcomMerchants()">Ecom</a>
+            </div>
+          </div>
+          <div class="col-sm-3 offset-sm-3">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle dropdown-icon col-sm-3 float-sm-right"
               data-toggle="dropdown"
               aria-expanded="false"
             >

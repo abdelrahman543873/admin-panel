@@ -1,3 +1,4 @@
+import { PaginationDto } from './../shared/dtos/pagination.dto';
 import { Injectable } from '@nestjs/common';
 import { AddMerchantInput } from './inputs/add-merchant.dto';
 import { MerchantRepository } from './repositories/merchant.repository';
@@ -18,6 +19,10 @@ export class MerchantService {
 
   getMerchants(input: SearchMerchantsDto) {
     return this.merchantRepository.getMerchants(input);
+  }
+
+  getEcomMerchants(input: PaginationDto) {
+    return this.merchantRepository.getEcomMerchants(input);
   }
 
   updateMerchant(input: UpdateMerchantDto, logo: Express.Multer.File) {

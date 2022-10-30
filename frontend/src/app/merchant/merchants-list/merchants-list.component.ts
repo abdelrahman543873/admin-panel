@@ -41,6 +41,15 @@ export class MerchantsListComponent implements OnInit {
     });
   }
 
+  getEcomMerchants() {
+    this.merchantService
+      .getEcomMerchants({ limit: this.paginationLimit, offset: 1 })
+      .subscribe((data) => {
+        this.merchants = data.items;
+        this.totalNumberOfMerchants = data.meta.totalItems;
+      });
+  }
+
   searchMerchants(enName: string) {
     this.merchantService
       .getMerchants({

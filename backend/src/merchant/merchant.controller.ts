@@ -1,3 +1,4 @@
+import { PaginationDto } from './../shared/dtos/pagination.dto';
 import { MerchantService } from './merchant.service';
 import {
   Body,
@@ -26,21 +27,6 @@ import { UpdateMerchantDto } from './inputs/update-merchant.dto';
 export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 
-  @ApiConsumes('multipart/form-data')
-  @UseInterceptors(FileInterceptor('imageUrl'))
-  @Post()
-  async addMerchant(
-    @Body() input: AddMerchantInput,
-    @UploadedFile() logo: Express.Multer.File,
-  ) {
-    return await this.merchantService.addMerchant(input, logo);
-  }
-
-  @Get(':id')
-  async getMerchant(@Param() input: GetMerchantInput) {
-    return await this.merchantService.getMerchant(input);
-  }
-
   @Get()
   async getMerchants(@Query() input: SearchMerchantsDto) {
     return await this.merchantService.getMerchants(input);
@@ -54,5 +40,25 @@ export class MerchantController {
     @UploadedFile() logo: Express.Multer.File,
   ) {
     return await this.merchantService.updateMerchant(input, logo);
+  }
+
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('imageUrl'))
+  @Post()
+  async addMerchant(
+    @Body() input: AddMerchantInput,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    return await this.merchantService.addMerchant(input, logo);
+  }
+
+  @Get('ecom')
+  async getEcomMerchants(@Query() input: PaginationDto) {
+    return await this.merchantService.getEcomMerchants(input);
+  }
+
+  @Get(':id')
+  async getMerchant(@Param() input: GetMerchantInput) {
+    return await this.merchantService.getMerchant(input);
   }
 }

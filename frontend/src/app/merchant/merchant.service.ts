@@ -8,6 +8,7 @@ import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 import { SearchBranchesDto } from './dto/search-branches.dto';
 import { SearchMerchantsDto } from './dto/search-merchants.dto';
 import { UpdateMerchantDto } from './dto/update-merchant.dto';
+import { PaginationDto } from '../shared/classes/pagination.dto';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}
@@ -51,6 +52,13 @@ export class MerchantService {
 
   getMerchant(id: number) {
     return this.http.get<MerchantModel>(`${environment.host}/merchant/${id}`);
+  }
+
+  getEcomMerchants(input: PaginationDto) {
+    return this.http.get<PaginationInterface<MerchantModel>>(
+      `${environment.host}/merchant/ecom`,
+      { params: { ...input } },
+    );
   }
 
   searchMerchantBranches(input: SearchBranchesDto) {

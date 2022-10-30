@@ -1,6 +1,7 @@
+import { PaginationDto } from './../../shared/dtos/pagination.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { ILike, IsNull, Not, Repository } from 'typeorm';
 import { AddMerchantInput } from '../inputs/add-merchant.dto';
 import { Merchant } from '../model/merchant.entity';
 import { GetMerchantInput } from '../inputs/get-merchant.dto';
@@ -51,6 +52,19 @@ export class MerchantRepository extends BaseRepository<Merchant> {
           ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
         },
         relations: ['pos', 'ecommerceType'],
+      },
+    );
+  }
+
+  getEcomMerchants(input: PaginationDto) {
+    return paginate<Merchant>(
+      this.merchant,
+      { limit: input.limit, page: input.offset },
+      {
+        where: {
+          ecommerceType: Not(IsNull()),
+        },
+        relations: ['pos', 'category', 'ecommerceType'],
       },
     );
   }
