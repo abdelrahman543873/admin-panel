@@ -113,7 +113,8 @@ export class Merchant {
         return `{ accessToken: "${value}" }`;
       },
       from: (value?: string) => {
-        return value ? eval(value) : value;
+        if (!value) return value;
+        return value.includes('accessToken') ? eval(value) : value;
       },
     },
   })

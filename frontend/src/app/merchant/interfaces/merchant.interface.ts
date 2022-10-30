@@ -3,7 +3,7 @@ import { Ecommerce } from '../../ecommerce/commerce.interface';
 export interface MerchantModel {
   id: number;
   enName: string;
-  arName: string;
+  arName?: string;
   enDescription: string;
   arDescription: string;
   email: string;

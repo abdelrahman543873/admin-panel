@@ -21,8 +21,8 @@
           (click)="
             integrate(
               posBranch?.LocationKey || merchantId + '_' + posBranch.id,
-              posDevice.DeviceID,
-              posDevice.DeviceName
+              posDevice.DeviceID || +posDevice.id,
+              posDevice.DeviceName || posDevice.name_en
             )
           "
         >

@@ -133,7 +133,7 @@
             class="form-control"
             name="brandKey"
             placeholder="Enter Merchant Brand Key "
-            ngModel
+            [ngModel]="brandKey"
           />
         </div>
         <div class="form-group col-6" *ngIf="pos?.title === 'Ratm'">
@@ -146,8 +146,8 @@
             type="text"
             class="form-control"
             name="accessToken"
-            placeholder="Enter Merchant Brand Key "
-            ngModel
+            placeholder="Enter Merchant Auth Token"
+            [ngModel]="accessToken"
           />
         </div>
       </div>

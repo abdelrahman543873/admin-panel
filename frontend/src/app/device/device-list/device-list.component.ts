@@ -38,6 +38,9 @@ export class DeviceListComponent implements OnInit {
     modalRef.componentInstance.deviceIntegrated.subscribe(() => {
       this.paginate(this.paginationLimit);
     });
+    modalRef.componentInstance.unsupportedPos.subscribe(() => {
+      this.modalService.dismissAll(PosBranchListComponent);
+    });
   }
 
   paginate(limit: number, offset: number = 1) {

@@ -36,6 +36,9 @@ export class UpdateMerchantComponent implements OnInit {
     id: number;
     enTitle: string;
   };
+  @Input() accessToken?: {
+    accessToken: string;
+  };
   constructor(
     private merchantService: MerchantService,
     private posService: PosService,

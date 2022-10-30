@@ -20,7 +20,8 @@ export class PosBranchListComponent implements OnInit {
   @Input() branchId!: number;
   @Input() deviceId!: number;
   merchantId!: number;
-  @Output() deviceIntegrated = new EventEmitter();
+  deviceIntegrated = new EventEmitter();
+  unsupportedPos = new EventEmitter();
   constructor(
     private posService: PosService,
     private branchService: BranchService,
@@ -29,16 +30,24 @@ export class PosBranchListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.posService
-      .getPosesBranches({ branchId: this.branchId })
-      .subscribe((data) => {
+    this.posService.getPosesBranches({ branchId: this.branchId }).subscribe({
+      next: (data) => {
         this.posBranches = data;
-      });
-    this.posService
-      .getPosesDevices({ deviceId: this.deviceId })
-      .subscribe((data) => {
+      },
+      error: (data) => {
+        this.showDanger(data.error.message);
+        this.unsupportedPos.emit();
+      },
+    });
+    this.posService.getPosesDevices({ deviceId: this.deviceId }).subscribe({
+      next: (data) => {
         this.posDevices = data;
-      });
+      },
+      error: (data) => {
+        this.showDanger(data.error.message);
+        this.unsupportedPos.emit();
+      },
+    });
     this.branchService.getBranch({ id: this.branchId }).subscribe((data) => {
       this.merchantId = data.merchant.id;
     });
