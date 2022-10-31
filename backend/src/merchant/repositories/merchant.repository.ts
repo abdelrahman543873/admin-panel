@@ -69,6 +69,19 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     );
   }
 
+  getInstoreMerchants(input: PaginationDto) {
+    return paginate<Merchant>(
+      this.merchant,
+      { limit: input.limit, page: input.offset },
+      {
+        where: {
+          pos: Not(IsNull()),
+        },
+        relations: ['pos', 'category'],
+      },
+    );
+  }
+
   updateMerchant(input: UpdateMerchantDto, logo: Express.Multer.File) {
     return this.merchant.update(
       { id: input.id },

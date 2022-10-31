@@ -17,6 +17,7 @@
               arDescription="search"
               #search
               ngModel
+              (search)="paginate()"
             />
             <div class="input-group-append">
               <button
@@ -38,11 +39,15 @@
               data-toggle="dropdown"
               aria-expanded="false"
             >
-              All Merchants
+              {{ integrationType }}
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item">Instore</a>
-              <a class="dropdown-item" (click)="getEcomMerchants()">Ecom</a>
+              <a class="dropdown-item" (click)="paginate()">All Merchants</a>
+              <!-- when switching integration types , we go back to the begging for ux purposes -->
+              <a class="dropdown-item" (click)="getInstoreMerchants(1)"
+                >Instore</a
+              >
+              <a class="dropdown-item" (click)="getEcomMerchants(1)">Ecom</a>
             </div>
           </div>
           <div class="col-sm-3 offset-sm-3">
@@ -182,7 +187,7 @@
                   [(page)]="currentPage"
                   [pageSize]="paginationLimit"
                   [maxSize]="5"
-                  (pageChange)="paginate(paginationLimit, currentPage)"
+                  (pageChange)="movePage(paginationLimit, currentPage)"
                 ></ngb-pagination>
               </div>
             </div>

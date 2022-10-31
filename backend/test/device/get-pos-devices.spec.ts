@@ -14,6 +14,8 @@ describe('get pos branches suite case', () => {
       // realistic test branKey don't change
       brandKey: '931a90e8-e0cf-4f79-906d-9757dcf37518',
       pos,
+      // done to only allow for a marn not a ratm request
+      accessToken: '',
     });
     const branch = await branchFactory({ merchant });
     const device = await deviceFactory({ branch });
@@ -32,6 +34,7 @@ describe('get pos branches suite case', () => {
       // realistic test branKey don't change
       brandKey: 'VaPX72InfUH9o0oZbWJiV2OViJcAEv',
       pos,
+      accessToken: '',
     });
     const branch = await branchFactory({ merchant });
     const device = await deviceFactory({ branch });
@@ -46,7 +49,7 @@ describe('get pos branches suite case', () => {
 
   it("should throw error when no brand key input and merchant doesn't have a brand key", async () => {
     const admin = await adminFactory();
-    const merchant = await merchantFactory({ brandKey: '' });
+    const merchant = await merchantFactory({ brandKey: '', accessToken: '' });
     const branch = await branchFactory({ merchant });
     const device = await deviceFactory({ branch });
     const response = await testRequest({

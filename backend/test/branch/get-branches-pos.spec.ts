@@ -12,6 +12,7 @@ describe('get pos branches suite case', () => {
     const merchant = await merchantFactory({
       // realistic test branKey don't change
       brandKey: '931a90e8-e0cf-4f79-906d-9757dcf37518',
+      accessToken: '',
       pos,
     });
     const branch = await branchFactory({ merchant });
@@ -30,6 +31,7 @@ describe('get pos branches suite case', () => {
     const merchant = await merchantFactory({
       brandKey: '931a90e8-e0cf-',
       pos,
+      accessToken: '',
     });
     const branch = await branchFactory({ merchant });
     const response = await testRequest({
@@ -47,6 +49,7 @@ describe('get pos branches suite case', () => {
       // realistic test branKey don't change
       brandKey: 'VaPX72InfUH9o0oZbWJiV2OViJcAEv',
       pos,
+      accessToken: '',
     });
     const branch = await branchFactory({ merchant });
     const response = await testRequest({
@@ -60,7 +63,7 @@ describe('get pos branches suite case', () => {
 
   it("should throw error when no brand key input and merchant doesn't have a brand key", async () => {
     const admin = await adminFactory();
-    const merchant = await merchantFactory({ brandKey: '' });
+    const merchant = await merchantFactory({ brandKey: '', accessToken: '' });
     const branch = await branchFactory({ merchant });
     const response = await testRequest({
       method: HTTP_METHODS_ENUM.GET,

@@ -25,6 +25,10 @@ export class MerchantService {
     return this.merchantRepository.getEcomMerchants(input);
   }
 
+  getInstoreMerchants(input: PaginationDto) {
+    return this.merchantRepository.getInstoreMerchants(input);
+  }
+
   updateMerchant(input: UpdateMerchantDto, logo: Express.Multer.File) {
     return this.merchantRepository.updateMerchant(input, logo);
   }

@@ -61,6 +61,13 @@ export class MerchantService {
     );
   }
 
+  getInstoreMerchants(input: PaginationDto) {
+    return this.http.get<PaginationInterface<MerchantModel>>(
+      `${environment.host}/merchant/instore`,
+      { params: { ...input } },
+    );
+  }
+
   searchMerchantBranches(input: SearchBranchesDto) {
     return this.http.get<PaginationInterface<BranchInterface>>(
       `${environment.host}/branch/search`,
