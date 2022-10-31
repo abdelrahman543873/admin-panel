@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  EventEmitter,
+  Output,
+  OnDestroy,
+} from '@angular/core';
 import {
   MarnBranchInterface,
   MarnDeviceResponse,
@@ -14,7 +21,7 @@ import { RatmBranch, RatmDevice } from '../interfaces/ratm.interface';
   templateUrl: './pos-branch-list.component.html',
   styleUrls: ['./pos-branch-list.component.scss'],
 })
-export class PosBranchListComponent implements OnInit {
+export class PosBranchListComponent implements OnInit, OnDestroy {
   posBranches!: (MarnBranchInterface & RatmBranch)[];
   posDevices!: (MarnDeviceResponse & RatmDevice)[];
   @Input() branchId!: number;
@@ -90,5 +97,8 @@ export class PosBranchListComponent implements OnInit {
       classname: 'bg-danger text-light',
       delay: 5000,
     });
+  }
+  ngOnDestroy(): void {
+    this.toastService.clear();
   }
 }
