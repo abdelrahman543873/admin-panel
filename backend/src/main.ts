@@ -30,7 +30,7 @@ async function bootstrap() {
   hbs.registerPartials(join(process.cwd(), 'views/layouts'));
   app.setGlobalPrefix('backend');
   const options = new DocumentBuilder()
-    .setTitle('🚀admin panel API🚀')
+    .setTitle('🚀admin panel APIs🚀')
     .setDescription('admin panel endpoints')
     .setVersion('1.0')
     .addBearerAuth()
