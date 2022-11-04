@@ -518,7 +518,7 @@
                   "Repo": "bonat-admin-panel",
                   "Branch": "main",
                   "OAuthToken": "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",
-                  "PollForSourceChanges": "true"
+                  "PollForSourceChanges": "false"
                 },
                 "RunOrder": 1,
                 "ActionTypeId": {
