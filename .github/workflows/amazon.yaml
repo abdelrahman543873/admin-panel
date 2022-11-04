@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  ECS_CLUSTER: main-cluster
+  ECS_CLUSTER: main
   BACKEND_TASK_DEFINITION: backend/backend-task-definition.json
   FRONTEND_TASK_DEFINITION: frontend/frontend-task-definition.json
   BACKEND_CONTAINER_NAME: admin-backend
