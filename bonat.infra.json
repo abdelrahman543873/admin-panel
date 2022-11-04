@@ -514,10 +514,10 @@
               {
                 "Name": "source",
                 "Configuration": {
-                  "Owner": "abdelrahman543873",
-                  "Repo": "bonat-admin-panel",
+                  "Owner": "Bonat-Org",
+                  "Repo": "admin",
                   "Branch": "main",
-                  "OAuthToken": "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",
+                  "OAuthToken": "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",
                   "PollForSourceChanges": "false"
                 },
                 "RunOrder": 1,
