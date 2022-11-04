@@ -1,52 +1,52 @@
-name: Deploy to Amazon ECS
+# name: Deploy to Amazon ECS
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-env:
-  AWS_REGION: us-east-1
-  ECS_CLUSTER: main
-  BACKEND_TASK_DEFINITION: backend/backend-task-definition.json
-  FRONTEND_TASK_DEFINITION: frontend/frontend-task-definition.json
-  BACKEND_CONTAINER_NAME: admin-backend
-  FRONTEND_CONTAINER_NAME: admin-frontend
-  BACKEND_ECS_SERVICE: admin-backend
-  FRONTEND_ECS_SERVICE: admin-frontend
-  BACKEND_ECR_REPOSITORY: admin
-  FRONTEND_ECR_REPOSITORY: frontend
+# env:
+#   AWS_REGION: us-east-1
+#   ECS_CLUSTER: main
+#   BACKEND_TASK_DEFINITION: backend/backend-task-definition.json
+#   FRONTEND_TASK_DEFINITION: frontend/frontend-task-definition.json
+#   BACKEND_CONTAINER_NAME: admin-backend
+#   FRONTEND_CONTAINER_NAME: admin-frontend
+#   BACKEND_ECS_SERVICE: admin-backend
+#   FRONTEND_ECS_SERVICE: admin-frontend
+#   BACKEND_ECR_REPOSITORY: admin
+#   FRONTEND_ECR_REPOSITORY: frontend
 
-jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      backend: ${{ steps.filter.outputs.backend }}
-      frontend: ${{ steps.filter.outputs.frontend }}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          filters: |
-            backend:
-              - 'backend/**'
-            frontend:
-              - 'frontend/**'
+# jobs:
+#   changes:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       backend: ${{ steps.filter.outputs.backend }}
+#       frontend: ${{ steps.filter.outputs.frontend }}
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: dorny/paths-filter@v2
+#         id: filter
+#         with:
+#           filters: |
+#             backend:
+#               - 'backend/**'
+#             frontend:
+#               - 'frontend/**'
 
-  BACKEND:
-    needs: changes
-    if: needs.changes.outputs.backend == 'true'
-    name: BACKEND
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+#   BACKEND:
+#     needs: changes
+#     if: needs.changes.outputs.backend == 'true'
+#     name: BACKEND
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
-        with:
-          aws-access-key-id: AKIA6IKA6RCZYFMFFP5Z
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+#         with:
+#           aws-access-key-id: AKIA6IKA6RCZYFMFFP5Z
           aws-secret-access-key: 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
           aws-region: us-east-1
 
