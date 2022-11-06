@@ -108,7 +108,7 @@
 #         node-version: 16
 
 #     - name: install angular CLI
-#       run: npm install -g @angular/cli
+  #       run: npm install -g @angular/cli
 
 #     - name: Install dependencies
 #       run: yarn

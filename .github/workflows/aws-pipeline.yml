@@ -34,3 +34,17 @@ jobs:
           aws-access-key: AKIARSGL23EJ5J3XNEOK
           aws-secret-key: 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
           pipeline-name: test-AppPipeline-AC0CJCPENRK
+
+  Frontend:
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
+    name: FRONTEND
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger AWS CodePipeline
+        uses: zulhfreelancer/aws-codepipeline-action@v1.0.7
+        with:
+          aws-region: us-west-2
+          aws-access-key: AKIARSGL23EJ5J3XNEOK
+          aws-secret-key: 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
+          pipeline-name: test-FrontendPipeline-A41S5WTHFOJ
