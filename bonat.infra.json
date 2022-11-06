@@ -516,8 +516,7 @@
         },
         "Source": {
           "Type": "CODEPIPELINE",
-          "BuildSpec": "frontendSpec.yml",
-          "Location": "frontend"
+          "BuildSpec": "frontend/frontendSpec.yml"
         },
         "Environment": {
           "PrivilegedMode": "true",
