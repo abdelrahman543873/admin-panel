@@ -469,7 +469,8 @@
           "Type": "CODEPIPELINE"
         },
         "Source": {
-          "Type": "CODEPIPELINE"
+          "Type": "CODEPIPELINE",
+          "BuildSpec": "backend/buildspec.yml"
         },
         "Environment": {
           "PrivilegedMode": "true",
