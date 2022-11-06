@@ -217,59 +217,6 @@
         ]
       }
     },
-    "AdminDBTask": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "TaskRoleArn": { "Ref": "RootRole" },
-        "ExecutionRoleArn": { "Ref": "RootRole" },
-        "Cpu": "256",
-        "Memory": "512",
-        "NetworkMode": "awsvpc",
-        "RequiresCompatibilities": ["FARGATE"],
-        "ContainerDefinitions": [
-          {
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": "firelens-container",
-                "awslogs-region": { "Ref": "RegionName" },
-                "awslogs-create-group": "true",
-                "awslogs-stream-prefix": "firelens"
-              }
-            },
-            "Image": "mysql",
-            "Name": "admin-mysql-cfn",
-            "Memory": "512",
-            "Cpu": "256",
-            "Environment": [
-              { "Name": "MYSQL_ALLOW_EMPTY_ROOT_PASSWORD", "Value": "true" },
-              { "Name": "MYSQL_DATABASE", "Value": "admindb" },
-              { "Name": "MYSQL_PASSWORD", "Value": "adminPass" },
-              { "Name": "MYSQL_ROOT_PASSWORD", "Value": "adminPass" },
-              { "Name": "MYSQL_USER", "Value": "Admin" }
-            ],
-            "Command": ["--default-authentication-plugin=mysql_native_password"]
-          }
-        ]
-      }
-    },
-    "AdminDbService": {
-      "Type": "AWS::ECS::Service",
-      "Properties": {
-        "NetworkConfiguration": {
-          "AwsvpcConfiguration": {
-            "AssignPublicIp": "ENABLED",
-            "Subnets": [{ "Ref": "Subnet1" }],
-            "SecurityGroups": [{ "Ref": "InstanceSecurityGroup" }]
-          }
-        },
-        "LaunchType": "FARGATE",
-        "Cluster": { "Ref": "EcsClusterName" },
-        "ServiceName": "admin-database",
-        "DesiredCount": 1,
-        "TaskDefinition": { "Ref": "AdminDBTask" }
-      }
-    },
     "AdminBackendTask": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
@@ -319,11 +266,7 @@
     },
     "AdminBackendService": {
       "Type": "AWS::ECS::Service",
-      "DependsOn": [
-        "AdminDbService",
-        "HTTPlistener",
-        "AdminBackendListenerRole"
-      ],
+      "DependsOn": ["HTTPlistener", "AdminBackendListenerRole"],
       "Properties": {
         "NetworkConfiguration": {
           "AwsvpcConfiguration": {
@@ -446,6 +389,10 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName": "bonat-frontend-5434",
+        "WebsiteConfiguration": {
+          "ErrorDocument": "index.html",
+          "IndexDocument": "index.html"
+        },
         "CorsConfiguration": {
           "CorsRules": [
             {
