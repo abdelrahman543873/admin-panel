@@ -7,6 +7,25 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+            frontend:
+              - 'frontend/**'
+
+  BACKEND:
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
+    name: BACKEND
+    runs-on: ubuntu-latest
     steps:
       - name: Trigger AWS CodePipeline
         uses: zulhfreelancer/aws-codepipeline-action@v1.0.7
