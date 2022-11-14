@@ -190,13 +190,6 @@
         }
       }
     },
-    "AdminBackendCodeCommitRepo": {
-      "Type": "AWS::CodeCommit::Repository",
-      "Properties": {
-        "RepositoryName": "AdminBackendCodeCommitRepo",
-        "RepositoryDescription": "This is the repository for backend"
-      }
-    },
     "ECSCluster": {
       "Type": "AWS::ECS::Cluster",
       "DeletionPolicy": "Delete",
@@ -391,7 +384,7 @@
       "DeletionPolicy": "Delete",
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "BucketName": "bonat-frontend-5434",
+        "BucketName": "bonat-admin-frontend",
         "WebsiteConfiguration": {
           "ErrorDocument": "index.html",
           "IndexDocument": "index.html"
@@ -553,9 +546,7 @@
                 "Name": "deployECS",
                 "Configuration": {
                   "ClusterName": { "Ref": "EcsClusterName" },
-                  "ServiceName": {
-                    "Fn::GetAtt": ["AdminBackendService", "Name"]
-                  }
+                  "ServiceName": "admin-backend"
                 },
                 "InputArtifacts": [{ "Name": "BuildOutput" }]
               }

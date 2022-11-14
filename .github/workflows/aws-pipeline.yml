@@ -33,7 +33,7 @@ jobs:
           aws-region: us-west-2
           aws-access-key: AKIARSGL23EJ5J3XNEOK
           aws-secret-key: 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
-          pipeline-name: test-AppPipeline-AC0CJCPENRK
+          pipeline-name: bonat-admin-panel-AppPipeline-Q46AGG32MQ59
 
   Frontend:
     needs: changes
@@ -47,4 +47,4 @@ jobs:
           aws-region: us-west-2
           aws-access-key: AKIARSGL23EJ5J3XNEOK
           aws-secret-key: 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
-          pipeline-name: test-FrontendPipeline-A41S5WTHFOJ
+          pipeline-name: bonat-admin-panel-FrontendPipeline-JNIAN7C914B4
