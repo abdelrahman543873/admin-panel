@@ -400,7 +400,7 @@
           "CorsRules": [
             {
               "AllowedHeaders": ["*"],
-              "AllowedMethods": ["GET", "PUT", "HEAD", "POST", "DELETE"],
+              "AllowedMethods": ["GET", "PUT", "HEAD", "POST"],
               "AllowedOrigins": ["*"]
             }
           ]
