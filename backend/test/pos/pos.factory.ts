@@ -9,7 +9,7 @@ interface PosType {
   status?: MerchantStatus;
   title?: string;
   apiToken?: string;
-  integration?: boolean;
+  activated?: boolean;
   module?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const buildPosParams = async (obj: PosType = {}): Promise<PosType> => {
     // status: obj.status || (await merchantStatusFactory()),
     title: obj.title || random.word(),
     apiToken: obj.apiToken || randomUUID(),
-    integration: obj.integration || datatype.boolean(),
+    activated: obj.activated || datatype.boolean(),
     module: obj.module || datatype.boolean(),
   };
 };

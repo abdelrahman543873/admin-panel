@@ -1,8 +1,8 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
-import { PaginationDto } from '../shared/dtos/pagination.dto';
 import { PosService } from './pos.service';
 import { JwtAuthGuard } from '../shared/auth/guards/jwt.guard';
 import { ApiTags } from '@nestjs/swagger';
+import { SearchPossesDto } from './inputs/search-poses.dto';
 
 @UseGuards(JwtAuthGuard)
 @ApiTags('Pos')
@@ -11,7 +11,7 @@ export class PosController {
   constructor(private posService: PosService) {}
 
   @Get()
-  async getPoses(@Query() input: PaginationDto) {
-    return await this.posService.getPoses(input);
+  async searchPoses(@Query() input: SearchPossesDto) {
+    return await this.posService.searchPoses(input);
   }
 }

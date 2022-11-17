@@ -25,8 +25,8 @@ export class Pos {
   @Column({ name: 'apiToken' })
   apiToken: string;
 
-  @Column({ name: 'product_integration' })
-  integration: boolean;
+  @Column({ name: 'product_integration', type: 'tinyint' })
+  activated: boolean;
 
   @Column({ name: 'product_module' })
   module: boolean;

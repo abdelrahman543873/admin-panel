@@ -12,6 +12,36 @@ describe('get posses suite case', () => {
       url: POS,
       token: admin.token,
     });
-    expect(response.body.items.length).toBeGreaterThanOrEqual(5);
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('should get active poses only', async () => {
+    const admin = await adminFactory();
+    await posFactory({ activated: true });
+    const response = await testRequest({
+      method: HTTP_METHODS_ENUM.GET,
+      url: `${POS}?activated=true`,
+      token: admin.token,
+    });
+    const inActivePosses = response.body.items.filter((pos) => {
+      return pos.activated === false;
+    });
+    expect(inActivePosses.length).toBe(0);
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('should get inActive poses only', async () => {
+    const admin = await adminFactory();
+    await posFactory({ activated: true });
+    const response = await testRequest({
+      method: HTTP_METHODS_ENUM.GET,
+      url: `${POS}?activated=false`,
+      token: admin.token,
+    });
+    const activePosses = response.body.items.filter((pos) => {
+      return pos.activated === true;
+    });
+    expect(activePosses.length).toBe(0);
+    expect(response.body.items.length).toBeGreaterThanOrEqual(1);
   });
 });
