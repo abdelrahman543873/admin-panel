@@ -11,5 +11,5 @@ export interface CampaignInterface {
   status: boolean;
   enDescription: string;
   arDescription: string;
-  createdAt: Date;
+  createdAt: string;
 }

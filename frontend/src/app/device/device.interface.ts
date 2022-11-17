@@ -11,6 +11,6 @@ export interface DeviceInterface {
   appVersion: string;
   os: string;
   osVersion: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

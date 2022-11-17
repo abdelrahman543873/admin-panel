@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeviceInterface } from '../device.interface';
 import { DeviceService } from '../device.service';
 import { PosBranchListComponent } from '../../pos/pos-branch-list/pos-branch-list.component';
+import { dateMapper } from '../../shared/utils/date-mapper.util';
 
 @Component({
   selector: 'app-device-list',
@@ -48,7 +49,7 @@ export class DeviceListComponent implements OnInit {
     this.deviceService
       .searchDevices({ limit, offset, branchId: this.branchId })
       .subscribe((data) => {
-        this.devices = data.items;
+        this.devices = data.items.map(dateMapper);
         this.totalNumberOfDevices = data.meta.totalItems;
       });
   }

@@ -4,6 +4,8 @@ import { MerchantModel } from '../interfaces/merchant.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddMerchantComponent } from '../add/add-merchant.component';
 import { IntegrationType } from '../merchant.constants';
+import { PaginationInterface } from 'src/app/shared/interfaces/pagination.interface';
+import { dateMapper } from '../../shared/utils/date-mapper.util';
 
 @Component({
   selector: 'app-merchants-list',
@@ -22,13 +24,13 @@ export class MerchantsListComponent implements OnInit {
     private modalService: NgbModal,
   ) {}
 
-  handleNewPagination = (data: any) => {
-    this.merchants = data.items;
+  renderData = (data: PaginationInterface<MerchantModel>) => {
+    this.merchants = data.items.map(dateMapper);
     this.totalNumberOfMerchants = data.meta.totalItems;
   };
 
   ngOnInit(): void {
-    this.merchantService.getMerchants().subscribe(this.handleNewPagination);
+    this.merchantService.getMerchants().subscribe(this.renderData);
   }
 
   open() {
@@ -45,7 +47,7 @@ export class MerchantsListComponent implements OnInit {
     this.integrationType = IntegrationType.ALL_MERCHANTS;
     this.merchantService
       .getMerchants({ limit, offset })
-      .subscribe(this.handleNewPagination);
+      .subscribe(this.renderData);
   }
 
   movePage(
@@ -70,7 +72,7 @@ export class MerchantsListComponent implements OnInit {
     this.integrationType = IntegrationType.ECOM;
     this.merchantService
       .getEcomMerchants({ limit: this.paginationLimit, offset })
-      .subscribe(this.handleNewPagination);
+      .subscribe(this.renderData);
   }
 
   getInstoreMerchants(offset: number = this.currentPage) {
@@ -78,7 +80,7 @@ export class MerchantsListComponent implements OnInit {
     this.integrationType = IntegrationType.INSTORE;
     this.merchantService
       .getInstoreMerchants({ limit: this.paginationLimit, offset })
-      .subscribe(this.handleNewPagination);
+      .subscribe(this.renderData);
   }
 
   searchMerchants(enName: string) {
@@ -88,6 +90,6 @@ export class MerchantsListComponent implements OnInit {
         offset: this.currentPage,
         enName,
       })
-      .subscribe(this.handleNewPagination);
+      .subscribe(this.renderData);
   }
 }

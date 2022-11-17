@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CampaignService } from '../campaign.service';
 import { CampaignInterface } from '../interfaces/campaign.interface';
 import { AddCampaignComponent } from '../add-campaign/add-campaign.component';
+import { dateMapper } from '../../shared/utils/date-mapper.util';
 
 @Component({
   selector: 'app-campaign-list',
@@ -48,7 +49,7 @@ export class CampaignListComponent implements OnInit {
     this.campaignService
       .searchCampaigns({ limit, offset, merchantId: this.merchantId })
       .subscribe((data) => {
-        this.campaigns = data.items;
+        this.campaigns = data.items.map(dateMapper);
         this.totalNumberOfCampaigns = data.meta.totalItems;
       });
   }

@@ -11,13 +11,13 @@ export interface BranchInterface {
   arDistrict: string;
   managerName: string;
   managerPhoneNumber: string;
-  createdAt: Date;
+  createdAt: string;
   hasPickup: boolean;
   isActive: boolean;
   isDeleted: boolean;
   address: string;
   location: string;
-  updatedAt: Date;
+  updatedAt: string;
   enName: string;
   arName: string;
   enWorkingHours: Record<any, any>;

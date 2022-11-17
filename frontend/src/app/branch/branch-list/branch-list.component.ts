@@ -3,6 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MerchantService } from '../../merchant/merchant.service';
 import { AddBranchComponent } from '../add-branch/add-branch.component';
 import { BranchInterface } from '../intefaces/branch.interface';
+import { PaginationInterface } from 'src/app/shared/interfaces/pagination.interface';
+import { dateMapper } from '../../shared/utils/date-mapper.util';
 
 @Component({
   selector: 'app-branch-list',
@@ -30,10 +32,7 @@ export class BranchListComponent implements OnInit {
     this.paginationLimit = limit;
     this.merchantService
       .searchMerchantBranches({ limit, offset, merchantId: this.merchantId })
-      .subscribe((data) => {
-        this.branches = data.items;
-        this.totalNumberOfBranches = data.meta.totalItems;
-      });
+      .subscribe(this.renderData);
   }
 
   open() {
@@ -49,9 +48,11 @@ export class BranchListComponent implements OnInit {
   searchMerchants(enName: string) {
     this.merchantService
       .searchMerchantBranches({ merchantId: this.merchantId, enName })
-      .subscribe((data) => {
-        this.branches = data.items;
-        this.totalNumberOfBranches = data.meta.totalItems;
-      });
+      .subscribe(this.renderData);
   }
+
+  renderData = (data: PaginationInterface<BranchInterface>) => {
+    this.branches = data.items.map(dateMapper);
+    this.totalNumberOfBranches = data.meta.totalItems;
+  };
 }
