@@ -21,11 +21,11 @@ export class MerchantService {
     return this.merchantRepository.getMerchants(input);
   }
 
-  getEcomMerchants(input: PaginationDto) {
+  getEcomMerchants(input: SearchMerchantsDto) {
     return this.merchantRepository.getEcomMerchants(input);
   }
 
-  getInstoreMerchants(input: PaginationDto) {
+  getInstoreMerchants(input: SearchMerchantsDto) {
     return this.merchantRepository.getInstoreMerchants(input);
   }
 

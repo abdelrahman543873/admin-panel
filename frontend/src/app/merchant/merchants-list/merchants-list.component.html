@@ -18,13 +18,15 @@
                 arDescription="search"
                 #search
                 ngModel
-                (search)="paginate()"
+                (search)="clearSearch()"
               />
               <div class="input-group-append">
                 <button
                   type="submit"
                   class="btn btn-lg btn-default"
-                  (click)="searchMerchants(search.value)"
+                  (click)="
+                    searchMerchants(paginationLimit, currentPage, search.value)
+                  "
                 >
                   <i class="fa fa-search"></i>
                 </button>
@@ -44,12 +46,25 @@
               {{ integrationType }}
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" (click)="paginate()">All Merchants</a>
+              <a
+                class="dropdown-item"
+                (click)="paginate()"
+                (click)="integrationType = 'All Merchants'"
+                >All Merchants</a
+              >
               <!-- when switching integration types , we go back to the begging for ux purposes -->
-              <a class="dropdown-item" (click)="getInstoreMerchants(1)"
+              <a
+                class="dropdown-item"
+                (click)="getInstoreMerchants(1)"
+                (click)="integrationType = 'INSTORE'"
                 >Instore</a
               >
-              <a class="dropdown-item" (click)="getEcomMerchants(1)">Ecom</a>
+              <a
+                class="dropdown-item"
+                (click)="getEcomMerchants(1)"
+                (click)="integrationType = 'ECOM'"
+                >Ecom</a
+              >
             </div>
           </div>
           <div class="col-sm-3 offset-sm-3">
@@ -189,7 +204,7 @@
                   [(page)]="currentPage"
                   [pageSize]="paginationLimit"
                   [maxSize]="5"
-                  (pageChange)="movePage(paginationLimit, currentPage)"
+                  (pageChange)="searchMerchants(paginationLimit, currentPage)"
                 ></ngb-pagination>
               </div>
             </div>

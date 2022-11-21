@@ -54,14 +54,14 @@ export class MerchantService {
     return this.http.get<MerchantModel>(`${environment.host}/merchant/${id}`);
   }
 
-  getEcomMerchants(input: PaginationDto) {
+  getEcomMerchants(input: SearchMerchantsDto) {
     return this.http.get<PaginationInterface<MerchantModel>>(
       `${environment.host}/merchant/ecom`,
       { params: { ...input } },
     );
   }
 
-  getInstoreMerchants(input: PaginationDto) {
+  getInstoreMerchants(input: SearchMerchantsDto) {
     return this.http.get<PaginationInterface<MerchantModel>>(
       `${environment.host}/merchant/instore`,
       { params: { ...input } },

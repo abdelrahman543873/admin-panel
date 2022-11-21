@@ -56,12 +56,14 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     );
   }
 
-  getEcomMerchants(input: PaginationDto) {
+  getEcomMerchants(input: SearchMerchantsDto) {
     return paginate<Merchant>(
       this.merchant,
       { limit: input.limit, page: input.offset },
       {
         where: {
+          ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
+          ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
           ecommerceType: Not(IsNull()),
         },
         relations: ['pos', 'category', 'ecommerceType'],
@@ -69,12 +71,14 @@ export class MerchantRepository extends BaseRepository<Merchant> {
     );
   }
 
-  getInstoreMerchants(input: PaginationDto) {
+  getInstoreMerchants(input: SearchMerchantsDto) {
     return paginate<Merchant>(
       this.merchant,
       { limit: input.limit, page: input.offset },
       {
         where: {
+          ...(input.enName && { enName: ILike(`%${input.enName}%`) }),
+          ...(input.arName && { enName: ILike(`%${input.arName}%`) }),
           pos: Not(IsNull()),
         },
         relations: ['pos', 'category'],

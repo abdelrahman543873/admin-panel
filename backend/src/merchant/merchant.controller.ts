@@ -53,12 +53,12 @@ export class MerchantController {
   }
 
   @Get('ecom')
-  async getEcomMerchants(@Query() input: PaginationDto) {
+  async getEcomMerchants(@Query() input: SearchMerchantsDto) {
     return await this.merchantService.getEcomMerchants(input);
   }
 
   @Get('instore')
-  async getInstoreMerchants(@Query() input: PaginationDto) {
+  async getInstoreMerchants(@Query() input: SearchMerchantsDto) {
     return await this.merchantService.getInstoreMerchants(input);
   }
 
