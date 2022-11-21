@@ -23,9 +23,13 @@ export class PosRepository extends BaseRepository<Pos> {
         page: input.offset,
       },
       {
+        relations: ['status'],
         where: {
-          ...(Object.keys(input).includes('activated') && {
-            activated: input.activated,
+          ...(input.activated === false && {
+            status: { id: 2 },
+          }),
+          ...(input.activated === true && {
+            status: { id: 1 },
           }),
         },
       },

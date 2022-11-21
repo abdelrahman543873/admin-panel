@@ -6,5 +6,5 @@ export class SearchPossesDto extends PaginationDto {
   @IsOptional()
   @IsBoolean()
   @Transform(booleanTransformer)
-  activated?: boolean;
+  activated?: boolean = true;
 }

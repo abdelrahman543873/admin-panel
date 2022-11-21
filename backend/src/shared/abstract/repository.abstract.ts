@@ -1,4 +1,6 @@
 import { DeepPartial, FindManyOptions, Repository } from 'typeorm';
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import { UpsertOptions } from 'typeorm/repository/UpsertOptions';
 import { RepositoryInterface } from '../interfaces/repository.interface';
 
 export abstract class BaseRepository<Entity> implements RepositoryInterface {
@@ -14,6 +16,10 @@ export abstract class BaseRepository<Entity> implements RepositoryInterface {
 
   clear() {
     return this.repository.clear();
+  }
+
+  upsert(input: QueryDeepPartialEntity<Entity>, updatedFields: [string]) {
+    return this.repository.upsert(input, updatedFields);
   }
 
   find(input: FindManyOptions<Entity>) {
