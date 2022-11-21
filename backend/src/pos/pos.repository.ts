@@ -22,13 +22,13 @@ export class PosRepository extends BaseRepository<Pos> {
         limit: input.limit,
         page: input.offset,
       },
-      // typescript ignored , as the tiny int value in the db indicating true or false is a tiny int
-      // typeorm converts its successfully to read and write , but when we try to filter using true or false
-      // the filter doesn't work
-      // @ts-ignore: Unreachable code error
-      { ...(input.activated === true && { activated: 1 }) },
-      // @ts-ignore: Unreachable code error
-      { ...(input.activated === false && { activated: 0 }) },
+      {
+        where: {
+          ...(Object.keys(input).includes('activated') && {
+            activated: input.activated,
+          }),
+        },
+      },
     );
   }
 }

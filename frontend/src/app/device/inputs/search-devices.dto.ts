@@ -1,4 +1,4 @@
-import { PaginationDto } from './../../shared/classes/pagination.dto';
+import { PaginationDto } from '../../shared/dtos/pagination.dto';
 export class SearchDevicesDto extends PaginationDto {
   branchId?: number;
 }

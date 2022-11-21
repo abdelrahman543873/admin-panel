@@ -8,7 +8,7 @@ import { PaginationInterface } from '../shared/interfaces/pagination.interface';
 import { SearchBranchesDto } from './dto/search-branches.dto';
 import { SearchMerchantsDto } from './dto/search-merchants.dto';
 import { UpdateMerchantDto } from './dto/update-merchant.dto';
-import { PaginationDto } from '../shared/classes/pagination.dto';
+import { PaginationDto } from '../shared/dtos/pagination.dto';
 @Injectable({ providedIn: 'root' })
 export class MerchantService {
   constructor(private readonly http: HttpClient) {}

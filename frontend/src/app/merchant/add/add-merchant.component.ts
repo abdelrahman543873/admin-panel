@@ -24,7 +24,7 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.posService.getPoses({}).subscribe((data) => {
+    this.posService.getPoses({ activated: true }).subscribe((data) => {
       this.poses = data.items.map((pos) => {
         return { title: pos.title, id: pos.id };
       });
