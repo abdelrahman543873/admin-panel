@@ -12,58 +12,113 @@
     </button>
   </div>
   <div class="modal-body">
-    <form #addMerchant="ngForm">
+    <form #updateMerchant="ngForm" (ngSubmit)="submit(updateMerchant)">
       <div class="row">
         <h5>Merchant Information</h5>
         <div class="form-group col-6">
           <label>Merchant Name Ar</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              arNameRef.errors &&
+              (arNameRef.dirty || arNameRef.touched || updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="arName"
             [ngModel]="arName"
-            [defaultValue]="'hello'"
+            required
+            #arNameRef="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid arabic merchant name</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Name En</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              enNameRef.errors &&
+              (enNameRef.dirty || enNameRef.touched || updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="enName"
             [ngModel]="enName"
+            required
+            #enNameRef="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid english merchant name</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Slogan En</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              enDescriptionRef.errors &&
+              (enDescriptionRef.dirty ||
+                enDescriptionRef.touched ||
+                updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="enDescription"
+            required
             [ngModel]="enDescription"
+            #enDescriptionRef="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid english merchant slogan</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Slogan Ar</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              arDescriptionRef.errors &&
+              (arDescriptionRef.dirty ||
+                arDescriptionRef.touched ||
+                updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="arDescription"
             [ngModel]="arDescription"
+            #arDescriptionRef="ngModel"
+            required
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid arabic merchant slogan</span
+          >
         </div>
         <div class="form-group col-6">
           <div class="form-group">
             <label>Merchant Category</label>
             <select
-              class="custom-select"
+              [ngClass]="
+                categoryRef.errors &&
+                (categoryRef.dirty ||
+                  categoryRef.touched ||
+                  updateMerchant.submitted)
+                  ? 'custom-select is-invalid'
+                  : 'custom-select'
+              "
               name="category"
+              required
               [ngModel]="category?.id"
+              #categoryRef="ngModel"
             >
               <option *ngFor="let category of categories" [value]="category.id">
                 {{ category.enTitle }}
               </option>
             </select>
+            <span class="error invalid-feedback"
+              >Please select a valid merchant category</span
+            >
           </div>
         </div>
         <div class="form-group col-6">
@@ -91,11 +146,21 @@
           <label>Account Email</label>
           <input
             type="text"
-            class="form-control"
             name="email"
             email
             [ngModel]="email"
+            [ngClass]="
+              emailRef.errors &&
+              (emailRef.dirty || emailRef.touched || updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            required
+            #emailRef="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please select a valid merchant email</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Account Password</label>
@@ -111,10 +176,23 @@
           <label>Phone Number</label>
           <input
             type="text"
-            class="form-control"
             name="phoneNumber"
             [ngModel]="phoneNumber"
+            [ngClass]="
+              phoneNumberRef.errors &&
+              (phoneNumberRef.dirty ||
+                phoneNumberRef.touched ||
+                updateMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            required
+            ngModel
+            #phoneNumberRef="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please select a valid merchant phone number</span
+          >
         </div>
       </div>
       <div class="row">
@@ -122,11 +200,26 @@
         <div class="form-group col-6">
           <div class="form-group">
             <label>Pos</label>
-            <select class="custom-select" name="pos" [ngModel]="pos?.id">
+            <select
+              class="custom-select"
+              [ngClass]="
+                posRef.errors &&
+                (posRef.dirty || posRef.touched || updateMerchant.submitted)
+                  ? 'custom-select is-invalid'
+                  : 'custom-select'
+              "
+              name="pos"
+              [ngModel]="pos?.id"
+              #posRef="ngModel"
+              required
+            >
               <option *ngFor="let pos of poses" [value]="pos.id">
                 {{ pos.title }}
               </option>
             </select>
+            <span class="error invalid-feedback"
+              >Please select a valid POS</span
+            >
           </div>
         </div>
         <div class="form-group col-6" *ngIf="pos?.title === 'Marn'">
@@ -154,33 +247,18 @@
           />
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary col-3">Save</button>
+        <button
+          type="button"
+          class="btn btn-default col-3"
+          data-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >
+          Close
+        </button>
+      </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary col-3" (click)="submit(addMerchant)">
-      Save
-    </button>
-    <button
-      type="button"
-      class="btn btn-default col-3"
-      data-dismiss="modal"
-      (click)="activeModal.dismiss('Cross click')"
-    >
-      Close
-    </button>
-    <div class="row">
-      <button
-        type="button"
-        class="btn btn-danger toastsDefaultDanger col-3"
-        *ngIf="
-          addMerchant.submitted &&
-          addMerchant.invalid &&
-          (addMerchant.dirty || addMerchant.touched)
-        "
-      >
-        please enter all fields correctly
-      </button>
-    </div>
   </div>
 </div>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
