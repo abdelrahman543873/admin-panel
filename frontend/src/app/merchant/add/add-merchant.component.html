@@ -12,58 +12,103 @@
     </button>
   </div>
   <div class="modal-body">
-    <form #addMerchant="ngForm">
+    <form #addMerchant="ngForm" (ngSubmit)="submit(addMerchant)">
       <div class="row">
         <h5>Merchant Information</h5>
         <div class="form-group col-6">
           <label>Merchant Name Ar</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              arName.errors &&
+              (arName.dirty || arName.touched || addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="arName"
             placeholder="Enter Merchant Arabic Name"
             ngModel
             required
+            #arName="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid arabic merchant name</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Name En</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              enName.errors &&
+              (enName.dirty || enName.touched || addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="enName"
             placeholder="Enter Merchant English Name"
             ngModel
             required
+            #enName="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid english merchant name</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Slogan En</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              enDescription.errors &&
+              (enDescription.dirty ||
+                enDescription.touched ||
+                addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="enDescription"
             placeholder="Enter Merchant English Slogan"
             ngModel
             required
+            #enDescription="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid english merchant slogan</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Merchant Slogan Ar</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              arDescription.errors &&
+              (arDescription.dirty ||
+                arDescription.touched ||
+                addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="arDescription"
             placeholder="Enter Merchant Arabic Slogan"
             ngModel
             required
+            #arDescription="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please enter a valid arabic merchant slogan</span
+          >
         </div>
         <div class="form-group col-6">
           <div class="form-group">
             <label>Merchant Category</label>
             <select
-              class="custom-select"
+              [ngClass]="
+                category.errors &&
+                (category.dirty || category.touched || addMerchant.submitted)
+                  ? 'custom-select is-invalid'
+                  : 'custom-select'
+              "
               [ngModel]="category.value"
               name="category"
               #category="ngModel"
@@ -73,6 +118,9 @@
                 {{ category.enTitle }}
               </option>
             </select>
+            <span class="error invalid-feedback"
+              >Please select a valid merchant category</span
+            >
           </div>
         </div>
         <div class="form-group col-6">
@@ -81,11 +129,17 @@
             <div class="custom-file">
               <input
                 type="file"
-                class="custom-file-input"
+                [ngClass]="
+                  logo.errors &&
+                  (logo.dirty || logo.touched || addMerchant.submitted)
+                    ? 'custom-file-input is-invalid'
+                    : 'custom-file-input'
+                "
                 (change)="selectFile($event)"
                 required
                 ngModel
                 name="file"
+                #logo="ngModel"
               />
               <label class="custom-file-label">Choose file</label>
             </div>
@@ -101,35 +155,64 @@
           <label>Account Email</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              email.errors &&
+              (email.dirty || email.touched || addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="email"
             email
             placeholder="Enter Merchant Account Email"
             ngModel
             required
+            #email="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please select a valid merchant email</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Account Password</label>
           <input
             type="password"
-            class="form-control"
+            [ngClass]="
+              password.errors &&
+              (password.dirty || password.touched || addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="password"
             placeholder="Enter Merchant password"
             ngModel
             required
+            #password="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please select a valid merchant password</span
+          >
         </div>
         <div class="form-group col-6">
           <label>Phone Number</label>
           <input
             type="text"
-            class="form-control"
+            [ngClass]="
+              phoneNumber.errors &&
+              (phoneNumber.dirty ||
+                phoneNumber.touched ||
+                addMerchant.submitted)
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
             name="phoneNumber"
             placeholder="Enter Merchant Phone number"
             ngModel
             required
+            #phoneNumber="ngModel"
           />
+          <span class="error invalid-feedback"
+            >Please select a valid merchant phone number</span
+          >
         </div>
       </div>
       <div class="row">
@@ -143,11 +226,20 @@
               name="pos"
               #pos="ngModel"
               required
+              [ngClass]="
+                pos.errors &&
+                (pos.dirty || pos.touched || addMerchant.submitted)
+                  ? 'custom-select is-invalid'
+                  : 'custom-select'
+              "
             >
               <option *ngFor="let pos of poses" [ngValue]="pos">
                 {{ pos.title }}
               </option>
             </select>
+            <span class="error invalid-feedback"
+              >Please select a valid POS</span
+            >
           </div>
         </div>
         <div class="form-group col-6" *ngIf="pos.value?.title === 'Marn'">
@@ -177,33 +269,18 @@
           />
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary col-3">Save</button>
+        <button
+          type="button"
+          class="btn btn-default col-3"
+          data-dismiss="modal"
+          (click)="activeModal.dismiss('Cross click')"
+        >
+          Close
+        </button>
+      </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary col-3" (click)="submit(addMerchant)">
-      Save
-    </button>
-    <button
-      type="button"
-      class="btn btn-default col-3"
-      data-dismiss="modal"
-      (click)="activeModal.dismiss('Cross click')"
-    >
-      Close
-    </button>
-    <div class="row">
-      <button
-        type="button"
-        class="btn btn-danger toastsDefaultDanger col-3"
-        *ngIf="
-          addMerchant.submitted &&
-          addMerchant.invalid &&
-          (addMerchant.dirty || addMerchant.touched)
-        "
-      >
-        please enter all fields correctly
-      </button>
-    </div>
   </div>
 </div>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
