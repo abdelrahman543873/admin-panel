@@ -1,4 +1,3 @@
-import { PaginationDto } from './../../shared/dtos/pagination.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, IsNull, Not, Repository } from 'typeorm';
@@ -26,7 +25,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
       ...(logo && {
         imageUrl: `${
           process.env.ONLINE_HOST || process.env.APP_URL
-        }/merchant/logos/${logo.filename}`,
+        }${logo.path.substring(6)}`,
       }),
     });
   }
@@ -96,7 +95,7 @@ export class MerchantRepository extends BaseRepository<Merchant> {
         ...(logo && {
           imageUrl: `${
             process.env.ONLINE_HOST || process.env.APP_URL
-          }/merchant/logos/${logo.filename}`,
+          }${logo.path.substring(6)}`,
         }),
         // done per business need
         // when a ratm branch is updated , the posBusinessId column value should be the same as the id value
