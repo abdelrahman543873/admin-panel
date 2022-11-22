@@ -24,7 +24,7 @@ export class UpdateMerchantComponent implements OnInit {
   @Input() arDescription!: string;
   @Input() email!: string;
   @Input() brandKey!: string;
-  @Input() imageUrl!: string;
+  @Input() imageUrl!: any;
   @Input() createdAt!: string;
   @Input() updatedAt!: string;
   @Input() subscriptionStatus!: string;
@@ -61,6 +61,9 @@ export class UpdateMerchantComponent implements OnInit {
   }
   selectFile(event: any) {
     this.selectedFile = event.target.files[0] as File;
+    const reader = new FileReader();
+    reader.onload = (e) => (this.imageUrl = reader.result);
+    reader.readAsDataURL(this.selectedFile);
   }
 
   async submit(form: NgForm) {

@@ -15,6 +15,7 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
   poses!: Array<{ title: string; id: number }>;
   categories!: Array<{ enTitle: string; id: number }>;
   selectedFile!: File;
+  selectedFileUrl?: any;
   constructor(
     private merchantService: MerchantService,
     private posService: PosService,
@@ -37,6 +38,9 @@ export class AddMerchantComponent implements OnInit, OnDestroy {
   }
   selectFile(event: any) {
     this.selectedFile = event.target.files[0] as File;
+    const reader = new FileReader();
+    reader.onload = (e) => (this.selectedFileUrl = reader.result);
+    reader.readAsDataURL(this.selectedFile);
   }
 
   async submit(form: NgForm) {
